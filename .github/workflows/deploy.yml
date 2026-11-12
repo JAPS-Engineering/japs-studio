@@ -1,9 +1,17 @@
+# Actions solo para releases autorizados; pruebas obligatorias en local (JAPS-403).
 name: Deploy JAPS Studio
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      sha_probado:
+        description: SHA completo del commit probado en local (debe coincidir con el ref seleccionado)
+        required: true
+        type: string
+      evidencia_local:
+        description: Comandos y resultados locales verificados para ese SHA; enlace al PR o informe
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -12,10 +20,32 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  validar-release:
+    name: Validar versión y evidencia local
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: read
+    steps:
+      - name: Comprobar SHA probado y rama de release
+        env:
+          SHA_PROBADO: ${{ inputs.sha_probado }}
+          EVIDENCIA_LOCAL: ${{ inputs.evidencia_local }}
+          RAMA_RELEASE: main
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/$RAMA_RELEASE" || { echo '::error::Selecciona la rama de release'; exit 1; }
+          [[ "$SHA_PROBADO" =~ ^[0-9a-f]{40}$ ]] && test "$SHA_PROBADO" = "$GITHUB_SHA" || { echo '::error::El SHA probado no coincide con la versión seleccionada'; exit 1; }
+          test -n "${EVIDENCIA_LOCAL//[[:space:]]/}" || { echo '::error::Falta evidencia local'; exit 1; }
+          printf '### Verificación local\nCommit: `%s`\n\n%s\n' "$SHA_PROBADO" "$EVIDENCIA_LOCAL" >> "$GITHUB_STEP_SUMMARY"
+
   deploy:
+    needs: [validar-release]
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     environment:
       name: github-pages
