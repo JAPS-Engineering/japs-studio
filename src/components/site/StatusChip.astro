@@ -1,0 +1,9 @@
+---
+import type { Status } from '../../data/productos';
+
+interface Props {
+  status: Status;
+}
+const { status } = Astro.props;
+---
+<span class:list={['pchip', { off: !status.on }]}>{status.label}</span>

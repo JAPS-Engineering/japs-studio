@@ -1,0 +1,108 @@
+---
+/**
+ * Header del sitio: cápsula de vidrio al bajar, panel de productos en
+ * «Portafolio» (escritorio) y menú desplegable (móvil). Los enlaces salen de
+ * data/nav.ts; la página activa se deduce de la URL.
+ */
+import Cta from './Cta.astro';
+import EngMark from './EngMark.astro';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import PartnerSwitch from './PartnerSwitch.astro';
+import { navLinks, routes } from '../../data/nav';
+import { productHref, products } from '../../data/productos';
+import { engineering } from '../../data/site';
+
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const current = (href: string) => (href === path ? 'page' : undefined);
+const [first] = products;
+---
+<div class="frame site-top cq" data-p="top"><div class="frame__in"><header class="hd h1">
+  <Logo />
+  <nav class="links" aria-label="Principal">{
+    navLinks.map((link) =>
+      link.href === routes.portfolio ? (
+        <span class="pf"><a class="lnk pf__btn" href={link.href} aria-current={current(link.href)} aria-haspopup="true" aria-expanded="false">{link.label} <span class="caret" aria-hidden="true"></span></a><span class="pf__panel" role="group" aria-label="Portafolio"><span class="pf__list"><span class="pf__k">Nuestras soluciones</span>{
+          products.map((p, i) => (
+            <a class="pfl" href={productHref(p)} data-img={p.img} data-h={p.headline} data-n={p.name} data-cat={p.cat} data-st={p.status.label} data-on={p.status.on ? 'on' : 'off'} data-k={p.slug} data-href={productHref(p)} aria-current={i === 0 ? 'true' : undefined}><span class="pfb" style={`background:${p.logoBg}`}><img src={p.logo} alt="" width="28" height="28" /></span><span class="pfl__t"><b>{p.name}</b><small>{p.catLong}</small></span><i class={`pfl__d pfl__d--${p.status.on ? 'on' : 'off'}`} title={p.status.label}></i></a>
+          ))
+        }</span><a class="pf__prev" href={productHref(first)}><img class="pf__img" src={first.img} alt="" loading="lazy" /><i class="pf__scrim"></i><span class={`pf__chip pf__chip--${first.status.on ? 'on' : 'off'}`}>{first.status.label}</span><span class="pf__pb"><PartnerSwitch class="pf__partner" active={first.slug} /><small class="pf__cat">{first.cat}</small><b class="pf__h">{first.headline}</b><span class="pf__go">Conocer <span class="pf__n">{first.name}</span> <Icon name="arrow" small /></span></span></a><span class="pf__foot"><span>Productos construidos junto a quien conoce el problema</span><a class="pf__all" href={routes.portfolio}>Ver todo el portafolio <Icon name="arrow" small /></a></span></span></span>
+      ) : (
+        <a class="lnk" href={link.href} aria-current={current(link.href)}>{link.label}</a>
+      )
+    )
+  }</nav>
+  <span class="sp"></span>
+  <a class="sib" href={engineering.url} title={engineering.name}><EngMark id="top-1" /></a>
+  <span class="lang-wrap"><button class="lang js-lang" type="button" aria-expanded="false" aria-label="Idioma: español"><Icon name="globe" /><b>ES</b><Icon name="chev" small /></button><span class="lang-menu"><a href="/" aria-current="true">Español</a><a aria-disabled="true" title="Versión en inglés: próximamente">English</a></span></span>
+  <Cta class="hide-m" href={routes.contact} label="Construye con nosotros" />
+  <Cta class="only-s" href={routes.contact} label="Construye con nosotros" iconOnly />
+  <span class="only-m"><button class="round js-menu" type="button" aria-label="Abrir menú"><Icon name="menu" /></button></span>
+</header><div class="pop" aria-hidden="true">{
+  navLinks.map((link) =>
+    link.href === routes.portfolio ? (
+      <Fragment><a href={link.href}>{link.label}</a><span class="pf-minis">{products.map((p) => <span class="pf-mini"><span class="pfb pfb--s" style={`background:${p.logoBg}`}><img src={p.logo} alt="" width="28" height="28" /></span><span>{p.name}</span></span>)}</span></Fragment>
+    ) : (
+      <a href={link.href}>{link.label}</a>
+    )
+  )
+}<a href={engineering.url} class="pop__ext" aria-label={engineering.name}><EngMark id="top-2" open /></a></div></div></div>
+
+<script>
+  const top = document.querySelector<HTMLElement>('.site-top');
+  if (top) {
+    // Al bajar, el header pasa a la cápsula de vidrio
+    const upd = () => top.classList.toggle('is-scrolled', scrollY > 40);
+    addEventListener('scroll', upd, { passive: true });
+    upd();
+
+    // Panel de productos: la vista previa sigue al producto bajo el cursor o con foco
+    top.querySelectorAll<HTMLElement>('.pf__panel').forEach((p) => {
+      const prev = p.querySelector<HTMLAnchorElement>('.pf__prev')!;
+      const img = p.querySelector<HTMLImageElement>('.pf__img')!;
+      const items = [...p.querySelectorAll<HTMLAnchorElement>('.pfl')];
+      const show = (it: HTMLAnchorElement) => {
+        const d = it.dataset;
+        items.forEach((o) => o.toggleAttribute('aria-current', o === it));
+        if (img.getAttribute('src') !== d.img) {
+          img.style.opacity = '0';
+          setTimeout(() => { img.src = d.img!; img.style.opacity = '1'; }, 120);
+        }
+        prev.href = d.href!;
+        p.querySelector('.pf__h')!.textContent = d.h!;
+        p.querySelector('.pf__cat')!.textContent = d.cat!;
+        p.querySelector('.pf__n')!.textContent = d.n!;
+        p.querySelectorAll<HTMLElement>('.pf__partner .partner').forEach((b) => (b.hidden = b.dataset.k !== d.k));
+        const ch = p.querySelector('.pf__chip')!;
+        ch.textContent = d.st!;
+        ch.className = `pf__chip pf__chip--${d.on}`;
+      };
+      items.forEach((it) => {
+        it.addEventListener('pointerenter', () => show(it));
+        it.addEventListener('focus', () => show(it));
+      });
+    });
+
+    // Menú móvil, panel del portafolio e idioma
+    top.addEventListener('click', (e) => {
+      const t = e.target as Element;
+      if (t.closest('.js-menu')) top.classList.toggle('menu-open');
+      const pb = t.closest<HTMLElement>('.pf__btn');
+      if (pb && matchMedia('(hover: none)').matches) {
+        // En pantallas táctiles el primer toque abre el panel; el segundo navega
+        const w = pb.parentElement!;
+        if (!w.classList.contains('open')) e.preventDefault();
+        w.classList.add('open');
+        pb.setAttribute('aria-expanded', 'true');
+      }
+      const l = t.closest<HTMLElement>('.js-lang');
+      if (l) {
+        const w = l.parentElement!;
+        const on = !w.classList.contains('open');
+        w.classList.toggle('open', on);
+        l.setAttribute('aria-expanded', String(on));
+      }
+      if (t.closest('.pop a')) top.classList.remove('menu-open');
+    });
+  }
+</script>

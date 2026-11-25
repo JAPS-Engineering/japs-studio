@@ -1,0 +1,19 @@
+---
+/** Ficha cuadrada con el logo de un producto. */
+import type { Product } from '../../data/productos';
+
+interface Props {
+  product: Product;
+  /** Sin fondo de marca (hero de la portada). */
+  plain?: boolean;
+  class?: string;
+}
+const { product, plain = false, class: cls } = Astro.props;
+---
+{
+  plain ? (
+    <span class="pfx-logo"><img src={product.logo} alt="" width="32" height="32" /></span>
+  ) : (
+    <span class:list={['pfx-logo', 'pfx-logo--brand', cls]} style={`background:${product.logoBg}`}><img src={product.logo} alt="" width="32" height="32" /></span>
+  )
+}

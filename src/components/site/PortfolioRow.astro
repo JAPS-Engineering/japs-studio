@@ -1,0 +1,17 @@
+---
+/** Ficha de un producto en el portafolio. Las filas pares invierten foto y texto. */
+import Icon from './Icon.astro';
+import ProductLogo from './ProductLogo.astro';
+import StatusChip from './StatusChip.astro';
+import type { Product } from '../../data/productos';
+
+interface Props {
+  product: Product;
+  index: number;
+  total: number;
+}
+const { product: p, index, total } = Astro.props;
+const flip = index % 2 === 1;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<article class:list={['g3-row', { 'g3-row--flip': flip }]} id={p.slug}><div class="stage g3-ph"><div class="rnd"><div class="rnd__clip" aria-hidden="true"><img class="ph" src={p.img} alt="" loading="lazy" /></div></div><div class={`nt nt--${flip ? 'tr' : 'tl'}`}><span class="g3-tag"><ProductLogo product={p} class="pfx-logo--c" /><StatusChip status={p.status} /></span></div></div><div class="g3-txt"><span class="g3-n">{pad(index + 1)} / {pad(total)}</span><span class="label">{p.label}</span><h3>{p.name}</h3><p>{p.summary}</p>{p.partner && (<span class="partner"><span class="partner__k">Construido junto a</span><span class="partner__tile">{p.partner.mark ? <Fragment><img class="sq" src={p.partner.logo} alt="" loading="lazy" /><b>{p.partner.name}</b></Fragment> : <img src={p.partner.logo} alt={p.partner.name} loading="lazy" />}</span></span>)}{p.meta && <span class="meta">{p.meta}</span>}{p.site && <a class="pill-s go" href={p.site} target="_blank" rel="noopener" aria-label={`Ir al sitio de ${p.name} (se abre en una pestaña nueva)`}>Ir a {p.name}<Icon name="out" small /></a>}</div></article>

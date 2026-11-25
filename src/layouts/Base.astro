@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+import Seo from '../components/seo/Seo.astro';
+import IconSprite from '../components/site/IconSprite.astro';
+import PageLoader from '../components/site/PageLoader.astro';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import WhatsAppFab from '../components/site/WhatsAppFab.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, unknown>;
+  /** Páginas internas: el contenido empieza bajo el header. */
+  sub?: boolean;
+  /** Ancla del bloque de cierre del footer. */
+  footerId?: string;
+}
+const { sub = false, footerId = 'pie', ...seo } = Astro.props;
+---
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<Seo {...seo} />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" />
+<slot name="head" />
+</head>
+<body>
+<PageLoader />
+<IconSprite />
+
+<SiteHeader />
+
+<main class:list={['site', { sub }]}>
+<slot />
+<SiteFooter id={footerId} />
+</main>
+
+<WhatsAppFab />
+</body>
+</html>

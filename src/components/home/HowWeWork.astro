@@ -1,0 +1,18 @@
+---
+/** «Cómo trabajamos»: las cuatro etapas sobre la foto del taller. */
+import Icon from '../site/Icon.astro';
+import RoundPhoto from '../site/RoundPhoto.astro';
+import { routes } from '../../data/nav';
+
+const steps = [
+  { icon: 's-conv', title: 'Conocernos y entender la oportunidad', text: 'Conversamos sobre el problema que has vivido, tu mercado y lo que quieres construir.' },
+  { icon: 's-build', title: 'Diseñar y construir', text: 'Prototipamos y desarrollamos el producto, cuidando la propiedad intelectual desde el inicio.' },
+  { icon: 's-valid', title: 'Validar con clientes reales', text: 'Probamos una primera versión y buscamos las primeras ventas para aprender con clientes reales.' },
+  { icon: 's-launch', title: 'Lanzar y escalar', text: 'Trabajamos para llegar al mercado como producto de JAPS o empresa cofundada, y crecer cuando corresponda.' },
+];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<div class="cq" id="como-trabajamos"><section class="sec a6c"><div class="hd2"><div><span class="label">Cómo trabajamos</span><h2>Cómo trabajamos</h2></div></div>
+  <div class="stage m-flow a6c__st"><RoundPhoto src="/img/heros/taller.jpg" scrim="b">
+    <ol class="glass strip">{steps.map((s, i) => <li><span class="strip__top"><span class="strip__i"><Icon name={s.icon} /></span><span class="strip__n">{n(i)}</span></span><b>{s.title}</b><p>{s.text}</p></li>)}</ol></RoundPhoto>
+    <div class="nt nt--tr"><div class="meet"><p>Podemos conversar por videollamada o recibirte en nuestra oficina en el Centro de Innovación UC Anacleto Angelini.</p><a class="tlink" href={routes.contact}>Conoce cómo trabajar con nosotros <Icon name="arrow" small /></a></div></div></div></section></div>

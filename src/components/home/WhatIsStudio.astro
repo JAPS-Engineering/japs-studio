@@ -1,0 +1,25 @@
+---
+/** «¿Qué es un venture studio?» y «Trabaja con nosotros». */
+import Cta from '../site/Cta.astro';
+import Icon from '../site/Icon.astro';
+import RoundPhoto from '../site/RoundPhoto.astro';
+import { routes } from '../../data/nav';
+
+const ideas = [
+  { icon: 'metodo', title: 'Aportamos conocimiento, método y recursos para construir contigo.', text: 'Ponemos a nuestro equipo y el Método JAPS al servicio de lo que construimos juntos.' },
+  { icon: 'empleo', title: '¿En Chile falta empleo? Construyámoslo.', text: 'Queremos construir productos y empresas que generen trabajo e impacto positivo.' },
+  { icon: 'juntos', title: 'Innovemos, juntos.', text: 'Combinamos tu experiencia del problema con lo que sabemos investigar, diseñar y construir.' },
+];
+
+const pairs = [
+  { you: 'Conoces un problema de primera mano y el mercado donde ocurre.', we: 'Investigamos, diseñamos y construimos la solución.' },
+  { you: 'Aportas una perspectiva, conocimiento o experiencia propios.', we: 'Sumamos equipo, Método JAPS y recursos.' },
+  { you: 'Quieres explorar la oportunidad de construir en conjunto.', we: 'Probamos con usuarios y clientes para aprender y avanzar.' },
+];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<div class="cq" id="que-es"><section class="sec fa"><div class="fa__top"><div class="fa__l"><span class="label">¿Qué es un venture studio?</span><h2>«No solo desarrollamos productos, construimos soluciones, contigo».</h2><p class="lead">Es un equipo que construye soluciones y empresas junto a personas que conocen de cerca un problema y su mercado. Cocreamos la marca y construimos la solución contigo, con ciencia, ingeniería, diseño, investigación y experiencia.</p><a class="tlink" href={routes.howItWorks}>Ver cómo funciona <Icon name="arrow" small /></a></div>
+    <RoundPhoto class="fa__ph" src="/img/heros/cocreacion.jpg" scrim="b"><div class="glass fa__ideas"><ol class="ideas ideas--mini">{ideas.map((it) => <li><span class="ideas__i"><Icon name={it.icon} /></span><div><b>{it.title}</b><p>{it.text}</p></div></li>)}</ol></div></RoundPhoto></div>
+  <div class="fa__bot"><div class="stage m-flow fa__st"><RoundPhoto src="/img/heros/conversacion.jpg" scrim="l"><div class="fa__b"><span class="label">Trabaja con nosotros</span><h2>Conoces el problema. Construyamos la solución juntos.</h2><p>Trabajamos con personas que conocen de cerca un problema y su mercado y buscan un socio técnico para construir una solución y una empresa. Estamos abiertos a distintas industrias.</p></div></RoundPhoto>
+    <div class="nt nt--br"><Cta href={routes.contact} label="Construye con nosotros" large /></div></div>
+  <div class="fa__pairs">{pairs.map((p, i) => <div class="fp"><span class="fp__n">{n(i)}</span><p>{p.you}</p><p class="ac">{p.we}</p></div>)}<p class="nocode"><Icon name="check" /><span>No necesitas saber programar, tener un equipo técnico ni haber creado una empresa antes.</span></p></div></div></section></div>

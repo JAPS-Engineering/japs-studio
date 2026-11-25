@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/portafolio.css';
+import Cta from '../components/site/Cta.astro';
+import PortfolioRow from '../components/site/PortfolioRow.astro';
+import RoundPhoto from '../components/site/RoundPhoto.astro';
+import StatusChip from '../components/site/StatusChip.astro';
+import { capabilities, routes } from '../data/nav';
+import { products, prototypes } from '../data/productos';
+
+const names = products.map((p) => p.name);
+const description = `Lo que ya construimos junto a quien conoce el problema: ${names.slice(0, -1).join(', ')} y ${names.at(-1)}.`;
+---
+<Base title="Portafolio · JAPS Studio" description={description} sub>
+<div class="cq"><div class="pp g3">
+  <header class="g3-hero"><span class="label">Portafolio</span><h2 class="pp-t">Lo que ya construimos.</h2>
+    <div class="g3-hero__row"><p class="g3-lead">Soluciones que construimos junto a personas que conocen su mercado, y proyectos propios con los que investigamos y experimentamos.</p><div class="g3-caps"><ul aria-label="Capacidades">{capabilities.map((c) => <li>{c}</li>)}</ul><p>Son ejemplos de lo que sabemos construir, no un límite para lo que podemos explorar juntos.</p></div></div></header>
+  <div class="g3-rows">{products.map((p, i) => <PortfolioRow product={p} index={i} total={products.length} />)}</div>
+  <section class="g3-proto"><div class="g3-proto__h"><span class="label">Etapa temprana</span><h3>Prototipos en etapa temprana</h3><p>Todavía no tienen página propia.</p></div><ul class="g3-pl">{prototypes.map((pr) => <li class="g3-pi"><span class="g3-pi__th"><img src={pr.img} alt="" loading="lazy" /></span><span class="g3-pi__t"><b>{pr.name}</b>{pr.text && <p>{pr.text}</p>}<StatusChip status={pr.status} /></span></li>)}</ul></section>
+  <section class="stage g3-cta m-flow"><RoundPhoto src="/img/heros/taller.jpg" scrim="all" /><div class="g3-cta__c"><h3>¿Tienes una idea como estas?</h3><p>Tu experiencia del problema puede ser el comienzo de una solución.</p></div>
+    <div class="nt nt--b"><Cta href={routes.contact} label="Construye con nosotros" large /></div></section>
+</div></div>
+</Base>

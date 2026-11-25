@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studio.japs.ing/sitemap.xml
+Sitemap: https://studio.japs.ing/sitemap-index.xml

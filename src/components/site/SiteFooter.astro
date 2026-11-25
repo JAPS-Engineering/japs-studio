@@ -1,0 +1,23 @@
+---
+/** Cierre «Conversemos» + footer con columnas, sellos y nota legal. */
+import Cta from './Cta.astro';
+import EngMark from './EngMark.astro';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import RoundPhoto from './RoundPhoto.astro';
+import { capabilities, navLinks, routes } from '../../data/nav';
+import { footerProducts, productHref } from '../../data/productos';
+import { ciuc, engineering, site } from '../../data/site';
+
+interface Props {
+  /** Ancla del bloque: «contacto» en la portada, «pie» en las demás páginas. */
+  id: string;
+}
+const { id } = Astro.props;
+const year = new Date().getFullYear();
+---
+<div class="cq" id={id}><footer class="ft ft1 ft6"><div class="stage m-flow ft3__st ft6__st"><RoundPhoto src="/img/heros/cocreacion.jpg" scrim="l" lazy={false}>
+    <div class="ft3__body"><span class="label">Conversemos</span><h2>Construyamos el futuro juntos</h2><p>Por videollamada o en el Centro de Innovación UC Anacleto Angelini.</p></div>
+</RoundPhoto>
+    <div class="nt nt--bl"><Cta href={routes.contact} label="Construye con nosotros" large /></div></div>
+  <div class="ft1__top"><div class="fbrand"><Logo /><p>Constructora de startups. Construimos la solución y la empresa junto a quien conoce el problema.</p><div class="social"><a href={site.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><Icon name="linkedin" /></a><a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="instagram" /></a><a href={`mailto:${site.email}`} aria-label="Correo"><Icon name="mail" /></a></div></div><div class="fcols"><nav class="fcol" aria-label="Sitio"><div class="fcol__t">Sitio</div>{navLinks.map((l) => <a href={l.href}>{l.label}</a>)}</nav><nav class="fcol" aria-label="Portafolio"><div class="fcol__t">Portafolio</div>{footerProducts.map((p) => <a href={productHref(p)}>{p.name}</a>)}</nav><nav class="fcol" aria-label="Capacidades"><div class="fcol__t">Capacidades</div>{capabilities.map((c) => <a href={routes.portfolio}>{c}</a>)}</nav><nav class="fcol" aria-label="Legal"><div class="fcol__t">Legal</div><a href={engineering.terms}>Términos de servicio</a><a href={engineering.privacy}>Política de privacidad y manejo de datos</a></nav></div></div><div class="seals"><a class="seal" href={ciuc.url} target="_blank" rel="noopener"><img class="seal__ciuc" src="/img/ciuc-mark.svg" alt={ciuc.name} width="38" height="36" /><span><b>Centro de Innovación UC</b>Acelerados en el Anacleto Angelini</span></a><a class="seal seal--eng" href={engineering.url} target="_blank" rel="noopener"><EngMark id="foot-8" open /><span><b>JAPS Engineering</b>Nuestra empresa de ingeniería</span></a><span class="seal"><img class="seal__mc" src="/img/socios/marca-chile.png" alt="Marca Chile" width="60" height="40" /><span><b>Empresa chilena</b>Startups hechas en Chile</span></span></div><div class="flegal"><span>© {year} JAPS Studio. Todos los derechos reservados.</span><span>Consulta cómo tratamos tus datos en nuestra <a href={engineering.privacy}>política de privacidad</a>.</span><nav class="flang" aria-label="Cambiar idioma"><a href="/" aria-current="true">Español</a><a aria-disabled="true" title="Versión en inglés: próximamente">English</a></nav></div></footer></div>

@@ -1,0 +1,16 @@
+---
+/**
+ * «Junto a <socio>». En los bloques que cambian con el producto activo se
+ * renderizan todos y el script muestra el que coincide con `data-k`.
+ */
+import type { Product } from '../../data/productos';
+
+interface Props {
+  product: Product;
+  hidden?: boolean;
+  small?: boolean;
+}
+const { product, hidden = false, small = false } = Astro.props;
+const partner = product.partner!;
+---
+<span class:list={['partner', { 'partner--s': small }]} data-k={product.slug} hidden={hidden}><small>Junto a</small><span class:list={['plogo', { 'plogo--mark': partner.mark }]}><img src={partner.logo} alt={partner.name} />{partner.mark && <span>{partner.name}</span>}</span></span>

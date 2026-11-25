@@ -1,0 +1,16 @@
+---
+/**
+ * Fotografía con esquinas redondeadas (.rnd) y velo opcional. El contenido del
+ * slot queda dentro de .rnd, sobre la foto (textos, vidrio, sellos).
+ */
+interface Props {
+  src: string;
+  /** Variante del velo: b (abajo), l (izquierda), all, o una clase propia. */
+  scrim?: 'b' | 'l' | 'all' | false;
+  scrimClass?: string;
+  class?: string;
+  lazy?: boolean;
+}
+const { src, scrim = false, scrimClass, class: cls, lazy = true } = Astro.props;
+---
+<div class:list={['rnd', cls]}><div class="rnd__clip" aria-hidden="true"><img class="ph" src={src} alt="" loading={lazy ? 'lazy' : undefined} />{scrim && <i class={`scrim scrim--${scrim}`} />}{scrimClass && <i class={scrimClass} />}</div><slot /></div>

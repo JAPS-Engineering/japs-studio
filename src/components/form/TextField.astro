@@ -1,0 +1,26 @@
+---
+/** Campo de texto o área de texto con etiqueta, ayuda opcional y mensaje de error. */
+import Icon from '../site/Icon.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel';
+  required?: boolean;
+  hint?: string;
+  /** Filas: convierte el campo en textarea. */
+  rows?: number;
+  autocomplete?: string;
+  inputmode?: 'email' | 'tel' | 'text';
+}
+const { id, name, label, type = 'text', required = false, hint, rows, autocomplete, inputmode } = Astro.props;
+const describedby = [hint && `${id}-h`, `${id}-e`].filter(Boolean).join(' ');
+---
+<div class="fld" data-req={required ? '' : undefined}><label class="fld__l" for={id}>{label}{required && <span class="req" aria-hidden="true">*</span>}</label>{hint && <p class="fld__h" id={`${id}-h`}>{hint}</p>}{
+  rows ? (
+    <textarea class="inp" id={id} name={name} aria-describedby={describedby} required={required} rows={rows}></textarea>
+  ) : (
+    <input class="inp" type={type} id={id} name={name} aria-describedby={describedby} autocomplete={autocomplete} required={required} inputmode={inputmode} />
+  )
+}<p class="fld__e" id={`${id}-e`}><Icon name="alert" small /><span>Falta este dato</span></p></div>

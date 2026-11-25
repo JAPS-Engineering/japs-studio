@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import About from '../components/home/About.astro';
+import Engineering from '../components/home/Engineering.astro';
+import Hero from '../components/home/Hero.astro';
+import HowWeWork from '../components/home/HowWeWork.astro';
+import Solutions from '../components/home/Solutions.astro';
+import WhatIsStudio from '../components/home/WhatIsStudio.astro';
+import { engineering, site } from '../data/site';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  alternateName: 'JAPS Studio, constructora de startups',
+  url: `${site.url}/`,
+  logo: `${site.url}/img/apple-touch-icon.png`,
+  image: `${site.url}${site.ogImage}`,
+  email: site.email,
+  description: site.description,
+  parentOrganization: { '@type': 'Organization', name: engineering.name, url: `${engineering.url}/` },
+  address: { '@type': 'PostalAddress', addressLocality: 'Santiago', addressCountry: 'CL' },
+  sameAs: [site.linkedin, site.instagram],
+};
+---
+<Base title="JAPS Studio · Constructora de startups" description={site.description} schema={schema} footerId="contacto">
+  <Hero />
+  <WhatIsStudio />
+  <HowWeWork />
+  <Solutions />
+  <About />
+  <Engineering />
+</Base>

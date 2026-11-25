@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/contacto.css';
+import ContactForm from '../components/form/ContactForm.astro';
+import Ciuc from '../components/site/Ciuc.astro';
+import Icon from '../components/site/Icon.astro';
+import RoundPhoto from '../components/site/RoundPhoto.astro';
+import { site } from '../data/site';
+
+const steps = [
+  { title: 'Nos cuentas tu idea.', text: 'Por este formulario, con el detalle que tengas.' },
+  { title: 'La leemos y te respondemos.', text: 'Respondemos a todas las personas que nos escriben.' },
+  { title: 'Si continuamos la conversación.', text: 'Podemos reunirnos por videollamada o en nuestra oficina en el Centro de Innovación UC Anacleto Angelini para conocernos y explorar la oportunidad.' },
+];
+const channels = [
+  { icon: 'wa', label: 'WhatsApp', value: site.phone, href: site.whatsapp, external: true },
+  { icon: 'mail', label: 'Correo', value: site.email, href: `mailto:${site.email}`, external: false },
+];
+const n = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Base title="Contacto · JAPS Studio" description="Cuéntanos qué problema conoces y qué te gustaría construir. No necesitas tenerlo todo resuelto." sub>
+<div class="cq"><section class="c3"><div class="stage m-flow c3__st"><RoundPhoto src="/img/heros/cocreacion.jpg" scrimClass="scrim c3__scrim" /><div class="nt nt--bl"><div class="c3__tt"><span class="label">Contacto</span><h2>Construye con nosotros.</h2><p>Cuéntanos qué problema conoces y qué te gustaría construir. No necesitas tenerlo todo resuelto.</p></div></div><div class="nt nt--tr"><Ciuc /></div></div>
+<div class="c3__g"><div class="c3__card"><ContactForm /></div>
+<div class="c3__steps"><span class="label">Qué pasa después</span><ol class="tl3">{steps.map((s, i) => <li><span class="tl3__n">{n(i)}</span><b>{s.title}</b><p>{s.text}</p></li>)}</ol></div><div class="c3__more"><h3 class="h-sm">Otras vías de contacto</h3>{channels.map((c) => <div class="blk"><span class="chn__i"><Icon name={c.icon} /></span><span class="chn__k">{c.label}</span><a class="chn__v" href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>{c.value}</a></div>)}<div class="cons c3__nda"><p><Icon name="lock" /><span>Si necesitas un acuerdo de confidencialidad para la primera conversación, escríbenos a <span class="copy">{site.email}</span> antes de compartir la información que quieras resguardar.</span></p></div></div></div></section></div>
+</Base>

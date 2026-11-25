@@ -1,0 +1,75 @@
+---
+/**
+ * «Nuestras soluciones»: selector con vista grande (escritorio) y carrusel
+ * (móvil), ambos generados desde data/productos.ts.
+ */
+import Cta from '../site/Cta.astro';
+import Icon from '../site/Icon.astro';
+import PartnerSwitch from '../site/PartnerSwitch.astro';
+import PartnerTag from '../site/PartnerTag.astro';
+import ProductLogo from '../site/ProductLogo.astro';
+import RoundPhoto from '../site/RoundPhoto.astro';
+import StatusChip from '../site/StatusChip.astro';
+import { routes } from '../../data/nav';
+import { productHref, products, type Product } from '../../data/productos';
+
+/** «Conocer X» lleva al sitio del producto si lo tiene; si no, a su ficha en el portafolio. */
+const goHref = (p: Product) => p.site ?? productHref(p);
+const sol = products.map((p) => ({ k: p.slug, n: p.name, cat: p.cat, h: p.headline, d: p.pitch, img: p.img, st: p.status, href: goHref(p), ext: Boolean(p.site) }));
+const [first] = products;
+---
+<div class="cq" id="soluciones"><section class="sol s2 s4 sx" data-sel={JSON.stringify(sol)} data-car><header class="sh"><div class="sh__t"><span class="label">Nuestras soluciones</span><h2>Productos construidos junto a quien conoce el problema</h2></div>
+  <div class="sh__r"><p>Cada producto nace con un socio que conoce su mercado. Estos son los que ya están en marcha.</p></div></header>
+  <div class="s2__g"><div class="sel" role="group" aria-label="Soluciones">{products.map((p, i) => <button class="sel__it" type="button" data-i={i} aria-pressed={i === 0 ? 'true' : 'false'}><ProductLogo product={p} /><span><b>{p.name}</b><small>{p.catLong}</small></span><i class="sel__arr"><Icon name="arrow" small /></i></button>)}</div>
+  <div class="stage s2__st"><RoundPhoto src={first.img} scrim="l">
+    <div class="s2__b"><span class="s2__cat js-cat">{first.cat}</span><h3 class="js-h">{first.headline}</h3><p class="js-d">{first.pitch}</p><span class="js-st"><StatusChip status={first.status} /></span></div><PartnerSwitch class="s2__partner" active={first.slug} /></RoundPhoto>
+    <div class="nt nt--br"><Cta class="js-go" href={goHref(first)} label={`Conocer ${first.name}`} large icon="out" target={first.site ? '_blank' : undefined} rel={first.site ? 'noopener' : undefined} /></div></div></div>
+  <div class="sx__m"><div class="car"><div class="car__t">{products.map((p) => (
+    <a class="slide" href={productHref(p)}><RoundPhoto src={p.img} scrim="b" /><span class="slide__top"><ProductLogo product={p} /><StatusChip status={p.status} /></span>
+  <span class="slide__b"><span class="slide__cat">{p.cat}</span><b>{p.name}</b><span class="slide__h">{p.headline}</span>{p.partner && <PartnerTag product={p} small />}<span class="golink">Conocer {p.name}<Icon name="arrow" small /></span></span></a>
+  ))}</div></div><div class="car__bar"><i></i></div><a class="pill-s" href={routes.portfolio}>Ver todo el portafolio <Icon name="arrow" small /></a></div>
+  <div class="car__ctl" hidden><button class="js-cp" type="button"></button><button class="js-cn" type="button"></button></div></section></div>
+
+<script>
+  type Sol = { k: string; n: string; cat: string; h: string; d: string; img: string; st: { label: string; on: boolean }; href: string; ext: boolean };
+
+  // Selector: cambia la vista grande con el producto elegido
+  document.querySelectorAll<HTMLElement>('[data-sel]').forEach((w) => {
+    const SOL: Sol[] = JSON.parse(w.dataset.sel!);
+    const bs = [...w.querySelectorAll<HTMLButtonElement>('.sel__it')];
+    const q = <T extends Element = HTMLElement>(c: string) => w.querySelector<T>(c)!;
+    bs.forEach((b) =>
+      b.addEventListener('click', () => {
+        const s = SOL[Number(b.dataset.i)];
+        bs.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+        q<HTMLImageElement>('.s2__st .ph').src = s.img;
+        q('.js-cat').textContent = s.cat;
+        q('.js-h').textContent = s.h;
+        q('.js-d').textContent = s.d;
+        const chip = q('.js-st .pchip');
+        chip.textContent = s.st.label;
+        chip.classList.toggle('off', !s.st.on);
+        w.querySelectorAll<HTMLElement>('.s2__partner .partner').forEach((p) => (p.hidden = p.dataset.k !== s.k));
+        const go = q<HTMLAnchorElement>('.js-go');
+        go.querySelector('span')!.textContent = `Conocer ${s.n}`;
+        go.href = s.href;
+        if (s.ext) { go.target = '_blank'; go.rel = 'noopener'; } else { go.removeAttribute('target'); go.removeAttribute('rel'); }
+      }),
+    );
+  });
+
+  // Carrusel móvil con barra de avance
+  document.querySelectorAll<HTMLElement>('[data-car]').forEach((w) => {
+    const c = w.querySelector<HTMLElement>('.car')!;
+    const bar = w.querySelector<HTMLElement>('.car__bar i')!;
+    const step = () => (c.querySelector('.slide')?.getBoundingClientRect().width || 300) + 16;
+    const upd = () => {
+      const m = c.scrollWidth - c.clientWidth;
+      bar.style.width = `${m > 0 ? 20 + (80 * c.scrollLeft) / m : 100}%`;
+    };
+    w.querySelector('.js-cp')!.addEventListener('click', () => c.scrollBy({ left: -step(), behavior: 'smooth' }));
+    w.querySelector('.js-cn')!.addEventListener('click', () => c.scrollBy({ left: step(), behavior: 'smooth' }));
+    c.addEventListener('scroll', upd, { passive: true });
+    upd();
+  });
+</script>
