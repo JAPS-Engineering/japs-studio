@@ -1,0 +1,427 @@
+{
+  "global": "JapsEncastre",
+  "pkg": "@japs/encastre",
+  "pkgDir": "/home/rir/Projects/JAPS/JAPS_Studio/design-system",
+  "extraEntries": [],
+  "exported": [
+    "AccountCluster",
+    "ButtonRail",
+    "Callout",
+    "CalloutMeter",
+    "Capsule",
+    "Card",
+    "Chip",
+    "ConsoleCard",
+    "DisplayTitle",
+    "DoubleButton",
+    "ExpandButton",
+    "Glass",
+    "Heading",
+    "HeroCard",
+    "HistoryStack",
+    "HudCross",
+    "HudFill",
+    "HudLabel",
+    "HudRule",
+    "Icon",
+    "IconButton",
+    "IndexList",
+    "Key",
+    "LiveDot",
+    "LogoBar",
+    "MediaCard",
+    "Nav",
+    "Notch",
+    "NotchStair",
+    "Panel",
+    "Pill",
+    "PointerLabel",
+    "Popover",
+    "PopoverItem",
+    "SearchField",
+    "SectionIndex",
+    "Shell",
+    "SiteHeader",
+    "SplitAction",
+    "StudioMark",
+    "Tag",
+    "TagCluster",
+    "Text",
+    "ThemeRoot",
+    "Timeline",
+    "VerticalNav"
+  ],
+  "storybookStatic": null,
+  "keyRecipe": 7,
+  "cfgSliceGlobal": "c4bb309559ce4771cbfa34697526ed234e28b23ecf8f5beec1d503596c546f6b",
+  "components": [
+    {
+      "name": "AccountCluster",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "0677237ed0e10fb5",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "ButtonRail",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "417259940acc934b",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Callout",
+      "group": "on-image",
+      "srcSha": null,
+      "sourceKey": "629aa71b616dc81a",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "CalloutMeter",
+      "group": "on-image",
+      "srcSha": null,
+      "sourceKey": "9eb3b36cfd80235c",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Capsule",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "f93e405533dde5ed",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Card",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "54fb172071886c1b",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Chip",
+      "group": "data-display",
+      "srcSha": null,
+      "sourceKey": "1c93d1222b41bc31",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "ConsoleCard",
+      "group": "cards",
+      "srcSha": null,
+      "sourceKey": "6fcc2d3e0e778bae",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "DisplayTitle",
+      "group": "typography",
+      "srcSha": null,
+      "sourceKey": "f7eeb84a07026ea9",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "DoubleButton",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "631b3f26068052fe",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "ExpandButton",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "2c7927d713e4bc5e",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Glass",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "0768ad150d9486f4",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Heading",
+      "group": "typography",
+      "srcSha": null,
+      "sourceKey": "47a6b67a70cc56c2",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HeroCard",
+      "group": "cards",
+      "srcSha": null,
+      "sourceKey": "9dce842b8cfee5e5",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HistoryStack",
+      "group": "cards",
+      "srcSha": null,
+      "sourceKey": "d9bb796e8ddc2e50",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HudCross",
+      "group": "hud",
+      "srcSha": null,
+      "sourceKey": "fab0f8a624509ead",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HudFill",
+      "group": "hud",
+      "srcSha": null,
+      "sourceKey": "bd8f15bd99185bdd",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HudLabel",
+      "group": "hud",
+      "srcSha": null,
+      "sourceKey": "4f96c8ddc4236b72",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "HudRule",
+      "group": "hud",
+      "srcSha": null,
+      "sourceKey": "269c7783b602e470",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Icon",
+      "group": "icons",
+      "srcSha": null,
+      "sourceKey": "40adb8ad570e6e80",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "IconButton",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "7b5d2cbf8f60394f",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "IndexList",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "ad9b8a214ff0b0a9",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Key",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "029ee7e773505989",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "LiveDot",
+      "group": "data-display",
+      "srcSha": null,
+      "sourceKey": "b66e0e8394a33525",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "LogoBar",
+      "group": "brand",
+      "srcSha": null,
+      "sourceKey": "ef2570b7430cfa5a",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "MediaCard",
+      "group": "cards",
+      "srcSha": null,
+      "sourceKey": "4c31e483d9d8a74b",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Nav",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "8258159f359b64cd",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Notch",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "83abfd64f149e72b",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "NotchStair",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "4cb51ee29ad3fb58",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Panel",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "60f5ecc0af297587",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Pill",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "f99f5e3a244a1d4e",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "PointerLabel",
+      "group": "on-image",
+      "srcSha": null,
+      "sourceKey": "7bf023cda152073e",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Popover",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "b4b50cc39ba3f793",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "PopoverItem",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "7f1029e133f06f53",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "SearchField",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "5658d90d1d71ae80",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "SectionIndex",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "cbedecc5ce67f629",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Shell",
+      "group": "layout",
+      "srcSha": null,
+      "sourceKey": "e8ff4621506cdc96",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "SiteHeader",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "716e95bfbf1d589a",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "SplitAction",
+      "group": "actions",
+      "srcSha": null,
+      "sourceKey": "d04c6bdd12d9c61a",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "StudioMark",
+      "group": "brand",
+      "srcSha": null,
+      "sourceKey": "79e1f3015b70f21a",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Tag",
+      "group": "data-display",
+      "srcSha": null,
+      "sourceKey": "232d23608b004c76",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "TagCluster",
+      "group": "on-image",
+      "srcSha": null,
+      "sourceKey": "02544a05aae94a3b",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Text",
+      "group": "typography",
+      "srcSha": null,
+      "sourceKey": "75a6ef81a1c68090",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "ThemeRoot",
+      "group": "theme",
+      "srcSha": null,
+      "sourceKey": "86d1b9ad848123d4",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "Timeline",
+      "group": "data-display",
+      "srcSha": null,
+      "sourceKey": "551e4c75625ba7a0",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    },
+    {
+      "name": "VerticalNav",
+      "group": "navigation",
+      "srcSha": null,
+      "sourceKey": "e62d765093fd2a00",
+      "cfgSlice": "5ff899b099eb6923833804cda955efdd69101524bec86f67dac5537cd81802e8",
+      "stories": []
+    }
+  ]
+}

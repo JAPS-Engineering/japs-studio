@@ -1,0 +1,92 @@
+{
+  "version": 2,
+  "ok": true,
+  "shape": "package",
+  "anchor": "ok",
+  "learningsUnmerged": [],
+  "stages": {
+    "build": {
+      "ok": true,
+      "exit": 0,
+      "skipped": null
+    },
+    "diff": {
+      "ok": true,
+      "exit": 0,
+      "skipped": null
+    },
+    "validate": {
+      "ok": true,
+      "exit": 0,
+      "skipped": null
+    },
+    "capture": {
+      "ok": null,
+      "exit": null,
+      "skipped": "empty_worklist"
+    }
+  },
+  "verification": {
+    "unchanged": [
+      "AccountCluster",
+      "ButtonRail",
+      "Callout",
+      "CalloutMeter",
+      "Capsule",
+      "Card",
+      "Chip",
+      "ConsoleCard",
+      "DisplayTitle",
+      "DoubleButton",
+      "ExpandButton",
+      "Glass",
+      "Heading",
+      "HeroCard",
+      "HistoryStack",
+      "HudCross",
+      "HudFill",
+      "HudLabel",
+      "HudRule",
+      "Icon",
+      "IconButton",
+      "IndexList",
+      "Key",
+      "LiveDot",
+      "LogoBar",
+      "MediaCard",
+      "Nav",
+      "Notch",
+      "NotchStair",
+      "Panel",
+      "Pill",
+      "PointerLabel",
+      "Popover",
+      "PopoverItem",
+      "SearchField",
+      "SectionIndex",
+      "Shell",
+      "SiteHeader",
+      "SplitAction",
+      "StudioMark",
+      "Tag",
+      "TagCluster",
+      "Text",
+      "ThemeRoot",
+      "Timeline",
+      "VerticalNav"
+    ],
+    "changed": [],
+    "added": [],
+    "removed": [],
+    "pendingGrade": [],
+    "canary": null
+  },
+  "upload": {
+    "any": true,
+    "components": [],
+    "deletePaths": [],
+    "bundle": false,
+    "styling": false,
+    "aux": true
+  }
+}

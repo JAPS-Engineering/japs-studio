@@ -1,0 +1,69 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Encastre · Detalles HUD</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pair .card { display: grid; gap: 14px; align-content: start; padding: 18px; }
+  </style>
+</head>
+<body>
+  <header class="cardhead">
+    <span class="hud-label">Encastre · Capa de dato</span>
+    <h1 class="t-h2">Detalles HUD: lo geek, con mesura</h1>
+    <p>Índices <code>01 —</code>, labels mono, cruces <code>+</code> en intersecciones, líneas de tiempo con nodos y punto en vivo. Se usan como máximo 1 o 2 por viewport y nunca sobre texto de lectura.</p>
+  </header>
+
+  <div class="duo">
+    <section class="frame" data-theme="light">
+      <span class="hud-label">Light</span>
+      <div class="pair">
+        <div class="card">
+          <div class="row" style="justify-content: space-between"><span class="hud-label t-muted">02 — Proceso</span><span class="hud-cross" aria-hidden="true"></span></div>
+          <ol class="timeline">
+            <li><span class="hud-label">Diagnóstico</span></li>
+            <li aria-current="step"><span class="hud-label">Prototipo</span></li>
+            <li><span class="hud-label">Producción</span></li>
+          </ol>
+        </div>
+        <div class="card card--muted">
+          <span class="hud-label t-muted">Labels y reglas</span>
+          <span class="hud-label">SN 00.43/20-34</span>
+          <hr class="hud-rule">
+          <span class="hud-label"><span class="live-dot" aria-hidden="true"></span> En vivo · <span class="t-accent">activo</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame" data-theme="dark">
+      <span class="hud-label">Dark</span>
+      <div class="pair">
+        <div class="card">
+          <div class="row" style="justify-content: space-between"><span class="hud-label t-muted">02 — Proceso</span><span class="hud-cross" aria-hidden="true"></span></div>
+          <ol class="timeline">
+            <li><span class="hud-label">Diagnóstico</span></li>
+            <li aria-current="step"><span class="hud-label">Prototipo</span></li>
+            <li><span class="hud-label">Producción</span></li>
+          </ol>
+        </div>
+        <div class="card card--muted">
+          <span class="hud-label t-muted">Labels y reglas</span>
+          <span class="hud-label">SN 00.43/20-34</span>
+          <hr class="hud-rule">
+          <span class="hud-label"><span class="live-dot" aria-hidden="true"></span> En vivo · <span class="t-accent">activo</span></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <ul class="rules">
+    <li>El HUD anota y no decora: cada índice o serial debe referirse a algo real de la vista.</li>
+    <li>Las líneas rectas (divisores y líneas de tiempo) sí se permiten; las cajas con esquinas rectas no.</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Experimento: Encastre con la expresión del sistema de referencia, en menta.
+   Se carga después de theme.css. Redefine tokens y añade variantes; no toca
+   tokens.json ni encastre.css. Encastre aporta la estructura (muescas, carcasa,
+   cápsula, HUD) y el acento menta; esta capa aporta display, radios y canvas.
+   ========================================================================== */
+
+/* --- 1. Primitivos nuevos y escalas ---------------------------------------- */
+:root {
+  --c-canvas: #E8EBE6;
+  --c-mist-2: #D9DED8;
+  --c-mint-ink: #1A6B49;          /* #1F7A55 no llega a AA sobre el canvas (4.39:1) */
+  --c-mint-pale: #DDF5E7;
+
+  /* Más aire entre componentes: gap 16. Radios concéntricos: 56 − 16 = 40, 40 − 16 = 24, 24 − 16 = 8 */
+  --gap: 16px;
+  --r-shell: 56px;
+  --r-panel: 40px;
+  --r-card: 24px;
+  --r-inner: 8px;
+
+  --lh-statement: 0.96;          /* más cerrado, las tildes de Ñ, Ó y Ú chocan con la línea de arriba */
+  --ls-subdisplay: -0.03em;
+  --fs-body-l: 20px;
+}
+
+/* Gap 12: 44 − 12 = 32, 32 − 12 = 20, 20 − 12 = 8 */
+@media (max-width: 720px) {
+  :root {
+    --gap: 12px;
+    --r-shell: 44px;
+    --r-panel: 32px;
+    --r-card: 20px;
+    --r-inner: 8px;
+  }
+}
+
+/* --- 2. Semánticos: light -------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  --shell: var(--c-canvas);
+  --surface-2: var(--c-mist-2);
+  --glass: #FFFFFF0D;             /* al 14 % el texto sobre salvia baja de 4.5:1 */
+  --surface-accent: var(--c-mint-pale);
+  --text-on-surface-accent: var(--c-ink);
+  --accent: var(--c-mint);
+  --accent-hover: var(--c-mint-deep);
+  --accent-text: var(--c-mint-ink);
+  --focus: var(--c-mint-ink);
+  --panel-ink: var(--c-ink);
+
+  --positive-bg: var(--c-mint-pale);
+  --positive-text: #054D28;
+  --warning-bg: #FFD11A;
+  --warning-text: #4A3B1C;
+  --negative-bg: #D03238;
+  --negative-text: #FFFFFF;
+  --negative-ink: #D03238;
+  --status-border: transparent;
+}
+
+/* --- 3. Semánticos: dark --------------------------------------------------- */
+[data-theme="dark"] {
+  --shell: var(--c-ink);         /* el bloque :root de arriba pisaría estos valores */
+  --surface-2: var(--c-graphite-2);
+  --glass: #FFFFFF0D;
+  --surface-accent: var(--c-graphite-2);
+  --text-on-surface-accent: var(--c-mint);
+  --accent: var(--c-mint);
+  --accent-hover: var(--c-mint-deep);
+  --accent-text: var(--c-mint);
+  --focus: var(--c-mint);
+  --panel-ink: var(--c-graphite);
+
+  --positive-bg: var(--c-graphite-2);
+  --positive-text: #2EAD4B;
+  --warning-bg: var(--c-graphite-2);
+  --warning-text: #FFD11A;
+  --negative-bg: var(--c-graphite-2);
+  --negative-text: #FF7A7F;
+  --status-border: currentColor;   /* el fondo no se separa de surface-2 */
+  --negative-ink: #FF7A7F;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --shell: var(--c-ink);
+    --surface-2: var(--c-graphite-2);
+    --glass: #FFFFFF0D;
+    --surface-accent: var(--c-graphite-2);
+    --text-on-surface-accent: var(--c-mint);
+    --accent: var(--c-mint);
+    --accent-hover: var(--c-mint-deep);
+    --accent-text: var(--c-mint);
+    --focus: var(--c-mint);
+    --panel-ink: var(--c-graphite);
+
+    --positive-bg: var(--c-graphite-2);
+    --positive-text: #2EAD4B;
+    --warning-bg: var(--c-graphite-2);
+    --warning-text: #FFD11A;
+    --negative-bg: var(--c-graphite-2);
+    --negative-text: #FF7A7F;
+    --status-border: currentColor;
+    --negative-ink: #FF7A7F;
+  }
+}
+
+/* --- 4. Tipografía: Archivo solo como voz pesada, Geist para el resto ------ */
+.t-statement {
+  font-stretch: var(--fwd-normal);
+  font-weight: 900;
+  line-height: var(--lh-statement);
+}
+.t-headline { font-weight: 900; }
+.t-h1, .t-h2 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-subdisplay);
+}
+.t-h3 { font-weight: var(--fw-semibold); }
+
+/* --- 5. Controles ---------------------------------------------------------- */
+.pill {
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  font-weight: var(--fw-semibold);
+}
+.pill--lg { min-height: 52px; padding: 0 var(--space-2) 0 var(--space-5); }
+
+/* Muescas: con filetes de 40 la S solo cierra si el radio interior es concéntrico.
+   Los dos arcos se unen cuando alto ≥ filete + interior; por debajo queda una astilla. */
+.notch {
+  --notch-inner: calc(var(--notch-r) - var(--notch-gap));
+  min-height: calc(var(--notch-r) + var(--notch-inner));
+}
+.notch--tr { border-bottom-left-radius: var(--notch-inner); }
+.notch--tl { border-bottom-right-radius: var(--notch-inner); }
+.notch--bl { border-top-right-radius: var(--notch-inner); }
+.notch--br { border-top-left-radius: var(--notch-inner); }
+.notch--t { border-radius: 0 0 var(--notch-inner) var(--notch-inner); }
+
+/* --- 6. Variantes nuevas --------------------------------------------------- */
+.card--accent { background: var(--surface-accent); color: var(--text-on-surface-accent); }
+
+/* Inversión de polaridad: fondo oscuro con titular menta */
+.card--ink,
+.panel--ink { background: var(--panel-ink); color: var(--c-paper); }
+.card--ink .t-headline,
+.card--ink .t-statement,
+.panel--ink .t-headline,
+.panel--ink .t-statement { color: var(--c-mint); }
+.card--ink .t-muted,
+.panel--ink .t-muted { color: var(--c-sage-soft); }
+/* Los contornos se aclaran salvo en las muescas, que viven sobre el shell */
+.card--ink,
+.panel--ink > :not(.notch) { --hairline: #F1F3F01A; --hairline-strong: #F1F3F059; }
+
+/* Estado: el color nunca va solo, siempre acompaña a un texto */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 28px;
+  padding: 0 var(--space-3);
+  border: var(--bw-hairline) solid var(--status-border);
+  border-radius: var(--r-pill);
+  font: var(--fw-semibold) var(--fs-small) / 1 var(--font-body);
+}
+.status--positive { background: var(--positive-bg); color: var(--positive-text); }
+.status--warning { background: var(--warning-bg); color: var(--warning-text); }
+.status--negative { background: var(--negative-bg); color: var(--negative-text); }

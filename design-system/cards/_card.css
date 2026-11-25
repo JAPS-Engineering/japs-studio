@@ -1,0 +1,28 @@
+/* Marco común de las tarjetas de vista previa (no forma parte del sistema).
+   Cada tarjeta muestra light y dark lado a lado: los dos modos van al mismo nivel. */
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--c-mist);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+}
+.cardhead { display: grid; gap: 6px; margin-bottom: 16px; }
+.cardhead p { color: var(--c-slate); font-size: var(--fs-small); max-width: 80ch; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.frame {
+  background: var(--shell);
+  color: var(--text);
+  border-radius: var(--r-shell);
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  min-width: 0;
+}
+.frame > .hud-label:first-child { color: var(--text-muted); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.stack { display: grid; gap: 8px; }
+.note { font-size: var(--fs-small); color: var(--text-muted); }
+.rules { margin: 0; padding-left: 18px; font-size: var(--fs-small); color: var(--c-slate); display: grid; gap: 4px; margin-top: 16px; }
+.rules strong { color: var(--c-ink); }

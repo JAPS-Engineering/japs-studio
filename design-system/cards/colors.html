@@ -1,0 +1,94 @@
+<!-- @dsCard group="Colors" -->
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Encastre · Color</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .dist { display: flex; height: 48px; border-radius: var(--r-inner); overflow: hidden; border: 1px solid var(--hairline); }
+    .dist > span { display: flex; align-items: flex-end; padding: 6px 8px; }
+    .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .role { border-radius: var(--r-card); border: 1px solid var(--hairline); overflow: hidden; background: var(--surface); }
+    .role i { display: block; height: 44px; }
+    .role div { padding: 6px 10px 8px; display: grid; }
+    .role .t-small { color: var(--text-muted); font-family: var(--font-mono); font-size: var(--fs-micro); }
+    .prims { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 16px; }
+    .prim { border-radius: var(--r-card); overflow: hidden; background: #fff; border: 1px solid #0D11101F; }
+    .prim i { display: block; height: 40px; }
+    .prim div { padding: 6px 8px; font: 500 11px/1.3 var(--font-mono); }
+  </style>
+</head>
+<body>
+  <header class="cardhead">
+    <span class="hud-label">Encastre · Color</span>
+    <h1 class="t-h2">Paleta 60 · 30 · 10, dos modos al mismo nivel</h1>
+    <p>60 % base, 30 % estructura (ink y salvia), 10 % menta. La señal naranja va dentro del 10 % y se usa para un solo dato por vista. Se usan siempre los tokens semánticos.</p>
+  </header>
+
+  <div class="duo">
+    <section class="frame" data-theme="light">
+      <span class="hud-label">Light</span>
+      <div class="dist">
+        <span class="hud-label" style="flex:60; background: var(--shell)">60 shell/surface</span>
+        <span class="hud-label" style="flex:30; background: var(--panel); color: var(--text-on-panel)">30 sage/ink</span>
+        <span class="hud-label" style="flex:8; background: var(--accent); color: var(--text-on-accent)">10</span>
+        <span style="flex:2; background: var(--signal)"></span>
+      </div>
+      <div class="roles">
+        <div class="role"><i style="background: var(--shell)"></i><div><span class="hud-label">--shell</span><span class="t-small">#F1F3F0</span></div></div>
+        <div class="role"><i style="background: var(--surface)"></i><div><span class="hud-label">--surface</span><span class="t-small">#FFFFFF</span></div></div>
+        <div class="role"><i style="background: var(--surface-2)"></i><div><span class="hud-label">--surface-2</span><span class="t-small">#DDE3DF</span></div></div>
+        <div class="role"><i style="background: var(--panel)"></i><div><span class="hud-label">--panel</span><span class="t-small">#4F6B62</span></div></div>
+        <div class="role"><i style="background: var(--inverse)"></i><div><span class="hud-label">--inverse</span><span class="t-small">#0D1110</span></div></div>
+        <div class="role"><i style="background: var(--text-muted)"></i><div><span class="hud-label">--text-muted</span><span class="t-small">#56625D</span></div></div>
+        <div class="role"><i style="background: var(--accent)"></i><div><span class="hud-label">--accent</span><span class="t-small">#7FE3AE</span></div></div>
+        <div class="role"><i style="background: var(--accent-text)"></i><div><span class="hud-label">--accent-text</span><span class="t-small">#1F7A55</span></div></div>
+        <div class="role"><i style="background: var(--signal)"></i><div><span class="hud-label">--signal</span><span class="t-small">#FF5B1F</span></div></div>
+      </div>
+      <p class="note">Texto 17:1 · secundario 5.7:1 · sobre panel 5.2:1 · acento como texto: <span class="t-accent">accent-text</span> 4.7:1</p>
+    </section>
+
+    <section class="frame" data-theme="dark">
+      <span class="hud-label">Dark</span>
+      <div class="dist">
+        <span class="hud-label" style="flex:60; background: var(--shell)">60 ink/graphite</span>
+        <span class="hud-label" style="flex:30; background: var(--panel); color: var(--text-on-panel)">30 sage/mist</span>
+        <span class="hud-label" style="flex:8; background: var(--accent); color: var(--text-on-accent)">10</span>
+        <span style="flex:2; background: var(--signal)"></span>
+      </div>
+      <div class="roles">
+        <div class="role"><i style="background: var(--shell)"></i><div><span class="hud-label">--shell</span><span class="t-small">#0D1110</span></div></div>
+        <div class="role"><i style="background: var(--surface)"></i><div><span class="hud-label">--surface</span><span class="t-small">#1A2421</span></div></div>
+        <div class="role"><i style="background: var(--surface-2)"></i><div><span class="hud-label">--surface-2</span><span class="t-small">#24302C</span></div></div>
+        <div class="role"><i style="background: var(--panel)"></i><div><span class="hud-label">--panel</span><span class="t-small">#4F6B62</span></div></div>
+        <div class="role"><i style="background: var(--inverse)"></i><div><span class="hud-label">--inverse</span><span class="t-small">#DDE3DF</span></div></div>
+        <div class="role"><i style="background: var(--text-muted)"></i><div><span class="hud-label">--text-muted</span><span class="t-small">#A9BDB5</span></div></div>
+        <div class="role"><i style="background: var(--accent)"></i><div><span class="hud-label">--accent</span><span class="t-small">#7FE3AE</span></div></div>
+        <div class="role"><i style="background: var(--accent-text)"></i><div><span class="hud-label">--accent-text</span><span class="t-small">#7FE3AE</span></div></div>
+        <div class="role"><i style="background: var(--signal)"></i><div><span class="hud-label">--signal</span><span class="t-small">#FF5B1F</span></div></div>
+      </div>
+      <p class="note">Texto 17:1 · secundario 9.6:1 · sobre panel 5.2:1 · acento como texto: <span class="t-accent">accent-text</span> 12.2:1</p>
+    </section>
+  </div>
+
+  <div class="prims">
+    <div class="prim"><i style="background:#F1F3F0"></i><div>paper<br>#F1F3F0</div></div>
+    <div class="prim"><i style="background:#DDE3DF"></i><div>mist<br>#DDE3DF</div></div>
+    <div class="prim"><i style="background:#0D1110"></i><div>ink<br>#0D1110</div></div>
+    <div class="prim"><i style="background:#1A2421"></i><div>graphite<br>#1A2421</div></div>
+    <div class="prim"><i style="background:#4F6B62"></i><div>sage<br>#4F6B62</div></div>
+    <div class="prim"><i style="background:#7FE3AE"></i><div>mint<br>#7FE3AE</div></div>
+    <div class="prim"><i style="background:#FF5B1F"></i><div>signal<br>#FF5B1F</div></div>
+  </div>
+
+  <ul class="rules">
+    <li><strong>Prohibido:</strong> menta como texto sobre claro (1.6:1). Se usa <code>--accent-text</code>.</li>
+    <li><strong>Prohibido:</strong> señal como texto sobre claro (2.8:1). Va solo como relleno con texto ink (6.1:1).</li>
+    <li>Menta sobre salvia (3.7:1): solo para controles activos y foco, nunca para texto pequeño.</li>
+    <li>El color nunca es la única señal de un estado.</li>
+  </ul>
+</body>
+</html>

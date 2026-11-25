@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JAPS Studio — Galería de diseños · Encastre menta</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="encastre-integrado-menta.css">
+  <style>
+    /* Composición de la galería (no forma parte del sistema) */
+    .page {
+      max-width: calc(var(--layout-max) + var(--layout-sidebar) + 3 * var(--gap));
+      margin: 0 auto;
+      padding: var(--gap);
+      display: grid;
+      grid-template-columns: var(--layout-sidebar) minmax(0, 1fr);
+      gap: var(--gap);
+      align-items: start;
+    }
+    .sidebar {
+      position: sticky;
+      top: var(--gap);
+      height: calc(100vh - 2 * var(--gap));
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-5);
+      padding: var(--space-3) 0;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--text-on-inverse);
+      color: var(--inverse);
+      font: 900 18px/1 var(--font-display);
+    }
+    .vertical { writing-mode: vertical-rl; rotate: 180deg; }
+    .spacer { flex: 1; }
+    .sidebar .hud-label { opacity: .7; }
+    .ico-sun, [data-theme="dark"] .ico-moon { display: none; }
+    [data-theme="dark"] .ico-sun { display: block; }
+
+    .gallery { display: grid; gap: var(--space-9); min-width: 0; }
+    .intro { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-5); padding: var(--space-6) var(--space-5) 0; }
+    .intro p { margin-top: var(--space-3); color: var(--text-muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .filters .pill[aria-pressed="true"] { background: var(--inverse); border-color: transparent; color: var(--text-on-inverse); }
+
+    .design { display: grid; gap: var(--space-4); min-width: 0; scroll-margin-top: var(--gap); }
+    .design[hidden] { display: none; }
+    .design__caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-5); padding: 0 var(--space-5); color: var(--text-muted); }
+    .design__caption b { color: var(--text); font-weight: var(--fw-semibold); }
+    .stack { display: grid; gap: var(--gap); min-width: 0; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+    .buttons { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+    .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+    .card { display: flex; flex-direction: column; gap: var(--space-4); }
+    .card > .push { margin-top: auto; }
+    .text-soft { color: var(--text-on-panel); }
+    .muted-on-ink { color: var(--c-sage-soft); }
+
+    /* Hero: panel con muescas TR + BL */
+    .hero {
+      min-height: 640px;
+      padding: var(--space-5) var(--space-6) 104px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      gap: var(--space-5);
+    }
+    .field-sage {
+      background:
+        linear-gradient(118deg, transparent 38%, #FFFFFF0D 38.2%, #FFFFFF0D 52%, transparent 52.2%),
+        radial-gradient(60% 50% at 85% 20%, #6E8F84 0%, transparent 60%),
+        var(--panel);
+    }
+    .nav { display: flex; gap: var(--space-1); padding: var(--space-1); border-radius: var(--r-pill); width: max-content; }
+    .nav .pill { min-height: 40px; padding: 0 var(--space-4); border-color: transparent; }
+    .nav .pill:not(.pill--accent):hover { border-color: var(--glass-border); }
+    .hero__copy { grid-column: 1; grid-row: 2; align-self: center; display: grid; gap: var(--space-5); position: relative; z-index: 2; }
+    .hero__copy p { max-width: 44ch; }
+    .hero .t-statement { font-size: clamp(30px, 5.5vw, 84px); }
+    .orb-stage { grid-column: 2; grid-row: 1 / span 2; position: relative; min-height: 360px; }
+    .orb {
+      position: absolute;
+      width: min(380px, 70%);
+      aspect-ratio: 1;
+      right: 10%;
+      top: 8%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #FFFFFF 0 3%, #E4F3EB 9%, #A8D3BF 24%, #5E8C7B 46%, #2A4239 72%, #121C18 100%);
+      box-shadow: inset -24px -32px 60px #0D111066;
+    }
+    .ring {
+      position: absolute;
+      width: min(540px, 100%);
+      aspect-ratio: 2.4;
+      right: 0;
+      top: 30%;
+      border-radius: 50%;
+      border: 22px solid transparent;
+      background: conic-gradient(from 200deg, var(--c-mint), #E9FFF3, var(--c-mint-deep), #2F5A49, var(--c-mint)) border-box;
+      -webkit-mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0) border-box;
+      mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0) border-box;
+      rotate: -18deg;
+    }
+    .glass-card { position: absolute; right: var(--space-6); bottom: var(--space-6); width: min(300px, 80%); padding: var(--space-5); display: grid; gap: var(--space-2); z-index: 2; }
+    .glass-card p { font-size: var(--fs-small); }
+
+    /* Secciones abiertas: viven sobre el shell, sin card */
+    .open { padding-inline: var(--space-5); }
+    .rule-list { list-style: none; margin: 0; padding: 0; }
+    .rule-list > * { padding-block: var(--space-5); border-top: var(--bw-hairline) solid var(--hairline-strong); }
+    .rule-list > *:last-child { border-bottom: var(--bw-hairline) solid var(--hairline-strong); }
+    .rule-list h3 + p { margin-top: var(--space-2); color: var(--text-muted); }
+    .ribbon-open { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-5); padding: var(--space-4) var(--space-5) 0; }
+
+    /* Rellenos HUD: se apoyan directo en el shell */
+    .fill-slot { min-width: 0; min-height: 300px; display: flex; }
+    .fill-slot > .hud-fill { flex: 1; height: auto; }
+    .hud-fill a { color: inherit; }
+
+    /* Modelo */
+    .venture { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--space-8); align-items: end; }
+    .venture__main { display: grid; gap: var(--space-6); justify-items: start; }
+    .venture__main .t-headline { font-size: clamp(44px, 1.5rem + 4.6vw, 104px); }
+    .venture__main p { font-size: var(--fs-body-l); max-width: 52ch; }
+
+    /* Aportes */
+    .contrib { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr); gap: var(--space-7); align-items: stretch; }
+    .contrib__body { display: grid; gap: var(--space-6); align-content: start; min-width: 0; }
+    .contrib__table { width: 100%; border-collapse: collapse; text-align: left; }
+    .contrib__table th { padding: 0 var(--space-5) var(--space-3) 0; color: var(--text-muted); font-weight: var(--fw-medium); }
+    .contrib__table td { padding: var(--space-5) var(--space-5) var(--space-5) 0; border-top: var(--bw-hairline) solid var(--hairline-strong); vertical-align: top; width: 50%; }
+    .contrib__table td:first-child { font: var(--fw-semibold) var(--fs-h3) / 1.2 var(--font-body); letter-spacing: var(--ls-subdisplay); }
+
+    /* Recorrido: índice fantasma de cuatro pasos */
+    .ghost { min-height: 0; overflow: visible; }
+    .ghost__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6) var(--space-5); }
+    .ghost__item { display: flex; flex-direction: column; gap: var(--space-4); }
+    .ghost__digits { font: 900 clamp(88px, 3rem + 5vw, 150px) / .8 var(--font-display); letter-spacing: -0.03em; color: color-mix(in oklab, var(--text) 14%, transparent); }
+    .ghost__item h3 { font-size: var(--fs-h3); font-weight: var(--fw-semibold); line-height: 1.2; }
+    .ghost__item p { font-size: var(--fs-small); color: var(--text-muted); }
+
+    /* Portafolio */
+    .work { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-7); align-items: stretch; }
+    .work__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2) var(--space-5); align-items: baseline; color: inherit; text-decoration: none; transition: color var(--dur-fast) var(--ease-standard); }
+    .work__row:hover { color: var(--accent-text); }
+    .work__row .t-headline { font-size: clamp(40px, 1.5rem + 3vw, 72px); }
+    .work__row .hud-label { color: var(--text-muted); text-align: right; }
+    .work__row p { grid-column: 1 / -1; }
+    .hud-fill--marked { text-decoration: none; display: block; }
+
+    /* Ficha */
+    .sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); align-items: stretch; }
+    .sheet__hero { min-height: 560px; padding: var(--space-6) var(--space-6) 104px; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-4); }
+    .sheet__hero .t-headline { font-size: clamp(48px, 1.5rem + 5vw, 104px); }
+    .sheet__blocks { align-self: center; padding-right: var(--space-5); }
+
+    /* Tabla y capacidades */
+    .data-layout { display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(240px, 1fr); gap: var(--space-7); align-items: stretch; }
+    .table-wrap { overflow-x: auto; min-width: 0; }
+    .data { width: 100%; min-width: 620px; border-collapse: collapse; text-align: left; }
+    .data th { padding: 0 var(--space-5) var(--space-3) 0; color: var(--text-muted); font-weight: var(--fw-medium); }
+    .data td { padding: var(--space-5) var(--space-5) var(--space-5) 0; border-top: var(--bw-hairline) solid var(--hairline-strong); font-size: var(--fs-small); vertical-align: middle; }
+    .data td:first-child { font: var(--fw-semibold) var(--fs-body) / 1.3 var(--font-body); }
+
+    /* Formulario: solo el formulario lleva superficie */
+    .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: var(--space-7); }
+    .contact__aside { display: flex; flex-direction: column; gap: var(--space-6); padding: var(--space-5) 0 var(--space-5) var(--space-5); }
+    .contact__aside .push { margin-top: auto; }
+    .contact__aside .t-headline { font-size: clamp(36px, 1.5rem + 2.4vw, 60px); }
+    .contact__form { padding: var(--space-6); gap: var(--space-5); }
+    .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--gap); }
+    .field { display: grid; gap: var(--space-2); align-content: start; }
+    .field--wide { grid-column: 1 / -1; }
+    .field label, .field legend { font-size: var(--fs-small); font-weight: var(--fw-semibold); padding: 0; }
+    .field fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+    .field input[type="text"], .field input[type="email"], .field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: var(--space-3) var(--space-4);
+      border: var(--bw-hairline) solid var(--hairline-strong);
+      border-radius: var(--r-inner);
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+    }
+    .field textarea { min-height: 112px; resize: vertical; }
+    .field__help { font-size: var(--fs-small); color: var(--text-muted); }
+    .field__error { font-size: var(--fs-small); font-weight: var(--fw-semibold); color: var(--negative-ink); }
+    .field--error input { border-color: var(--negative-ink); }
+    .radio-pills { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .radio-pills input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .radio-pills label { font-weight: var(--fw-medium); }
+    .radio-pills input:checked + .pill { background: var(--inverse); border-color: transparent; color: var(--text-on-inverse); }
+    .radio-pills input:focus-visible + .pill { outline: var(--bw-focus) solid var(--focus); outline-offset: 2px; }
+
+    /* Preguntas: lista abierta con guía HUD */
+    .faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--space-7); align-items: stretch; }
+    .faq__head { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+    .faq__head .t-headline { font-size: clamp(36px, 1.5rem + 2.6vw, 64px); }
+    .faq__head .fill-slot { flex: 1; min-height: 240px; }
+    .faq__head .hud-fill--leader { min-height: 240px; }
+    .faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); cursor: pointer; list-style: none; font: var(--fw-semibold) var(--fs-h3) / 1.2 var(--font-body); letter-spacing: var(--ls-subdisplay); }
+    .faq__item summary::-webkit-details-marker { display: none; }
+    .faq__item p { margin-top: var(--space-3); color: var(--text-muted); }
+    .faq__item .hud-cross { flex: none; transition: rotate var(--dur-base) var(--ease-standard); }
+    .faq__item[open] .hud-cross { rotate: 45deg; }
+
+    /* Confirmación, error y avisos */
+    .moments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+    .moment { min-height: 440px; padding: var(--space-6) var(--space-6) 104px; display: flex; flex-direction: column; justify-content: center; gap: var(--space-4); }
+    .moment .t-headline { font-size: clamp(36px, 1.5rem + 2.8vw, 68px); max-width: 12ch; }
+    .parts { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); align-items: start; padding-top: var(--space-5); }
+    .parts > * { display: grid; gap: var(--space-4); align-content: start; }
+    .parts .hud-fill { min-height: 220px; }
+    .toast { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) var(--space-5); border-radius: var(--r-card); background: var(--inverse); color: var(--text-on-inverse); font-size: var(--fs-small); font-weight: var(--fw-medium); box-shadow: var(--shadow-float); }
+
+    /* Cierre y pie abierto */
+    .closing { min-height: 560px; padding: var(--space-6) var(--space-6) 104px; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-5); }
+    .closing .t-statement { font-size: clamp(30px, 8.4vw, 112px); }
+    .closing p { max-width: 46ch; font-size: var(--fs-body-l); }
+    .footer { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: var(--space-6) var(--gap); padding: var(--space-6) var(--space-5) var(--space-5); }
+    .footer ul { list-style: none; margin: var(--space-3) 0 0; padding: 0; display: grid; gap: var(--space-2); font-size: var(--fs-small); }
+    .footer a { color: inherit; text-decoration: none; }
+    .footer a:hover { color: var(--accent-text); }
+    .footer__legal { grid-column: 1 / -1; padding-top: var(--space-4); border-top: var(--bw-hairline) solid var(--hairline-strong); font-size: var(--fs-small); color: var(--text-muted); }
+
+    @media (max-width: 1100px) {
+      .hero .t-statement { font-size: 4.8vw; }
+      .ghost__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .venture, .contrib, .work, .sheet, .contact, .faq, .data-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+      .sheet__hero { min-height: 440px; }
+      .faq__head .fill-slot, .faq__head .hud-fill--leader { min-height: 340px; }
+      .contact__aside { padding-right: var(--space-5); }
+      .parts { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .field-sage { background: var(--panel); }   /* sin franja ni brillo detrás del texto */
+      .page { grid-template-columns: minmax(0, 1fr); }
+      .sidebar { position: static; height: auto; min-height: 0; flex-direction: row; padding: var(--space-2); }
+      .sidebar .hud-label { display: none; }
+      .gallery { gap: var(--space-8); }
+      .intro, .design__caption, .open, .ribbon-open { padding-inline: var(--space-2); }
+      .ghost__grid, .moments, .parts, .fields { grid-template-columns: minmax(0, 1fr); }
+      .hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; padding: var(--space-4) var(--space-4) 0; min-height: 0; }
+      .hero .nav { display: none; }
+      .hero .t-statement { font-size: 8.4vw; }
+      .hero .t-body-l, .closing p { font-size: var(--fs-body); }
+      .hero__copy { grid-column: 1; grid-row: 1; padding-top: calc(var(--space-9) - var(--space-2)); }
+      .orb-stage { grid-column: 1; grid-row: 2; min-height: 260px; }
+      .ring { width: 100%; }
+      .glass-card { grid-column: 1; grid-row: 3; position: relative; right: auto; bottom: auto; width: 100%; margin-top: calc(-1 * var(--space-8)); }
+      .hero > .notch--bl { grid-column: 1; grid-row: 4; padding-bottom: var(--space-4); }
+      .contact__aside { padding-inline: var(--space-2); }
+      .contact__form { padding: var(--space-5); }
+      .contrib__table, .contrib__table tbody, .contrib__table tr, .contrib__table td { display: block; width: 100%; }
+      .contrib__table thead { display: none; }
+      .contrib__table td { padding: var(--space-4) 0 0; }
+      .contrib__table td + td { border-top: 0; padding: var(--space-2) 0 var(--space-4); }
+      .sheet__hero, .moment, .closing { padding: var(--space-5) var(--space-5) 0; min-height: 0; }
+      .sheet__hero > .notch--bl, .moment > .notch--bl, .closing > .notch--bl { padding-bottom: var(--space-5); }
+      .sheet__hero { padding-top: var(--space-8); }
+      .moment { padding-top: var(--space-8); }
+      .closing { padding-top: var(--space-9); }
+      .sheet__blocks { padding-inline: var(--space-2); }
+      .work__row { grid-template-columns: minmax(0, 1fr); }
+      .work__row .hud-label { text-align: left; grid-row: 1; }
+      .footer { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-inline: var(--space-2); }
+      .footer > :first-child { grid-column: 1 / -1; }
+      .faq__item summary { font-size: var(--fs-body-l); }
+      .faq__head .fill-slot, .faq__head .hud-fill--leader { min-height: 240px; }
+      .leader-label { left: 46cqw !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="capsule sidebar" aria-label="Marca y modo">
+      <span class="brand-mark" aria-hidden="true">J</span>
+      <span class="vertical hud-label">JAPS · STUDIO</span>
+      <span class="spacer"></span>
+      <span class="vertical hud-label">GALERÍA · MENTA</span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro">
+        <svg class="ico-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="ico-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </aside>
+
+    <main class="gallery">
+      <header class="intro">
+        <div>
+          <h1 class="t-h1">Galería de diseños</h1>
+          <p>Once composiciones de Encastre en menta: pocas cajas, rellenos HUD en los huecos y los textos reales del sitio.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrar diseños">
+          <button class="pill" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+          <button class="pill" type="button" data-filter="sitio" aria-pressed="false">Secciones</button>
+          <button class="pill" type="button" data-filter="producto" aria-pressed="false">Portafolio</button>
+          <button class="pill" type="button" data-filter="interaccion" aria-pressed="false">Interacción</button>
+        </div>
+      </header>
+
+      <!-- 1. Portada -->
+      <article class="design" data-group="sitio" aria-labelledby="d1">
+        <div class="design__caption t-small"><b>Portada</b><span>Panel salvia con muescas opuestas y objeto protagonista</span></div>
+        <section class="panel hero field-sage">
+          <nav class="nav pill--glass" aria-label="Ejemplo de navegación">
+            <a class="pill pill--accent" href="#" aria-current="page">Inicio</a>
+            <a class="pill" href="#">Cómo funciona</a>
+            <a class="pill" href="#">Portafolio</a>
+            <a class="pill" href="#">Nosotros</a>
+          </nav>
+          <div class="notch notch--tr">
+            <a class="pill" href="#">Preguntas</a>
+            <button class="icon-btn icon-btn--inverse" type="button" aria-label="Abrir menú">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 9h14M5 15h9"/></svg>
+            </button>
+          </div>
+          <div class="hero__copy">
+            <span class="hud-label">JAPS Studio · Constructora de startups</span>
+            <h2 id="d1" class="t-statement">Construyamos el futuro juntos</h2>
+            <p class="t-body-l text-soft">Transformamos ideas en productos y empresas de alto impacto, con ciencia e ingeniería.</p>
+          </div>
+          <div class="orb-stage" aria-hidden="true"><span class="orb"></span><span class="ring"></span></div>
+          <div class="glass glass-card">
+            <span class="hud-label">Respaldo</span>
+            <p>Acelerados en el Centro de Innovación UC Anacleto Angelini.</p>
+          </div>
+          <div class="notch notch--bl notch--stack">
+            <a class="pill pill--lg pill--accent" href="#">
+              Construye con nosotros
+              <span class="pill__icon" style="background: var(--c-ink); color: var(--c-mint)" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </a>
+          </div>
+        </section>
+        <ul class="ribbon-open plain hud-label" aria-label="Disciplinas" style="list-style: none; margin: 0">
+          <li>Ciencia</li><li aria-hidden="true"><span class="hud-cross" style="display: block"></span></li><li>Ingeniería</li><li aria-hidden="true"><span class="hud-cross" style="display: block"></span></li><li>Tecnología</li><li aria-hidden="true"><span class="hud-cross" style="display: block"></span></li><li>Experimentación</li>
+        </ul>
+      </article>
+
+      <!-- 2. Modelo -->
+      <article class="design" data-group="sitio" aria-labelledby="d2">
+        <div class="design__caption t-small"><b>Explicación del modelo</b><span>Titular suelto sobre el fondo, ideas en lista con líneas</span></div>
+        <div class="venture open">
+          <section class="venture__main">
+            <h2 id="d2" class="t-headline">¿Qué es un venture studio?</h2>
+            <p>Es un equipo que construye soluciones y empresas junto a personas que conocen de cerca un problema y su mercado. Cocreamos la marca y construimos la solución contigo, con ciencia, ingeniería, diseño, investigación y experiencia.</p>
+            <a class="pill pill--accent" href="#">Ver cómo funciona</a>
+          </section>
+          <ul class="rule-list">
+            <li><h3 class="t-h3">Aportamos conocimiento, método y recursos para construir contigo.</h3><p class="t-small">Ponemos a nuestro equipo y el Método JAPS al servicio de lo que construimos juntos.</p></li>
+            <li><h3 class="t-h3">¿En Chile falta empleo? Construyámoslo.</h3><p class="t-small">Queremos construir productos y empresas que generen trabajo e impacto positivo.</p></li>
+            <li><h3 class="t-h3">Innovemos, juntos.</h3><p class="t-small">Combinamos tu experiencia del problema con lo que sabemos investigar, diseñar y construir.</p></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 3. Aportes -->
+      <article class="design" data-group="sitio" aria-labelledby="d3">
+        <div class="design__caption t-small"><b>Comparación de aportes</b><span>Tabla abierta y relleno de registro en el hueco</span></div>
+        <div class="contrib open">
+          <div class="contrib__body">
+            <h2 id="d3" class="t-h2" style="max-width: 24ch">Tu experiencia, nuestro equipo y lo que podemos construir juntos.</h2>
+            <table class="contrib__table">
+              <thead><tr><th scope="col" class="hud-label">Tú aportas</th><th scope="col" class="hud-label">JAPS Studio aporta</th></tr></thead>
+              <tbody>
+                <tr><td>Conocimiento del mercado.</td><td>Un equipo que reúne ingeniería, diseño e investigación para construir la solución de principio a fin.</td></tr>
+                <tr><td>Experiencia del problema de primera mano.</td><td>Cocreación de marca y el Método JAPS, potenciado por IA y criterio humano.</td></tr>
+                <tr><td>Tu diferenciador.</td><td>Conocimiento, recursos, experiencia en concursos y fondos de innovación, y vínculos con Red Ángeles UC.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="fill-slot">
+            <div class="hud-fill hud-fill--registration" data-hud>
+              <span class="hud-fill__abs hud-fill__mono" style="left: 0; top: 0">Método JAPS — IA + criterio humano</span>
+              <span class="hud-fill__abs" data-hover="spin" style="left: 62%; top: 72px; display: flex"><span class="hud-cross" style="color: var(--text)" aria-hidden="true"></span></span>
+              <span class="hud-fill__abs" aria-hidden="true" style="left: calc(62% - 34px); top: 160px; width: 80px; height: 12px; border-radius: 999px; background: color-mix(in oklab, var(--text) 12%, var(--surface))"></span>
+              <span class="hud-fill__abs" aria-hidden="true" style="left: 62%; top: 126px; width: 12px; height: 80px; border-radius: 999px; background: color-mix(in oklab, var(--text) 12%, var(--surface))"></span>
+              <span class="hud-fill__abs" data-hover="spin" style="left: 62%; top: 248px; display: flex"><span class="hud-cross" style="color: var(--text)" aria-hidden="true"></span></span>
+              <span class="hud-fill__abs" aria-hidden="true" style="left: calc(62% - 124px); top: 272px; width: 220px; height: 4px; border-radius: 999px; background: var(--hairline-strong)"></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Recorrido -->
+      <article class="design" data-group="sitio" aria-labelledby="d4">
+        <div class="design__caption t-small"><b>Recorrido</b><span>Relleno de índice fantasma: los dígitos arman los cuatro pasos</span></div>
+        <div class="open stack" style="gap: var(--space-6)">
+          <div class="row" style="flex-wrap: wrap">
+            <h2 id="d4" class="t-h2">Cómo trabajamos</h2>
+            <span class="t-small t-muted" style="max-width: 34ch">Los tiempos dependen del tipo de producto. No prometemos plazos fijos.</span>
+          </div>
+          <div class="hud-fill ghost" data-hud>
+            <ol class="ghost__grid plain" style="list-style: none; margin: 0; padding: 0">
+            <li class="ghost__item"><span class="ghost__digits" aria-hidden="true"><span data-hover="pulse" data-hdelay="0">0</span><span data-hover="pulse" data-hdelay="50">1</span></span><h3>Conocernos y entender la oportunidad</h3><p>Conversamos sobre el problema que has vivido, tu mercado y lo que quieres construir.</p></li>
+            <li class="ghost__item"><span class="ghost__digits" aria-hidden="true"><span data-hover="pulse" data-hdelay="50">0</span><span data-hover="pulse" data-hdelay="100">2</span></span><h3>Diseñar y construir</h3><p>Prototipamos y desarrollamos el producto, cuidando la propiedad intelectual desde el inicio.</p></li>
+            <li class="ghost__item"><span class="ghost__digits" aria-hidden="true"><span data-hover="pulse" data-hdelay="100">0</span><span data-hover="pulse" data-hdelay="150">3</span></span><h3>Validar con clientes reales</h3><p>Probamos una primera versión y buscamos las primeras ventas para aprender con clientes reales.</p></li>
+            <li class="ghost__item"><span class="ghost__digits" aria-hidden="true"><span data-hover="pulse" data-hdelay="150">0</span><span data-hover="pulse" data-hdelay="200">4</span></span><h3>Lanzar y escalar</h3><p>Trabajamos para llegar al mercado como producto de JAPS o empresa cofundada, y crecer cuando corresponda.</p></li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Portafolio -->
+      <article class="design" data-group="producto" aria-labelledby="d5">
+        <div class="design__caption t-small"><b>Portafolio</b><span>Lista tipográfica y un solo relleno destacado</span></div>
+        <div class="open stack" style="gap: var(--space-6)">
+          <h2 id="d5" class="t-h2">Lo que ya construimos</h2>
+          <div class="work">
+            <ul class="rule-list">
+              <li><a class="work__row" href="#"><h3 class="t-headline">Consenty</h3><span class="hud-label">Software · Protección de datos</span><p>Gestión de consentimientos según la Ley 21.719 de protección de datos.</p></a></li>
+              <li><a class="work__row" href="#"><h3 class="t-headline">Project Check</h3><span class="hud-label">Software · Medio ambiente</span><p>Prefactibilidad ambiental de predios en Chile.</p></a></li>
+              <li><a class="work__row" href="#"><h3 class="t-headline">Melian</h3><span class="hud-label">Software · Minería</span><p>Gestión de riesgos críticos en operaciones mineras.</p></a></li>
+            </ul>
+            <a class="hud-fill hud-fill--marked" href="#" data-hud>
+            <span class="hud-fill__abs" aria-hidden="true" style="left: 12px; right: 12px; top: 20px; height: 3px; border-radius: 999px; background: color-mix(in oklab, var(--c-surface) 85%, transparent)"></span>
+            <span class="hud-fill__abs" aria-hidden="true" style="right: 16px; top: 32px; width: 6px; height: 6px; border-radius: 2px; background: color-mix(in oklab, var(--accent) 82%, var(--c-ink))"></span>
+            <span class="hud-fill__abs" aria-hidden="true" style="right: 28px; top: 48px; font: 900 200px/.8 var(--font-display); letter-spacing: -0.03em; color: color-mix(in oklab, var(--accent) 82%, var(--c-ink))">01</span>
+            <span class="hud-fill__abs" aria-hidden="true" data-hover="grow" style="left: 32px; top: 112px; width: 32px; height: 6px; border-radius: 999px; background: var(--c-ink); transform-origin: 0 50%"></span>
+            <span class="hud-fill__abs" aria-hidden="true" style="left: 32px; top: 236px; display: flex; align-items: center; gap: 6px"><span data-hover="grow" data-hdelay="60" style="width: 32px; height: 6px; border-radius: 999px; background: var(--c-ink); transform-origin: 0 50%"></span><span style="font: 500 11px/1 var(--font-mono)">~~</span></span>
+            <div class="hud-fill__abs" style="right: 32px; top: 228px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 15px; line-height: 1.25; text-align: right"><strong style="font-weight: 600">Sonicali</strong><span>—</span><span>Proyecto de origen</span></div>
+            <span class="hud-fill__abs" aria-hidden="true" style="left: 32px; right: 32px; bottom: 40px; height: 6px; border-radius: 999px; background: color-mix(in oklab, var(--accent) 82%, var(--c-ink))"></span>
+            <span class="hud-fill__abs" aria-hidden="true" data-hover="travel" style="left: 32px; bottom: 35px; width: 32px; height: 16px; border-radius: 6px; background: var(--c-ink)"></span>
+          </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Ficha -->
+      <article class="design" data-group="producto" aria-labelledby="d6">
+        <div class="design__caption t-small"><b>Ficha de producto</b><span>Panel con muesca y la historia suelta a su lado</span></div>
+        <div class="sheet">
+          <section class="panel sheet__hero">
+            <span class="hud-label" style="margin-bottom: auto">Software (SaaS)</span>
+            <h2 id="d6" class="t-headline">Consenty</h2>
+            <p class="t-body-l text-soft">Gestión de consentimientos según la Ley 21.719 de protección de datos.</p>
+            <div class="tags"><span class="chip chip--accent">Publicado y en venta</span></div>
+            <div class="notch notch--bl notch--stack"><a class="pill pill--lg pill--solid" href="#">consenty.japs.ing<span class="pill__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+          </section>
+          <ul class="rule-list sheet__blocks">
+            <li><h3 class="t-h3">El problema</h3><p class="t-small">Gestionar consentimientos y mantener su trazabilidad con planillas y correos puede dificultar el seguimiento.</p></li>
+            <li><h3 class="t-h3">Quién conocía el mercado</h3><p class="t-small">Lumisreg Consulting conocía la ley y lo que sus clientes iban a necesitar para cumplirla. JAPS puso el equipo para convertir ese conocimiento en un producto.</p></li>
+            <li><h3 class="t-h3">Qué construimos</h3><p class="t-small">Una plataforma para gestionar consentimientos de manera segura y sencilla: registro, trazabilidad y evidencia de cada consentimiento en un solo lugar.</p></li>
+            <li><h3 class="t-h3">Dónde está hoy</h3><p class="t-small">Consenty es un producto de JAPS Studio.</p></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 7. Tabla -->
+      <article class="design" data-group="producto" aria-labelledby="d7">
+        <div class="design__caption t-small"><b>Tabla de datos</b><span>Tabla sin caja y tiras de puntos con las capacidades</span></div>
+        <div class="open stack" style="gap: var(--space-6)">
+          <h2 id="d7" class="t-h2">Productos y etapa</h2>
+          <div class="data-layout">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de productos">
+              <table class="data">
+                <thead><tr><th scope="col" class="hud-label">Producto</th><th scope="col" class="hud-label">Industria</th><th scope="col" class="hud-label">Junto a</th><th scope="col" class="hud-label">Estado</th></tr></thead>
+                <tbody>
+                  <tr><td>Consenty</td><td>Protección de datos personales</td><td>Lumisreg Consulting</td><td><span class="status status--positive">Publicado y en venta</span></td></tr>
+                  <tr><td>Project Check</td><td>Medio ambiente y permisos</td><td>Due Green</td><td><span class="status status--positive">Publicado y en venta</span></td></tr>
+                  <tr><td>Melian</td><td>Minería</td><td>Imaginería</td><td><span class="t-muted">Sin estado publicado</span></td></tr>
+                  <tr><td>Sonicali</td><td>Acuicultura</td><td>Aeonix</td><td><span class="status status--warning">En investigación</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="fill-slot" style="min-height: 200px">
+            <div class="hud-fill hud-fill--dot-strip" data-hud>
+              <div class="hud-fill__abs" style="left: 0; top: 8px; display: flex; flex-direction: column; gap: 16px">
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="0"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="0"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="240"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="480"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="720"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="960"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1200"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1440"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1680"></span></span><span class="hud-fill__mono">Software e IA</span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="30"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="90"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="330"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="570"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="810"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1050"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1290"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1530"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1770"></span></span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="60"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="180"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="420"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="660"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="900"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1140"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1380"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1620"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1860"></span></span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="90"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="270"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="510"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="750"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="990"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1230"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1470"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1710"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1950"></span></span><span class="hud-fill__mono">Deep tech</span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="120"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="360"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="600"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="840"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1080"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1320"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1560"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1800"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="2040"></span></span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="150"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="450"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="690"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="930"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1170"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1410"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1650"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1890"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="2130"></span></span><span class="hud-fill__mono">Hardware o IoT</span></div>
+                <div style="display: flex; align-items: center; gap: 20px; height: 13px"><span aria-hidden="true" class="hud-fill__dots" data-hover="slide" data-hdelay="180"><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="540"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="780"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1020"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1260"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1500"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1740"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="1980"></span><span class="hud-fill__dot"></span><span class="hud-fill__dot hud-fill__dot--on" data-breathe="dot" data-delay="2220"></span></span></div>
+              </div>
+              <span class="hud-fill__abs" aria-hidden="true" style="right: 0; bottom: 8px; width: 28px; height: 18px; border-radius: 6px; background: var(--text)"></span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Formulario -->
+      <article class="design" data-group="interaccion" aria-labelledby="d8">
+        <div class="design__caption t-small"><b>Formulario</b><span>Solo el formulario lleva superficie; el contexto queda suelto</span></div>
+        <div class="contact">
+          <section class="contact__aside">
+            <h2 id="d8" class="t-headline">Construye con nosotros.</h2>
+            <p>Cuéntanos qué problema conoces y qué te gustaría construir. No necesitas tenerlo todo resuelto.</p>
+            <div class="push">
+              <span class="hud-label t-muted">Qué pasa después</span>
+              <ol class="timeline" style="margin-top: var(--space-4)">
+                <li aria-current="step"><strong>Nos cuentas tu idea</strong><br><span class="t-small t-muted">Por este formulario, con el detalle que tengas.</span></li>
+                <li><strong>La leemos y te respondemos</strong><br><span class="t-small t-muted">Respondemos a todas las personas que nos escriben.</span></li>
+                <li><strong>Si continuamos la conversación</strong><br><span class="t-small t-muted">Por videollamada o en nuestra oficina en el Centro de Innovación UC Anacleto Angelini.</span></li>
+              </ol>
+            </div>
+          </section>
+          <form class="card contact__form" onsubmit="return false" aria-label="Ejemplo de formulario, no envía datos">
+            <h3 class="t-h2">Cuéntanos tu idea</h3>
+            <div class="fields">
+              <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" type="text" autocomplete="off" value="Antonia"></div>
+              <div class="field field--error"><label for="f-correo">Correo</label><input id="f-correo" type="email" autocomplete="off" aria-invalid="true" aria-describedby="f-correo-e" value="antonia@"><span id="f-correo-e" class="field__error">Revisa el correo</span></div>
+              <div class="field field--wide">
+                <fieldset>
+                  <legend>¿Qué tipo de idea es?</legend>
+                  <div class="radio-pills">
+                    <label><input type="radio" name="tipo" checked><span class="pill">Producto</span></label>
+                    <label><input type="radio" name="tipo"><span class="pill">Modelo de negocio</span></label>
+                    <label><input type="radio" name="tipo"><span class="pill">No lo sé todavía</span></label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="field field--wide"><label for="f-idea">¿Qué te gustaría construir?</label><span class="field__help">Cuéntanos la idea con el detalle que tengas y para quién sería.</span><textarea id="f-idea"></textarea></div>
+            </div>
+            <div class="buttons"><button class="pill pill--lg pill--accent" type="submit">Enviar mi idea<span class="pill__icon" style="background: var(--c-ink); color: var(--c-mint)" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></div>
+          </form>
+        </div>
+      </article>
+
+      <!-- 9. Preguntas -->
+      <article class="design" data-group="interaccion" aria-labelledby="d9">
+        <div class="design__caption t-small"><b>Preguntas frecuentes</b><span>Acordeón con líneas y guía HUD hacia el contacto</span></div>
+        <div class="faq open">
+          <section class="faq__head">
+            <h2 id="d9" class="t-headline">Lo que nos suelen preguntar.</h2>
+            <div class="fill-slot">
+            <div class="hud-fill hud-fill--leader" data-hud>
+              <span class="hud-fill__abs" style="left: 0; top: 40px; display: flex; align-items: center; gap: 8px; font: 500 13px/1 var(--font-mono)">FAQ<span aria-hidden="true" style="width: 28px; height: 18px; border-radius: 6px; background: var(--hairline-strong)"></span></span>
+              <span class="hud-fill__abs" aria-hidden="true" style="left: 25cqw; top: 50px; width: 6.9cqw; height: 4px; border-radius: 999px; background: var(--text)"></span>
+              <span class="hud-fill__abs" aria-hidden="true" data-hover="draw" style="left: 31.25cqw; top: 50px; width: 34.4cqw; height: 4px; border-radius: 999px; background: var(--text); transform-origin: 2px 2px; transform: rotate(42deg)"></span>
+              <a class="hud-fill__abs hud-fill__mono leader-label" href="mailto:contacto@japs.ing" style="left: 56cqw; top: calc(64px + 23cqw); white-space: nowrap; text-transform: none">contacto@japs.ing</a>
+              <span class="hud-fill__abs hud-fill__mono t-muted" style="left: 0; bottom: 8px">Si tu duda no está aquí, escríbenos</span>
+            </div>
+            </div>
+          </section>
+          <div class="rule-list">
+            <details class="faq__item" open><summary>¿Qué es un venture studio?<span class="hud-cross" aria-hidden="true"></span></summary><p>Un equipo que construye soluciones y empresas junto a personas que conocen de cerca un problema y su mercado. En JAPS Studio nos hacemos parte del proyecto y compartimos riesgos, decisiones y resultados.</p></details>
+            <details class="faq__item"><summary>¿Necesito saber programar o tener un equipo técnico?<span class="hud-cross" aria-hidden="true"></span></summary><p>No. Esa es parte de lo que aportamos nosotros.</p></details>
+            <details class="faq__item"><summary>¿Mi idea tiene que ser un invento?<span class="hud-cross" aria-hidden="true"></span></summary><p>No. Puede ser un producto nuevo o una forma de aplicar en otra industria o mercado algo que ya funciona.</p></details>
+            <details class="faq__item"><summary>¿Qué pasa con lo que construimos?<span class="hud-cross" aria-hidden="true"></span></summary><p>Puede ser un producto bajo JAPS, en sociedad contigo, o una empresa nueva que cofundamos. Lo definimos caso a caso.</p></details>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. Momentos -->
+      <article class="design" data-group="interaccion" aria-labelledby="d10">
+        <div class="design__caption t-small"><b>Confirmación, error y avisos</b><span>Paneles breves y piezas de estado sueltas</span></div>
+        <h2 id="d10" class="sr-only" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Confirmación, error y avisos</h2>
+        <div class="stack">
+          <div class="moments">
+            <section class="panel moment">
+              <h3 class="t-headline">Recibimos tu idea.</h3>
+              <p class="text-soft">Gracias por contarnos. Leemos todas las ideas y te responderemos.</p>
+              <div class="notch notch--bl notch--stack"><a class="pill pill--lg pill--solid" href="#">Ver el portafolio<span class="pill__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+            </section>
+            <section class="panel panel--ink moment">
+              <h3 class="t-headline">Esta página no existe.</h3>
+              <p class="text-soft">Puede que el enlace esté mal escrito o que la página haya cambiado.</p>
+              <div class="notch notch--bl notch--stack"><a class="pill pill--lg pill--accent" href="#">Volver al inicio<span class="pill__icon" style="background: var(--c-ink); color: var(--c-mint)" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+            </section>
+          </div>
+          <div class="parts open">
+            <div>
+            <div class="hud-fill hud-fill--progress" data-hud>
+              <div class="hud-fill__abs" style="inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 36px">
+                <div style="display: flex; flex-direction: column; gap: 10px">
+                  <div style="display: flex; align-items: center; gap: 12px">
+                    <span style="font: 500 13px/1 var(--font-mono)">TU_IDEA</span>
+                    <span aria-hidden="true" style="position: relative; flex: 1; height: 12px">
+                      <span style="position: absolute; left: 0; right: 0; top: 4px; height: 4px; border-radius: 999px; background: var(--text)"></span>
+                      <span data-hover="complete" data-scale="3" style="position: absolute; left: 0; top: 0; width: 33%; height: 12px; border-radius: 999px; background: var(--text); transform-origin: 0 50%"></span>
+                      <span style="position: absolute; left: calc(33% + 8px); top: 16px; font: 500 11px/1 var(--font-mono)">~~</span>
+                    </span>
+                  </div>
+                  <span style="align-self: flex-end; font: 500 11px/1 var(--font-mono); color: var(--text-muted); font-variant-numeric: tabular-nums">[ 1 / 3 ]</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px">
+                  <span class="hud-fill__mono t-muted">Sigue: la leemos y te respondemos</span>
+                  <div style="display: flex; align-items: center; gap: 16px">
+                    <span aria-hidden="true" style="flex: 1; height: 8px; border-radius: 999px; background: var(--hairline); display: flex"><span style="width: 33%; border-radius: 999px; background: var(--hairline-strong)"></span></span>
+                    <span style="font: 500 13px/1 var(--font-mono); white-space: nowrap">01 &gt;&gt; 02</span>
+                    <span aria-hidden="true" style="width: 24px; height: 16px; border-radius: 6px; background: var(--hairline)"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div>
+              <span class="field__error">No pudimos enviar tu idea.</span>
+              <p class="t-small t-muted">Lo que escribiste sigue aquí: inténtalo de nuevo o escríbenos a contacto@japs.ing.</p>
+              <div class="buttons"><button class="pill" type="button">Intentar de nuevo</button></div>
+            </div>
+            <div>
+              <div class="toast" role="status"><span>Enviando…</span><span class="live-dot" aria-hidden="true"></span></div>
+              <div class="tags"><span class="status status--positive">Publicado</span><span class="status status--warning">En investigación</span><span class="status status--negative">Falta este dato</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. Cierre -->
+      <article class="design" data-group="sitio" aria-labelledby="d11">
+        <div class="design__caption t-small"><b>Cierre y pie de página</b><span>Polaridad invertida y pie suelto sobre el fondo</span></div>
+        <div class="stack">
+          <section class="panel panel--ink closing">
+            <h2 id="d11" class="t-statement">Construyamos el futuro juntos</h2>
+            <p>Cuéntanos qué problema conoces y qué te gustaría construir. No necesitas tenerlo todo resuelto.</p>
+            <div class="notch notch--bl notch--stack"><a class="pill pill--lg pill--accent" href="#">Construye con nosotros<span class="pill__icon" style="background: var(--c-ink); color: var(--c-mint)" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+          </section>
+          <footer class="footer">
+            <div><strong>JAPS Studio.</strong> Constructora de startups.</div>
+            <div><span class="hud-label t-muted">Sitio</span><ul><li><a href="#">Cómo funciona</a></li><li><a href="#">Nosotros</a></li><li><a href="#">Preguntas</a></li></ul></div>
+            <div><span class="hud-label t-muted">Portafolio</span><ul><li><a href="#">Consenty</a></li><li><a href="#">Project Check</a></li><li><a href="#">Melian</a></li><li><a href="#">Sonicali</a></li></ul></div>
+            <div><span class="hud-label t-muted">Redes y canales</span><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+            <div class="footer__legal">© 2026 JAPS Engineering SpA. Todos los derechos reservados.</div>
+          </footer>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const current = () => root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const sync = () => btn.setAttribute('aria-label', current() === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      btn.addEventListener('click', () => { root.dataset.theme = current() === 'dark' ? 'light' : 'dark'; sync(); });
+      const fromUrl = new URLSearchParams(location.search).get('theme');
+      root.dataset.theme = (fromUrl === 'light' || fromUrl === 'dark') ? fromUrl : current();
+      sync();
+
+      const filters = document.querySelectorAll('[data-filter]');
+      filters.forEach((f) => f.addEventListener('click', () => {
+        filters.forEach((o) => o.setAttribute('aria-pressed', String(o === f)));
+        document.querySelectorAll('.design').forEach((d) => {
+          d.hidden = f.dataset.filter !== 'todos' && d.dataset.group !== f.dataset.filter;
+        });
+      }));
+      // Movimiento de los rellenos, portado de src/hudMotion.ts
+      if (typeof Element.prototype.animate === 'function' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const EASE = 'cubic-bezier(.2,.8,.2,1)';
+        const framesFor = (el, root) => ({
+          spin: [{ transform: 'rotate(0deg)' }, { transform: 'rotate(90deg)' }],
+          extend: [{ transform: 'scaleX(1)' }, { transform: 'scaleX(1.8)' }],
+          complete: [{ transform: 'scaleX(1)' }, { transform: `scaleX(${el.dataset.scale ?? '2.94'})` }],
+          slide: [{ transform: 'translateX(0)' }, { transform: 'translateX(10px)' }],
+          grow: [{ transform: 'scaleX(1)' }, { transform: 'scaleX(1.6)' }],
+          travel: [{ transform: 'translateX(0)' }, { transform: `translateX(${Math.max(0, root.clientWidth - 96)}px)` }],
+          draw: [{ transform: 'rotate(42deg) scaleX(0)' }, { transform: 'rotate(42deg) scaleX(1)' }],
+        })[el.dataset.hover] ?? null;
+        document.querySelectorAll('[data-hud]').forEach((root) => {
+          root.querySelectorAll('[data-breathe="dot"]').forEach((el) => el.animate([{ opacity: 1 }, { opacity: 0.2 }], {
+            duration: 1400, delay: Number(el.dataset.delay ?? 0), iterations: Infinity, direction: 'alternate', easing: 'ease-in-out',
+          }));
+          const targets = () => root.querySelectorAll('[data-hover]');
+          root.addEventListener('pointerenter', () => targets().forEach((el) => {
+            const k = el.dataset.hover;
+            const delay = Number(el.dataset.hdelay ?? 0);
+            if (k === 'pulse') {
+              el._ha?.cancel();
+              el._ha = el.animate([{ opacity: 1 }, { opacity: 0.2 }, { opacity: 1 }], { duration: 320, delay, iterations: 1, easing: 'ease-in-out' });
+              return;
+            }
+            const frames = framesFor(el, root);
+            if (!frames) return;
+            if (k === 'draw' || !el._ha) {
+              el._ha?.cancel();
+              el._ha = el.animate(frames, { duration: k === 'travel' ? 900 : 420, delay, fill: 'both', easing: EASE });
+              return;
+            }
+            if (el._ha.playbackRate < 0) el._ha.reverse();
+          }));
+          root.addEventListener('pointerleave', () => targets().forEach((el) => {
+            if (!el._ha) return;
+            if (el.dataset.hover === 'pulse') { el._ha.cancel(); el._ha = null; return; }
+            if (el.dataset.hover !== 'draw' && el._ha.playbackRate > 0) el._ha.reverse();
+          }));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

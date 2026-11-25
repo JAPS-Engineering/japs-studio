@@ -1,0 +1,93 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Encastre · Muescas con filete inverso</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .demo-main { min-height: 240px; padding: 24px; display: grid; align-content: start; gap: 8px;
+      background: radial-gradient(110% 90% at 85% 15%, #6E8F84 0%, transparent 60%), var(--panel); }
+    .demo-main .t-statement { font-size: 40px; }
+    .minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .mini { min-height: 150px; }
+    .mini .hud-label { position: absolute; color: #F1F3F0D9; }
+    .mini--tl .hud-label { right: 16px; bottom: 14px; }
+    .mini--br .hud-label { left: 16px; top: 14px; }
+    .tabcard { --notch-r: var(--r-card); min-height: 150px; display: grid; align-content: end; }
+    .icon-btn svg, .pill__icon svg { display: block; }
+  </style>
+</head>
+<body>
+  <header class="cardhead">
+    <span class="hud-label">Encastre · Firma estructural</span>
+    <h1 class="t-h2">Muescas con filete inverso</h1>
+    <p>El shell "muerde" una esquina del panel y la une con una curva en S continua: convexa, costado, el radio de la muesca y otra vez convexa. Cada muesca aloja un solo elemento. Bases: refs. 12 (NEXA) y 21 (Futuristic technologies).</p>
+  </header>
+
+  <div class="duo">
+    <section class="frame" data-theme="light">
+      <span class="hud-label">Light · par canónico TR + BL</span>
+      <div class="panel demo-main">
+        <span class="hud-label">01 — Hero</span>
+        <span class="t-statement">Encaja.</span>
+        <div class="notch notch--tr">
+          <a class="pill" href="#">Contacto</a>
+          <button class="icon-btn icon-btn--inverse" type="button" aria-label="Menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 9h14M5 15h9"/></svg></button>
+        </div>
+        <div class="notch notch--bl">
+          <a class="pill pill--lg pill--solid" href="#">Agenda una conversación<span class="pill__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+      <div class="minis">
+        <div class="panel mini mini--tl"><span class="hud-label">.notch--tl</span>
+          <div class="notch notch--tl"><button class="icon-btn" type="button" aria-label="Volver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></div>
+        </div>
+        <div class="panel mini mini--br"><span class="hud-label">.notch--br</span>
+          <div class="notch notch--br"><a class="pill" href="#">Ver caso</a></div>
+        </div>
+        <div class="card tabcard">
+          <div class="notch notch--t"><span class="chip chip--inverse">Sistema</span></div>
+          <span class="hud-label t-muted">.notch--t · pestaña de sección</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame" data-theme="dark">
+      <span class="hud-label">Dark · par canónico TR + BL</span>
+      <div class="panel demo-main">
+        <span class="hud-label">01 — Hero</span>
+        <span class="t-statement">Encaja.</span>
+        <div class="notch notch--tr">
+          <a class="pill" href="#">Contacto</a>
+          <button class="icon-btn icon-btn--inverse" type="button" aria-label="Menú"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 9h14M5 15h9"/></svg></button>
+        </div>
+        <div class="notch notch--bl">
+          <a class="pill pill--lg pill--solid" href="#">Agenda una conversación<span class="pill__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+      <div class="minis">
+        <div class="panel mini mini--tl"><span class="hud-label">.notch--tl</span>
+          <div class="notch notch--tl"><button class="icon-btn" type="button" aria-label="Volver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></div>
+        </div>
+        <div class="panel mini mini--br"><span class="hud-label">.notch--br</span>
+          <div class="notch notch--br"><a class="pill" href="#">Ver caso</a></div>
+        </div>
+        <div class="card tabcard">
+          <div class="notch notch--t"><span class="chip chip--inverse">Sistema</span></div>
+          <span class="hud-label t-muted">.notch--t · pestaña de sección</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <ul class="rules">
+    <li><strong>Máximo 2 muescas por panel, en esquinas opuestas</strong> (TR + BL o TL + BR). Nunca en esquinas adyacentes.</li>
+    <li><strong>Cada muesca aloja un único elemento</strong> (CTA, menú, titular, selector o pestaña). No se usan muescas vacías.</li>
+    <li>Radio del filete = radio del panel (<code>--notch-r</code>). Hueco = <code>--gap</code>. Color = el del shell (<code>--shell-color</code>).</li>
+    <li>Implementación: <code>.notch</code> + <code>::before</code>/<code>::after</code> con <code>radial-gradient</code>. No necesita SVG ni JS. En móvil, <code>.notch--stack</code> apila las muescas inferiores.</li>
+  </ul>
+</body>
+</html>

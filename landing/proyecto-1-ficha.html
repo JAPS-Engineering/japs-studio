@@ -1,0 +1,1096 @@
+<title>JAPS Studio Ficha</title>
+<meta name="color-scheme" content="dark">
+<script>(() => { const r = document.documentElement; const f = () => { if (r.dataset.theme !== "dark") r.dataset.theme = "dark"; }; f(); new MutationObserver(f).observe(r, { attributes: true, attributeFilter: ["data-theme"] }); })();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ficha de proyecto del portafolio de JAPS Studio: qué problema resolvimos, con quién y dónde está hoy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap">
+<style>
+  /* Solo modo oscuro: sin control de tema */
+  [role="group"][aria-label="Modo de color"], .theme-btn, [data-theme-switch] { display: none !important; }
+
+  /* Layout: ficha editorial sobre la retícula de 12 columnas de la landing A. Hero = panel con el render del producto,
+     botón al sitio en la muesca TR y el nombre alojado en la muesca BL. Cuerpo: ficha lateral fija (cols 1–4) y
+     capítulos 01–04 (cols 7–12) sobre el fondo, separados por aire y línea fina. Cierre = panel con la CTA en la muesca BR. */
+  :root {
+    --bg: #FFFFFF;
+    --surface: #EEF1F0;
+    --tint: #B6EBED;
+    --tint-text: #0E1312;
+    --text: #0E1312;
+    --muted: #3F4845;
+    --accent: #6ADCDC;
+    --accent-hover: #4ECCD0;
+    --accent-text: #0D7477;
+    --on-accent: #0E1312;
+    --inverse: #0E1312;
+    --on-inverse: #FFFFFF;
+    --hairline: #0E13121A;
+    --hairline-strong: #0E131259;
+    --focus: #0D7477;
+    --signal: #EEC158;
+    --signal-tint: #F5DAD6;
+    --signal-text: #8B3123;
+    --logo-studio: #0D7477;
+    /* Vidrio ahumado: tinta al 60 %, igual en ambos modos */
+    --glass: #0E131299;
+    --glass-border: #FFFFFF2E;
+    --on-glass: #FFFFFF;
+    /* Render (imagen): fondo de estudio frío; el texto que cae sobre zonas planas usa --on-render */
+    --render-hi: #F3F7F5;
+    --render-bg: #CBD6D1;
+    --render-lo: #93A6A0;
+    --on-render: #0E1312;
+    --on-render-muted: #2B3431;
+    --render-label: #B6EBED;
+    --render-label-text: #0E1312;
+    --render-chip: #F3F7F5;
+    --render-chip-text: #2B3431;
+    /* Materiales del render: son píxeles de imagen, iguales en ambos modos */
+    --jade-hi: #E7F9F9; --jade-1: #6ADCDC; --jade-2: #1DABAF; --jade-3: #073C41;
+    --chrome-hi: #FFFFFF; --chrome-1: #DADFDC; --chrome-2: #9AA39E; --chrome-3: #4C5551;
+    --white-mid: #EEF2F0; --white-lo: #B4BEBA; --chrome-band: #6E7874; --chrome-band-2: #BFC7C3;
+    --cast: #0E131240;
+
+    --font: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --fs-name: clamp(44px, 0.5rem + 5.6vw, 120px);
+    --fs-h2: clamp(30px, 1.2rem + 2.6vw, 58px);
+    --fs-h3: clamp(22px, 1rem + 0.6vw, 28px);
+    --fs-idx: clamp(44px, 1.4rem + 2.8vw, 80px);
+    --fs-ch: clamp(28px, 1rem + 1.3vw, 42px);
+    --fs-read: clamp(19px, 1rem + 0.45vw, 23px);
+    --fs-lead: clamp(18px, 1rem + 0.3vw, 21px);
+    --fs-body: 16px;
+    --fs-small: 14px;
+    --fs-label: 12px;
+
+    --gutter: clamp(16px, 2.6vw, 40px);
+    --gap: 24px;
+    --sec-pad: clamp(72px, 4rem + 4.5vw, 144px);
+    --hdr-h: 88px;
+    --r-shell: 56px; --r-panel: 40px; --r-card: 32px; --r-inner: 20px;
+    --btn: 56px; --btn-lg: 64px; --notch-gap: 16px;
+    --ease: cubic-bezier(.2,.8,.2,1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #020304; --surface: #172F31; --tint: #1A6268; --tint-text: #FFFFFF;
+      --text: #F2F5F4; --muted: #B8C9CB;
+      --accent: #6ADCDC; --accent-hover: #91E8E8; --accent-text: #6ADCDC; --on-accent: #000000;
+      --inverse: #F2F5F4; --on-inverse: #000000;
+      --hairline: #F2F5F41A; --hairline-strong: #F2F5F459; --focus: #6ADCDC;
+      --signal-tint: #5B4920; --signal-text: #FBE6AE;
+      --logo-studio: #6ADCDC;
+      --render-hi: #2A3739; --render-bg: #1C2627; --render-lo: #131A1B;
+      --on-render: #F2F5F4; --on-render-muted: #C7D6D7;
+      --render-label: #1A6268; --render-label-text: #FFFFFF;
+      --render-chip: #000000; --render-chip-text: #C7D6D7;
+      --cast: #00000073;
+    }
+  }
+  :root, :root[data-theme="light"], :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #020304; --surface: #172F31; --tint: #1A6268; --tint-text: #FFFFFF;
+    --text: #F2F5F4; --muted: #B8C9CB;
+    --accent: #6ADCDC; --accent-hover: #91E8E8; --accent-text: #6ADCDC; --on-accent: #000000;
+    --inverse: #F2F5F4; --on-inverse: #000000;
+    --hairline: #F2F5F41A; --hairline-strong: #F2F5F459; --focus: #6ADCDC;
+    --signal-tint: #5B4920; --signal-text: #FBE6AE;
+    --logo-studio: #6ADCDC;
+    --render-hi: #2A3739; --render-bg: #1C2627; --render-lo: #131A1B;
+    --on-render: #F2F5F4; --on-render-muted: #C7D6D7;
+    --render-label: #1A6268; --render-label-text: #FFFFFF;
+    --render-chip: #000000; --render-chip-text: #C7D6D7;
+    --cast: #00000073;
+  }
+  @media (max-width: 720px) {
+    :root { --r-shell: 40px; --r-panel: 28px; --r-card: 24px; --r-inner: 16px; --btn: 48px; --btn-lg: 56px; --notch-gap: 12px; --gap: 16px; --hdr-h: 72px; }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 104px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 var(--fs-body)/1.65 var(--font); letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  html, body { background-color: var(--bg) !important; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+  h1, h2, h3, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  a { color: inherit; }
+  svg { display: block; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 999px; }
+  [tabindex="-1"]:focus { outline: none; }
+  [hidden] { display: none !important; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .wrap {
+    max-width: 1520px; margin-inline: auto;
+    padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+  }
+
+  /* ---------- Logo 07d: la caja es solo «JAPS»; «Studio» cuelga fuera ---------- */
+  .logo07d { display: block; height: auto; overflow: visible; color: var(--text); --logo-knock: var(--bg); }
+
+  /* ---------- Botones y enlaces ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    height: var(--btn); padding: 0 28px; border-radius: 999px; border: 0;
+    font: 500 15px/1 var(--font); letter-spacing: 0; text-decoration: none; white-space: nowrap; cursor: pointer;
+    transition: background-color .2s var(--ease), color .2s var(--ease);
+  }
+  .btn--primary { background: var(--accent); color: var(--on-accent); }
+  .btn--primary:hover { background: var(--accent-hover); }
+  .btn--tonal { background: var(--surface); color: var(--text); }
+  .btn--tonal:hover { background: var(--tint); color: var(--tint-text); }
+  .btn--lg { height: var(--btn-lg); padding: 0 8px 0 32px; gap: 20px; font-size: 17px; }
+  .btn__icon {
+    flex: none; display: grid; place-items: center; width: calc(var(--btn-lg) - 16px); height: calc(var(--btn-lg) - 16px);
+    border-radius: 50%; background: var(--on-accent); color: var(--accent-text);
+    transition: rotate .32s var(--ease);
+  }
+  .btn:hover .btn__icon { rotate: -45deg; }
+  .btn--primary .btn__icon { color: var(--accent); }
+  .circle {
+    display: grid; place-items: center; width: var(--btn); height: var(--btn); border-radius: 50%;
+    background: var(--inverse); color: var(--on-inverse); text-decoration: none; font: 500 14px/1 var(--font); letter-spacing: .04em;
+    transition: rotate .32s var(--ease);
+  }
+  .link {
+    display: inline-flex; align-items: center; gap: 10px; font-weight: 500; text-decoration: none; color: var(--text);
+    border-bottom: 1px solid var(--accent); padding-bottom: 4px; width: fit-content;
+  }
+  .link span { color: var(--accent-text); transition: translate .2s var(--ease); }
+  .link:hover span { translate: 4px 0; }
+  .link--back span { order: -1; }
+  .link--back:hover span { translate: -4px 0; }
+
+  /* Etiquetas: cápsula rellena con tinte */
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 4px 12px; border-radius: 999px;
+    background: var(--tint); color: var(--tint-text); font: 500 var(--fs-label)/1.3 var(--font); letter-spacing: .06em; text-transform: uppercase;
+    width: fit-content;
+  }
+  .tag--plain { text-transform: none; letter-spacing: 0; font-size: 13px; }
+  .chip-live { background: var(--signal-tint); color: var(--signal-text); }
+  .chip-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); flex: none; animation: breathe 1.4s ease-in-out infinite alternate; }
+  @keyframes breathe { from { opacity: 1; } to { opacity: .35; } }
+  /* Estado sin señal (investigación): punto jade fijo */
+  .chip-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-text); flex: none; }
+  /* Marca editorial «Por confirmar»: neutra, con anillo vacío */
+  .chip-tbd { background: var(--surface); color: var(--muted); text-transform: none; letter-spacing: 0; font-size: 13px; }
+  .chip-tbd::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid currentColor; flex: none; }
+
+  /* ---------- Header fijo ---------- */
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); transition: box-shadow .2s var(--ease); }
+  .site-header.is-scrolled { box-shadow: 0 1px 0 var(--hairline); }
+  .hdr { display: flex; align-items: center; gap: 24px; padding-block: 16px; }
+  .brand { display: block; flex: none; padding: 6px 4px 22px; margin-bottom: -16px; border-radius: 12px; text-decoration: none; }
+  .brand .logo07d { width: 124px; }
+  .nav { margin-left: 16px; }
+  .nav ul { display: flex; gap: 22px; }
+  .nav a, .ext { font-size: 14.5px; font-weight: 400; text-decoration: none; color: var(--text); padding: 6px 0; border-radius: 4px; white-space: nowrap; }
+  .nav a:hover, .ext:hover { color: var(--accent-text); }
+  .nav a[aria-current="page"] { color: var(--accent-text); font-weight: 500; box-shadow: inset 0 -1.5px 0 var(--accent); border-radius: 0; }
+  .tools { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+  .lang { display: flex; align-items: center; gap: 2px; font-size: 13px; font-weight: 500; }
+  .lang a { text-decoration: none; padding: 6px 6px; border-radius: 999px; color: var(--muted); }
+  .lang a[aria-current] { color: var(--text); }
+  .lang span { color: var(--hairline-strong); }
+  .mode { display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px; background: var(--surface); }
+  .mode button {
+    display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 50%; padding: 0;
+    background: transparent; color: var(--muted); cursor: pointer;
+  }
+  .mode button[aria-pressed="true"] { background: var(--bg); color: var(--text); }
+  .menu-btn { display: none; border: 0; cursor: pointer; }
+  .menu-btn svg { transition: rotate .32s var(--ease); }
+  .menu-btn[aria-expanded="true"] svg { rotate: 45deg; }
+  .menu { border-top: 1px solid var(--hairline); padding-block: 24px 32px; }
+  .menu ul { display: grid; gap: 4px; }
+  .menu ul a { display: block; padding: 10px 0; font-size: clamp(24px, 1rem + 2vw, 34px); font-weight: 400; letter-spacing: -0.02em; text-decoration: none; border-radius: 8px; }
+  .menu ul a[aria-current="page"] { color: var(--accent-text); }
+  .menu__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--hairline); }
+  .menu__foot .btn { width: 100%; }
+  .menu .mode { display: none; }
+
+  @media (max-width: 1379px) {
+    .nav, .tools > .ext, .tools > .lang { display: none; }
+    .menu-btn { display: grid; }
+  }
+  @media (min-width: 1380px) { .menu { display: none !important; } }
+  @media (max-width: 720px) {
+    .hdr { padding-block: 12px; gap: 12px; }
+    .brand .logo07d { width: 108px; }
+    .tools > .hdr__cta, .tools > .mode { display: none; }
+    .menu .mode { display: inline-flex; }
+  }
+
+  /* ---------- Paneles con render y muescas ---------- */
+  .panel { position: relative; isolation: isolate; color: var(--on-render); }
+  .panel__art {
+    position: absolute; inset: 0; z-index: 0; border-radius: var(--pr); overflow: hidden;
+    background: radial-gradient(120% 100% at 72% 18%, var(--render-hi) 0%, var(--render-bg) 52%, var(--render-lo) 100%);
+  }
+  /* Silueta: una sola pieza SVG del color del fondo que recorta esquinas y muescas (2 px de sangrado hacia fuera) */
+  .panel__cut { position: absolute; z-index: 1; pointer-events: none; fill: var(--bg); overflow: visible; }
+  .notch-item { position: absolute; z-index: 3; }
+  .notch-item--tr { top: 0; right: 0; }
+  .notch-item--bl { bottom: 0; left: 0; }
+  .notch-item--br { bottom: 0; right: 0; }
+  .panel > .panel__body { position: relative; z-index: 2; }
+
+  /* Objetos del render (CSS): cromo, blanco y jade frío */
+  .o { position: absolute; border-radius: 50%; }
+  .o-jade { background: radial-gradient(circle at 34% 30%, var(--jade-hi) 0 3%, var(--jade-1) 24%, var(--jade-2) 56%, var(--jade-3) 100%); }
+  .o-chrome { background: radial-gradient(circle at 30% 28%, var(--chrome-hi) 0 4%, var(--chrome-1) 24%, var(--chrome-2) 58%, var(--chrome-3) 100%); }
+  .o-white { background: radial-gradient(circle at 32% 28%, var(--chrome-hi) 0 10%, var(--white-mid) 38%, var(--white-lo) 100%); }
+  .o-cap { border-radius: 999px; background: linear-gradient(180deg, var(--chrome-hi) 0%, var(--chrome-1) 20%, var(--chrome-2) 46%, var(--white-mid) 60%, var(--chrome-band) 84%, var(--chrome-band-2) 100%); }
+  .o-cap--jade { background: linear-gradient(180deg, var(--jade-hi) 0%, var(--jade-1) 26%, var(--jade-2) 62%, var(--jade-3) 100%); }
+  .o-ring { background: radial-gradient(closest-side, transparent 60%, var(--jade-3) 61%, var(--jade-2) 68%, var(--jade-1) 76%, var(--jade-hi) 81%, var(--jade-1) 86%, var(--jade-2) 93%, var(--jade-3) 99%, transparent 100%); }
+  .o-cast { border-radius: 50%; background: radial-gradient(closest-side, var(--cast), transparent); }
+  .o-wave { border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--jade-1) 70%, transparent); }
+  .hud { position: absolute; width: 18px; height: 18px; color: var(--on-render); opacity: .55; }
+  .hud::before, .hud::after { content: ""; position: absolute; background: currentColor; }
+  .hud::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+  .hud::after { top: 50%; left: 0; right: 0; height: 1px; }
+
+  /* Mini renders (uno por producto): misma composición en la tarjeta y, ampliada, en el hero */
+  .m-consenty .c1 { width: 62%; aspect-ratio: 3.4/1; left: 12%; top: 18%; }
+  .m-consenty .c2 { width: 62%; aspect-ratio: 3.4/1; left: 24%; top: 42%; }
+  .m-consenty .c3 { width: 62%; aspect-ratio: 3.4/1; left: 12%; top: 66%; }
+  .m-consenty .k1 { width: 15%; aspect-ratio: 1; left: 64%; top: 20.2%; }
+  .m-consenty .k2 { width: 15%; aspect-ratio: 1; left: 27%; top: 44.2%; }
+  .m-consenty .k3 { width: 15%; aspect-ratio: 1; left: 64%; top: 68.2%; }
+  .m-check .d1 { width: 76%; height: 26%; left: 12%; top: 58%; }
+  .m-check .d2 { width: 58%; height: 20%; left: 21%; top: 49%; }
+  .m-check .d3 { width: 40%; height: 14%; left: 30%; top: 42%; }
+  .m-check .pin { width: 15%; aspect-ratio: 1; left: 42.5%; top: 18%; }
+  .m-check .pin-cast { width: 16%; height: 5%; left: 42%; top: 44%; }
+  .m-melian .ring { width: 74%; aspect-ratio: 1; left: 13%; top: 3%; }
+  .m-melian .core { width: 36%; aspect-ratio: 1; left: 32%; top: 26%; }
+  .m-melian .cap { width: 64%; aspect-ratio: 5/1; left: 40%; top: 78%; rotate: -10deg; }
+  .m-sonicali .w { left: 50%; top: 50%; translate: -50% -50%; aspect-ratio: 1; }
+  .m-sonicali .w1 { width: 44%; } .m-sonicali .w2 { width: 66%; opacity: .7; } .m-sonicali .w3 { width: 90%; opacity: .45; } .m-sonicali .w4 { width: 116%; opacity: .25; }
+  .m-sonicali .src { width: 22%; aspect-ratio: 1; left: 50%; top: 50%; translate: -50% -50%; }
+
+  /* ---------- Miga ---------- */
+  .crumbs { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 12px 24px; font-size: var(--fs-small); }
+  .crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--muted); }
+  .crumbs li + li::before { content: "/"; margin-right: 10px; color: var(--hairline-strong); }
+  .crumbs a { color: var(--muted); text-decoration: none; border-radius: 4px; }
+  .crumbs a:hover { color: var(--accent-text); }
+  .crumbs [aria-current] { color: var(--text); font-weight: 500; }
+  .crumbs .link { font-size: var(--fs-small); }
+
+  /* ---------- Hero de la ficha ---------- */
+  .hero { --pr: var(--r-shell); min-height: clamp(600px, 46vw, 720px); }
+  .hero .panel__body { padding: 52px 56px 0; display: grid; gap: 24px; justify-items: start; max-width: min(50%, 620px); }
+  .hero__eyebrow { font: 500 var(--fs-label)/1.3 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--on-render-muted); }
+  .hero__line { font-size: clamp(24px, 0.8rem + 1.5vw, 40px); font-weight: 300; line-height: 1.16; letter-spacing: -0.028em; color: var(--on-render); text-wrap: balance; max-width: 22ch; }
+  .hero__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero__label { background: var(--render-label); color: var(--render-label-text); }
+  .hero .chip-tbd { background: var(--render-chip); color: var(--render-chip-text); }
+  .hero .notch-item--tr:hover { rotate: -12deg; }
+  .stage { position: absolute; aspect-ratio: 5 / 4; max-width: 100%; width: min(48%, 700px); right: 5%; top: 50%; translate: 0 -50%; }
+  .hero .hud-1 { left: 47%; top: 16%; }
+  .hero .stage-cast { width: 46%; height: 6%; right: 6%; top: 86%; }
+  .m-melian.stage, .m-sonicali.stage { width: min(42%, 600px); right: 8%; }
+
+  /* Nombre del producto alojado en la muesca BL */
+  .title-notch { padding: 22px 28px 0 0; max-width: calc(100% - var(--pr) - 64px); }
+  .title-notch h1 { font-size: var(--fs-name); font-weight: 400; line-height: .9; letter-spacing: -0.045em; color: var(--text); text-wrap: balance; padding-bottom: .04em; }
+
+  /* ---------- Cuerpo: ficha lateral + capítulos ---------- */
+  .body { padding-block: clamp(56px, 3rem + 3vw, 112px) var(--sec-pad); }
+  .body__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
+  .ficha { grid-column: 1 / span 4; position: sticky; top: calc(var(--hdr-h) + env(safe-area-inset-top, 0px) + 24px); display: grid; gap: 20px; min-width: 0; }
+  .eyebrow { font: 500 var(--fs-label)/1.3 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .spec { border-bottom: 1px solid var(--hairline); }
+  .spec > div { display: grid; grid-template-columns: minmax(0, 9.5em) minmax(0, 1fr); gap: 4px 20px; padding-block: 16px; border-top: 1px solid var(--hairline); align-items: baseline; }
+  .spec dt { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .spec dd { display: grid; gap: 6px; justify-items: start; font-size: 16px; line-height: 1.45; min-width: 0; overflow-wrap: anywhere; }
+  .spec__note { font-size: 13.5px; color: var(--muted); line-height: 1.5; overflow-wrap: normal; }
+  .spec .link { font-size: 15.5px; }
+
+  .chapters { grid-column: 7 / span 6; min-width: 0; }
+  .ch { display: grid; gap: 20px; padding-block: clamp(40px, 2rem + 2vw, 72px); border-top: 1px solid var(--hairline); }
+  .ch:first-child { border-top: 0; padding-top: 0; }
+  .ch:last-child { padding-bottom: 0; }
+  .ch__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  .ch__idx { font-size: var(--fs-idx); font-weight: 300; line-height: 1; letter-spacing: -0.05em; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .ch__idx span { color: var(--accent-text); }
+  .ch__title { font-size: var(--fs-ch); font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; }
+  .ch__text { font-size: var(--fs-read); font-weight: 300; line-height: 1.5; letter-spacing: -0.012em; max-width: 34ch; text-wrap: pretty; }
+  .ch__aside { color: var(--muted); max-width: 54ch; }
+  .ch__block { display: grid; gap: 16px; margin-top: 16px; }
+
+  /* Capacidades públicas */
+  .feat li { display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 16px; align-items: baseline; padding-block: 16px; border-top: 1px solid var(--hairline); font-size: 17px; line-height: 1.5; }
+  .feat li:last-child { border-bottom: 1px solid var(--hairline); }
+  .feat li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-text); translate: 0 -1px; }
+  .feat--2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
+  .feat--2 li { font-size: 15.5px; }
+  .feat--2 li:nth-last-child(2) { border-bottom: 1px solid var(--hairline); }
+  .caps { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* Recorrido (Project Check): pasos verticales con nodo de tinte */
+  .route { display: grid; }
+  .route li { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 20px; row-gap: 4px; padding-bottom: 28px; }
+  .route li:last-child { padding-bottom: 0; }
+  .route li:not(:last-child)::before { content: ""; position: absolute; left: 24px; top: 48px; bottom: 0; width: 1px; background: var(--hairline-strong); }
+  .route__n { grid-row: 1 / span 2; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--tint); color: var(--tint-text); font: 500 16px/1 var(--font); font-variant-numeric: tabular-nums; }
+  .route b { align-self: end; padding-top: 2px; font-size: 18px; font-weight: 400; letter-spacing: -0.015em; line-height: 1.35; }
+  .route p { color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+  /* Reconocimientos (Sonicali) */
+  .awards li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 24px; padding-block: 18px; border-top: 1px solid var(--hairline); }
+  .awards li:last-child { border-bottom: 1px solid var(--hairline); }
+  .awards b { font-weight: 400; font-size: 17px; }
+  .awards .tag { justify-self: end; text-align: right; }
+
+  /* ---------- Otros productos ---------- */
+  .sec { padding-block: var(--sec-pad); border-top: 1px solid var(--hairline); }
+  .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: clamp(40px, 2rem + 2vw, 72px); }
+  .sec__title { grid-column: 1 / span 5; }
+  .sec__body { grid-column: 7 / span 6; display: grid; gap: 20px; align-content: end; justify-items: start; min-width: 0; }
+  .sec__full { grid-column: 1 / -1; min-width: 0; }
+  .h2 { font-size: var(--fs-h2); font-weight: 400; line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance; }
+  .muted { color: var(--muted); }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+  .card {
+    --pad: calc(var(--r-card) - var(--r-inner));
+    border-radius: var(--r-card); background: var(--surface); padding: var(--pad);
+    display: grid; grid-template-rows: auto 1fr; min-width: 0;
+  }
+  .mini { position: relative; aspect-ratio: 5 / 4; max-width: 100%; border-radius: var(--r-inner); overflow: hidden;
+    background: radial-gradient(130% 110% at 30% 8%, var(--render-hi) 0%, var(--render-bg) 55%, var(--render-lo) 100%); }
+  .card__body { display: grid; gap: 14px; align-content: start; padding: 22px calc(24px - var(--pad)) calc(26px - var(--pad)); grid-template-rows: auto auto 1fr auto; }
+  .card__body h3 { font-size: 28px; font-weight: 400; line-height: 1.1; letter-spacing: -0.025em; }
+  .card__body p { color: var(--muted); font-size: 15px; line-height: 1.55; }
+  .card__meta { display: grid; gap: 2px; padding-top: 14px; border-top: 1px solid var(--hairline); font-size: 13.5px; line-height: 1.5; }
+  .card__meta span { color: var(--muted); }
+  .card .link { font-size: 15px; margin-top: 6px; }
+
+  /* ---------- Cierre ---------- */
+  .closing { --pr: var(--r-shell); min-height: 520px; }
+  .closing .panel__body { padding: 52px 56px calc(var(--btn-lg) + var(--notch-gap) + 40px); display: grid; gap: 28px; justify-items: start; max-width: 760px; }
+  .closing h2 { font-size: clamp(38px, 1rem + 4.6vw, 88px); font-weight: 400; line-height: .98; letter-spacing: -0.04em; text-wrap: balance; }
+  .closing .closing__text { font-size: var(--fs-lead); line-height: 1.5; max-width: 34ch; color: var(--on-render-muted); }
+  .closing .b-cap  { width: 38%; aspect-ratio: 4/1; right: -4%; top: 22%; rotate: -24deg; }
+  .closing .b-cap2 { width: 30%; aspect-ratio: 4/1; right: 10%; top: 42%; rotate: -24deg; }
+  .closing .b-sphere { width: 15%; aspect-ratio: 1; right: 30%; top: 8%; }
+  .closing .b-cast { width: 34%; height: 6%; right: 6%; top: 72%; }
+
+  /* Footer */
+  .footer { margin-top: var(--sec-pad); border-top: 1px solid var(--hairline); padding-block: 72px 40px; font-size: var(--fs-small); }
+  .footer__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 48px; }
+  .footer__brand { grid-column: 1 / span 4; display: grid; gap: 40px; align-content: start; }
+  .footer__brand .logo07d { width: 168px; margin-bottom: 24px; }
+  .footer__brand p { color: var(--muted); max-width: 32ch; }
+  .footer__col { grid-column: span 2; display: grid; gap: 14px; align-content: start; }
+  .footer__col h2 { font: 500 var(--fs-label)/1.3 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .footer__col a { text-decoration: none; color: var(--text); width: fit-content; }
+  .footer__col a:hover { color: var(--accent-text); }
+  .footer__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--hairline); color: var(--muted); }
+  .footer__bar nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .footer__bar a { color: var(--muted); text-decoration: none; }
+  .footer__bar a:hover, .footer__bar a[aria-current] { color: var(--text); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1180px) {
+    .footer__brand { grid-column: 1 / -1; }
+    .footer__col { grid-column: span 3; }
+    .ficha { grid-column: 1 / span 5; }
+  }
+  @media (max-width: 960px) {
+    .sec__title, .sec__body { grid-column: 1 / -1; }
+    .grid12 { row-gap: 32px; }
+    /* La ficha lateral pasa arriba, compacta, y deja de ser fija */
+    .ficha, .chapters { grid-column: 1 / -1; }
+    .ficha { position: static; margin-bottom: 56px; gap: 14px; }
+    .spec { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); border-bottom: 0; }
+    .spec > div { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 12px; border-bottom: 1px solid var(--hairline); border-top: 0; }
+    .spec > div:nth-child(-n+2) { border-top: 1px solid var(--hairline); }
+    .spec dt { font-size: 12.5px; }
+    .spec dd { font-size: 15px; }
+    .spec__note { font-size: 12.5px; }
+    .cards { grid-template-columns: minmax(0, 1fr); }
+    .card { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-rows: none; align-items: start; }
+    .card__body { padding-top: calc(24px - var(--pad)); }
+    .hero { min-height: 700px; }
+    .hero .panel__body { padding: 40px 32px 0; max-width: 100%; }
+    .stage, .m-melian.stage, .m-sonicali.stage { width: min(62%, 440px); right: 6%; top: auto; bottom: 120px; translate: none; }
+    .hero .stage-cast { right: 10%; top: auto; bottom: 108px; width: 52%; }
+    .hero .hud-1 { left: 18%; top: 62%; }
+  }
+  @media (max-width: 720px) {
+    .footer__col { grid-column: span 6; }
+    .hero { min-height: 640px; }
+    .hero .panel__body { padding: 28px 20px 0; gap: 18px; }
+    .hero[data-carve~="tr"] .panel__body { padding-top: calc(var(--btn) + var(--notch-gap) + 16px); }
+    .stage, .m-melian.stage, .m-sonicali.stage { width: min(84%, 340px); right: 50%; translate: 50% 0; bottom: 104px; }
+    .m-melian.stage, .m-sonicali.stage { width: min(72%, 300px); bottom: 116px; }
+    .hero .stage-cast { display: none; }
+    .hero .hud-1 { display: none; }
+    .title-notch { padding: 16px 20px 0 0; max-width: calc(100% - var(--pr) - 24px); }
+    .title-notch h1 { width: min-content; }
+    .closing { min-height: 600px; }
+    .closing .panel__body { padding: 28px 20px calc(var(--btn-lg) + var(--notch-gap) + 150px); }
+    .closing .b-cap { width: 60%; right: -16%; top: auto; bottom: 22%; }
+    .closing .b-cap2 { width: 46%; right: 26%; top: auto; bottom: 26%; }
+    .closing .b-sphere { width: 22%; right: 6%; top: auto; bottom: 38%; }
+    .closing .b-cast { display: none; }
+    .card { grid-template-columns: minmax(0, 1fr); }
+    .feat--2 { grid-template-columns: minmax(0, 1fr); }
+    .feat--2 li:nth-last-child(2) { border-bottom: 0; }
+    .crumbs { padding-block: 4px 16px; }
+  }
+  @media (max-width: 460px) {
+    .notch-item.btn--lg { padding: 0 24px; font-size: 15px; }
+    .notch-item.btn--lg .btn__icon { display: none; }
+    .spec { grid-template-columns: minmax(0, 1fr); }
+    .spec > div { grid-template-columns: minmax(0, 8.5em) minmax(0, 1fr); gap: 4px 16px; }
+    .spec > div:nth-child(2) { border-top: 0; }
+    .awards li { grid-template-columns: minmax(0, 1fr); }
+    .awards .tag { justify-self: start; text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><g id="logo07d-g"><g fill="none" stroke="currentColor" stroke-width="20"><path transform="translate(138 120)" d="M150 0V92A26 26 0 0 1 124 118H36A26 26 0 0 1 10 92V72"/><path transform="translate(326 120)" d="M10 128V36A26 26 0 0 1 36 10H124A26 26 0 0 1 150 36V128M32 94H150"/><path transform="translate(514 120)" d="M10 128V36A26 26 0 0 1 36 10H124A26 26 0 0 1 150 36V68A26 26 0 0 1 124 94H32"/><path transform="translate(702 120)" d="M150 52V36A26 26 0 0 0 124 10H36A26 26 0 0 0 10 36V38A26 26 0 0 0 36 64H124A26 26 0 0 1 150 90V92A26 26 0 0 1 124 118H36A26 26 0 0 1 10 92V76"/></g><g transform="rotate(-7 878 292)"><path d="M656.90 278.04L656.90 278.04L656.24 279.41Q656.24 280.88 660.38 282.22Q664.52 283.57 669.47 283.57Q674.42 283.57 680.36 282.10Q686.30 280.63 690.69 278.49Q695.09 276.36 697.96 274.02Q700.82 271.69 700.82 269.96L700.82 269.96Q700.82 267.78 695.75 265.90Q690.67 264.02 680.99 261.76Q671.32 259.50 666.83 256.05Q662.33 252.59 662.33 247.64Q662.33 242.69 665.89 238.17Q669.44 233.65 675.15 230.15Q680.87 226.64 687.62 223.90L687.62 223.90Q701.59 218.27 713.52 218.27L713.52 218.27Q718.09 218.27 721.59 219.08L721.59 219.08Q728.30 220.65 728.30 223.24Q728.30 225.83 727.84 226.77Q727.38 227.71 727.10 228.02Q726.82 228.32 726.39 228.63Q725.96 228.93 725.76 229.08L725.76 229.08Q723.52 230.96 713.52 231.42L713.52 231.42Q710.07 231.57 709.76 231.77Q709.46 231.98 709.23 231.98Q709 231.98 708.70 231.57Q708.39 231.16 708.39 230.25Q708.39 229.34 710.37 226.90L710.37 226.90Q704.18 227.25 697.14 229.74Q690.11 232.23 684.93 235.35Q679.75 238.48 676.30 241.50Q672.84 244.52 672.84 245.76Q672.84 247.01 673.61 247.82L673.61 247.82Q675.74 250.11 685.44 252.59L685.44 252.59Q695.49 255.18 698.84 256.76Q702.20 258.33 704.40 259.75Q706.61 261.18 707.93 262.65L707.93 262.65Q711.03 266.20 711.03 269.86Q711.03 273.52 709.08 276.71Q707.12 279.91 703.19 282.91Q699.25 285.91 693.92 288.24L693.92 288.24Q682.24 293.47 666.09 293.47L666.09 293.47Q654.31 293.47 651.06 287.23L651.06 287.23Q650.20 285.65 650.20 283.95Q650.20 282.25 650.98 280.88Q651.77 279.51 652.89 278.80L652.89 278.80Q655.07 277.43 655.98 277.43Q656.90 277.43 656.90 278.04ZM748.25 226.90L750.64 226.59L752.72 227.10Q753.18 227.10 753.54 227.56Q753.89 228.02 753.89 228.42Q753.89 228.83 752.82 230.61Q751.76 232.38 750.31 234.64Q748.86 236.90 748.76 237.11L748.76 237.11Q752.72 236.80 754.37 236.80Q756.02 236.80 756.63 237.03Q757.24 237.26 758.03 238.30Q758.82 239.34 759.48 239.87Q760.14 240.41 760.14 241.47Q760.14 242.54 758.84 243.28Q757.55 244.01 756.07 244.16L756.07 244.16Q744.29 245.33 743.07 245.38L743.07 245.38Q738.96 251.68 731.57 265.01Q724.18 278.34 723.73 281.69L723.73 281.69Q723.52 283.21 723.52 284.18L723.52 284.18Q723.52 286.16 725.61 286.16Q727.69 286.16 730.23 284.56Q732.77 282.96 734.90 281.08L734.90 281.08Q740.59 276.00 740.99 276.00L740.99 276.00Q742.31 276.00 742.31 280.57L742.31 280.57Q742.31 283.06 740.03 285.04L740.03 285.04Q734.90 289.46 731.39 291.70Q727.89 293.93 724.39 293.93L724.39 293.93Q723.63 293.93 722.96 293.78L722.96 293.78Q718.90 293.02 717.00 290.81Q715.09 288.60 715.12 284.84Q715.14 281.08 717.35 275.72Q719.56 270.37 722.91 264.32L722.91 264.32Q728.40 254.47 733.88 245.84L733.88 245.84L731.95 246.09Q726.06 246.75 725.10 246.75L725.10 246.75L724.64 246.75Q723.17 246.75 721.80 246.17Q720.43 245.59 720.43 244.72Q720.43 243.86 721.16 243.05Q721.90 242.23 722.05 241.78L722.05 241.78Q722.41 240.66 724.72 239.29Q727.03 237.92 728.20 237.84Q729.36 237.77 730.46 237.71Q731.55 237.66 732.89 237.61Q734.24 237.56 734.95 237.51L734.95 237.51L739.52 237.31Q743.79 230.91 745.38 229.08Q746.98 227.25 747.24 227.08Q747.49 226.90 748.25 226.90L748.25 226.90ZM781.06 276.05L781.06 276.05Q782.02 276.05 782.23 277.53Q782.43 279 782.43 280.57Q782.43 282.15 782.13 282.76L782.13 282.76Q780.65 285.60 775.68 289.69Q770.70 293.78 766.23 293.78L766.23 293.78Q763.49 293.78 761.15 292.13Q758.82 290.48 758.82 286.36Q758.82 282.25 761 278.29L761 278.29Q748.41 294.08 741.25 294.08L741.25 294.08Q738.40 294.08 736.65 292.05Q734.90 290.02 734.90 287.86Q734.90 285.70 735.51 283.39Q736.12 281.08 736.80 279.25Q737.49 277.43 738.83 274.73Q740.18 272.04 740.84 270.82Q741.50 269.61 742.95 267.14Q744.39 264.68 746.76 260.52Q749.12 256.35 750.67 254.35Q752.21 252.34 753.69 252.31Q755.16 252.29 756.28 253.51Q757.39 254.73 757.39 255.49Q757.39 256.25 753.99 262.34L753.99 262.34Q743.94 280.52 743.94 283.52L743.94 283.52Q743.94 284.28 744.50 284.28L744.50 284.28Q746.93 284.28 756.63 273.72Q766.33 263.16 767.86 260.19Q769.38 257.21 770.83 255.18Q772.27 253.15 772.98 252.70L772.98 252.70Q775.17 251.27 778.62 251.17L778.62 251.17Q779.18 251.17 779.48 251.22Q779.79 251.27 780.20 252.09Q780.60 252.90 780.60 253.36L780.60 253.36Q780.14 254.78 776.56 260.92Q772.98 267.07 772.58 267.88L772.58 267.88Q766.59 280.27 766.59 284.03L766.59 284.03Q766.59 286.16 768.21 286.16L768.21 286.16Q771.16 285.75 775.32 281.44L775.32 281.44Q776.84 279.86 778.34 278.24Q779.84 276.61 780.20 276.33Q780.55 276.05 781.06 276.05ZM842.96 215.88Q843.93 215.88 844.48 216.49Q845.04 217.10 845.04 217.73Q845.04 218.37 844.05 220.07Q843.06 221.77 839.51 227.48Q835.95 233.20 833.97 236.45L833.97 236.45Q822.45 255.18 815.89 268.13Q809.34 281.08 809.34 283.77L809.34 283.77L809.34 284.18Q809.34 286.26 810.87 286.26Q812.39 286.26 814.55 284.84Q816.71 283.42 818.33 281.79Q819.96 280.17 821.61 278.42Q823.26 276.66 823.61 276.36Q823.97 276.05 824.53 276.05L824.53 276.05Q825.39 276.05 825.64 277.15Q825.90 278.24 825.90 280.19Q825.90 282.15 825.59 282.76L825.59 282.76Q824.12 285.60 819.12 289.69Q814.12 293.78 809.65 293.78L809.65 293.78Q802.03 293.78 802.03 287.33L802.03 287.33Q802.03 283.32 805.08 276.82L805.08 276.82Q800.96 282.15 796.70 285.91L796.70 285.91Q788.78 292.81 782.94 292.81L782.94 292.81Q779.69 292.81 778.14 290.53Q776.59 288.24 776.59 283.95Q776.59 279.66 779.94 273.67Q783.29 267.68 788.29 262.88Q793.30 258.08 799.39 254.85Q805.48 251.63 810.61 251.63L810.61 251.63Q812.24 251.63 814.42 253.61L814.42 253.61Q815.89 251.27 819.86 244.27L819.86 244.27Q832.30 223.29 836.31 218.67L836.31 218.67Q838.44 215.88 842.96 215.88L842.96 215.88ZM811.32 258.38L811.32 258.38Q804.01 260.01 797.71 265.19Q791.42 270.37 788.27 276.03Q785.12 281.69 785.12 283.37Q785.12 285.04 785.83 285.04L785.83 285.04Q788.88 285.04 800.91 271.43L800.91 271.43Q806.91 264.73 811.32 258.38ZM855.05 236.24L855.05 236.24Q855.05 239.14 852.36 242.06Q849.66 244.98 846.74 244.98Q843.82 244.98 843.82 241.93Q843.82 238.88 846.39 236.12Q848.95 233.35 852.05 233.35L852.05 233.35Q853.42 233.35 854.23 234.11Q855.05 234.87 855.05 236.24ZM846.82 280.57L846.82 280.57Q846.82 282.10 846.52 282.76L846.52 282.76Q844.03 287.84 838.59 290.96Q833.16 294.08 829.15 294.08Q825.14 294.08 822.24 291.39Q819.35 288.70 819.35 285.91Q819.35 283.11 822.14 277.78Q824.93 272.45 827.73 267.93Q830.52 263.41 830.52 263.03Q830.52 262.65 829.48 261.53Q828.44 260.41 828.44 259.88Q828.44 259.35 830.54 257.09Q832.65 254.83 835.67 252.62Q838.70 250.41 840.29 250.41Q841.89 250.41 843.16 251.83Q844.43 253.25 844.43 254.42Q844.43 255.59 832.35 276.41L832.35 276.41Q832.20 276.71 831.51 277.76Q830.82 278.80 830.44 279.48Q830.06 280.17 829.55 281.13L829.55 281.13Q828.54 283.16 828.54 284.54L828.54 284.54Q828.54 286.26 830.88 286.26Q833.21 286.26 835.72 284.66Q838.24 283.06 840.07 281.13L840.07 281.13Q844.84 276.00 845.50 276.00L845.50 276.00Q846.82 276.00 846.82 280.57ZM877.54 253.30Q879.07 253.30 880.67 254.68Q882.27 256.05 882.27 258.87Q882.27 261.68 880.29 266.18Q878.30 270.67 874.85 275.32Q871.40 279.96 867.26 284.05Q863.12 288.14 858.32 290.76Q853.52 293.37 849.61 293.37Q845.70 293.37 843.34 290.91Q840.98 288.45 840.98 284.05Q840.98 279.66 843.14 274.33Q845.30 269.00 848.70 264.91Q852.10 260.82 856.06 257.57L856.06 257.57Q864.34 250.92 870.59 250.92L870.59 250.92Q873.38 250.92 874.80 252.29L874.80 252.29Q875.31 252.75 875.31 253.10L875.31 253.10L875.31 253.41Q876.02 253.30 877.54 253.30ZM872.41 260.06L872.41 260.06L872.06 260.06Q870.28 260.06 870.28 257.47L870.28 257.47Q866.57 258.69 862.51 261.73Q858.45 264.78 855.25 268.95L855.25 268.95Q848.75 277.27 848.65 283.01L848.65 283.01Q848.65 285.86 850.73 285.86Q852.81 285.86 856.93 283.11Q861.04 280.37 865.08 275.29Q869.11 270.21 871.12 266.48Q873.13 262.75 873.13 261.40Q873.13 260.06 872.41 260.06Z" style="fill: var(--logo-knock); stroke: var(--logo-knock)" stroke-width="16" stroke-linejoin="round"/><path d="M656.90 278.04L656.90 278.04L656.24 279.41Q656.24 280.88 660.38 282.22Q664.52 283.57 669.47 283.57Q674.42 283.57 680.36 282.10Q686.30 280.63 690.69 278.49Q695.09 276.36 697.96 274.02Q700.82 271.69 700.82 269.96L700.82 269.96Q700.82 267.78 695.75 265.90Q690.67 264.02 680.99 261.76Q671.32 259.50 666.83 256.05Q662.33 252.59 662.33 247.64Q662.33 242.69 665.89 238.17Q669.44 233.65 675.15 230.15Q680.87 226.64 687.62 223.90L687.62 223.90Q701.59 218.27 713.52 218.27L713.52 218.27Q718.09 218.27 721.59 219.08L721.59 219.08Q728.30 220.65 728.30 223.24Q728.30 225.83 727.84 226.77Q727.38 227.71 727.10 228.02Q726.82 228.32 726.39 228.63Q725.96 228.93 725.76 229.08L725.76 229.08Q723.52 230.96 713.52 231.42L713.52 231.42Q710.07 231.57 709.76 231.77Q709.46 231.98 709.23 231.98Q709 231.98 708.70 231.57Q708.39 231.16 708.39 230.25Q708.39 229.34 710.37 226.90L710.37 226.90Q704.18 227.25 697.14 229.74Q690.11 232.23 684.93 235.35Q679.75 238.48 676.30 241.50Q672.84 244.52 672.84 245.76Q672.84 247.01 673.61 247.82L673.61 247.82Q675.74 250.11 685.44 252.59L685.44 252.59Q695.49 255.18 698.84 256.76Q702.20 258.33 704.40 259.75Q706.61 261.18 707.93 262.65L707.93 262.65Q711.03 266.20 711.03 269.86Q711.03 273.52 709.08 276.71Q707.12 279.91 703.19 282.91Q699.25 285.91 693.92 288.24L693.92 288.24Q682.24 293.47 666.09 293.47L666.09 293.47Q654.31 293.47 651.06 287.23L651.06 287.23Q650.20 285.65 650.20 283.95Q650.20 282.25 650.98 280.88Q651.77 279.51 652.89 278.80L652.89 278.80Q655.07 277.43 655.98 277.43Q656.90 277.43 656.90 278.04ZM748.25 226.90L750.64 226.59L752.72 227.10Q753.18 227.10 753.54 227.56Q753.89 228.02 753.89 228.42Q753.89 228.83 752.82 230.61Q751.76 232.38 750.31 234.64Q748.86 236.90 748.76 237.11L748.76 237.11Q752.72 236.80 754.37 236.80Q756.02 236.80 756.63 237.03Q757.24 237.26 758.03 238.30Q758.82 239.34 759.48 239.87Q760.14 240.41 760.14 241.47Q760.14 242.54 758.84 243.28Q757.55 244.01 756.07 244.16L756.07 244.16Q744.29 245.33 743.07 245.38L743.07 245.38Q738.96 251.68 731.57 265.01Q724.18 278.34 723.73 281.69L723.73 281.69Q723.52 283.21 723.52 284.18L723.52 284.18Q723.52 286.16 725.61 286.16Q727.69 286.16 730.23 284.56Q732.77 282.96 734.90 281.08L734.90 281.08Q740.59 276.00 740.99 276.00L740.99 276.00Q742.31 276.00 742.31 280.57L742.31 280.57Q742.31 283.06 740.03 285.04L740.03 285.04Q734.90 289.46 731.39 291.70Q727.89 293.93 724.39 293.93L724.39 293.93Q723.63 293.93 722.96 293.78L722.96 293.78Q718.90 293.02 717.00 290.81Q715.09 288.60 715.12 284.84Q715.14 281.08 717.35 275.72Q719.56 270.37 722.91 264.32L722.91 264.32Q728.40 254.47 733.88 245.84L733.88 245.84L731.95 246.09Q726.06 246.75 725.10 246.75L725.10 246.75L724.64 246.75Q723.17 246.75 721.80 246.17Q720.43 245.59 720.43 244.72Q720.43 243.86 721.16 243.05Q721.90 242.23 722.05 241.78L722.05 241.78Q722.41 240.66 724.72 239.29Q727.03 237.92 728.20 237.84Q729.36 237.77 730.46 237.71Q731.55 237.66 732.89 237.61Q734.24 237.56 734.95 237.51L734.95 237.51L739.52 237.31Q743.79 230.91 745.38 229.08Q746.98 227.25 747.24 227.08Q747.49 226.90 748.25 226.90L748.25 226.90ZM781.06 276.05L781.06 276.05Q782.02 276.05 782.23 277.53Q782.43 279 782.43 280.57Q782.43 282.15 782.13 282.76L782.13 282.76Q780.65 285.60 775.68 289.69Q770.70 293.78 766.23 293.78L766.23 293.78Q763.49 293.78 761.15 292.13Q758.82 290.48 758.82 286.36Q758.82 282.25 761 278.29L761 278.29Q748.41 294.08 741.25 294.08L741.25 294.08Q738.40 294.08 736.65 292.05Q734.90 290.02 734.90 287.86Q734.90 285.70 735.51 283.39Q736.12 281.08 736.80 279.25Q737.49 277.43 738.83 274.73Q740.18 272.04 740.84 270.82Q741.50 269.61 742.95 267.14Q744.39 264.68 746.76 260.52Q749.12 256.35 750.67 254.35Q752.21 252.34 753.69 252.31Q755.16 252.29 756.28 253.51Q757.39 254.73 757.39 255.49Q757.39 256.25 753.99 262.34L753.99 262.34Q743.94 280.52 743.94 283.52L743.94 283.52Q743.94 284.28 744.50 284.28L744.50 284.28Q746.93 284.28 756.63 273.72Q766.33 263.16 767.86 260.19Q769.38 257.21 770.83 255.18Q772.27 253.15 772.98 252.70L772.98 252.70Q775.17 251.27 778.62 251.17L778.62 251.17Q779.18 251.17 779.48 251.22Q779.79 251.27 780.20 252.09Q780.60 252.90 780.60 253.36L780.60 253.36Q780.14 254.78 776.56 260.92Q772.98 267.07 772.58 267.88L772.58 267.88Q766.59 280.27 766.59 284.03L766.59 284.03Q766.59 286.16 768.21 286.16L768.21 286.16Q771.16 285.75 775.32 281.44L775.32 281.44Q776.84 279.86 778.34 278.24Q779.84 276.61 780.20 276.33Q780.55 276.05 781.06 276.05ZM842.96 215.88Q843.93 215.88 844.48 216.49Q845.04 217.10 845.04 217.73Q845.04 218.37 844.05 220.07Q843.06 221.77 839.51 227.48Q835.95 233.20 833.97 236.45L833.97 236.45Q822.45 255.18 815.89 268.13Q809.34 281.08 809.34 283.77L809.34 283.77L809.34 284.18Q809.34 286.26 810.87 286.26Q812.39 286.26 814.55 284.84Q816.71 283.42 818.33 281.79Q819.96 280.17 821.61 278.42Q823.26 276.66 823.61 276.36Q823.97 276.05 824.53 276.05L824.53 276.05Q825.39 276.05 825.64 277.15Q825.90 278.24 825.90 280.19Q825.90 282.15 825.59 282.76L825.59 282.76Q824.12 285.60 819.12 289.69Q814.12 293.78 809.65 293.78L809.65 293.78Q802.03 293.78 802.03 287.33L802.03 287.33Q802.03 283.32 805.08 276.82L805.08 276.82Q800.96 282.15 796.70 285.91L796.70 285.91Q788.78 292.81 782.94 292.81L782.94 292.81Q779.69 292.81 778.14 290.53Q776.59 288.24 776.59 283.95Q776.59 279.66 779.94 273.67Q783.29 267.68 788.29 262.88Q793.30 258.08 799.39 254.85Q805.48 251.63 810.61 251.63L810.61 251.63Q812.24 251.63 814.42 253.61L814.42 253.61Q815.89 251.27 819.86 244.27L819.86 244.27Q832.30 223.29 836.31 218.67L836.31 218.67Q838.44 215.88 842.96 215.88L842.96 215.88ZM811.32 258.38L811.32 258.38Q804.01 260.01 797.71 265.19Q791.42 270.37 788.27 276.03Q785.12 281.69 785.12 283.37Q785.12 285.04 785.83 285.04L785.83 285.04Q788.88 285.04 800.91 271.43L800.91 271.43Q806.91 264.73 811.32 258.38ZM855.05 236.24L855.05 236.24Q855.05 239.14 852.36 242.06Q849.66 244.98 846.74 244.98Q843.82 244.98 843.82 241.93Q843.82 238.88 846.39 236.12Q848.95 233.35 852.05 233.35L852.05 233.35Q853.42 233.35 854.23 234.11Q855.05 234.87 855.05 236.24ZM846.82 280.57L846.82 280.57Q846.82 282.10 846.52 282.76L846.52 282.76Q844.03 287.84 838.59 290.96Q833.16 294.08 829.15 294.08Q825.14 294.08 822.24 291.39Q819.35 288.70 819.35 285.91Q819.35 283.11 822.14 277.78Q824.93 272.45 827.73 267.93Q830.52 263.41 830.52 263.03Q830.52 262.65 829.48 261.53Q828.44 260.41 828.44 259.88Q828.44 259.35 830.54 257.09Q832.65 254.83 835.67 252.62Q838.70 250.41 840.29 250.41Q841.89 250.41 843.16 251.83Q844.43 253.25 844.43 254.42Q844.43 255.59 832.35 276.41L832.35 276.41Q832.20 276.71 831.51 277.76Q830.82 278.80 830.44 279.48Q830.06 280.17 829.55 281.13L829.55 281.13Q828.54 283.16 828.54 284.54L828.54 284.54Q828.54 286.26 830.88 286.26Q833.21 286.26 835.72 284.66Q838.24 283.06 840.07 281.13L840.07 281.13Q844.84 276.00 845.50 276.00L845.50 276.00Q846.82 276.00 846.82 280.57ZM877.54 253.30Q879.07 253.30 880.67 254.68Q882.27 256.05 882.27 258.87Q882.27 261.68 880.29 266.18Q878.30 270.67 874.85 275.32Q871.40 279.96 867.26 284.05Q863.12 288.14 858.32 290.76Q853.52 293.37 849.61 293.37Q845.70 293.37 843.34 290.91Q840.98 288.45 840.98 284.05Q840.98 279.66 843.14 274.33Q845.30 269.00 848.70 264.91Q852.10 260.82 856.06 257.57L856.06 257.57Q864.34 250.92 870.59 250.92L870.59 250.92Q873.38 250.92 874.80 252.29L874.80 252.29Q875.31 252.75 875.31 253.10L875.31 253.10L875.31 253.41Q876.02 253.30 877.54 253.30ZM872.41 260.06L872.41 260.06L872.06 260.06Q870.28 260.06 870.28 257.47L870.28 257.47Q866.57 258.69 862.51 261.73Q858.45 264.78 855.25 268.95L855.25 268.95Q848.75 277.27 848.65 283.01L848.65 283.01Q848.65 285.86 850.73 285.86Q852.81 285.86 856.93 283.11Q861.04 280.37 865.08 275.29Q869.11 270.21 871.12 266.48Q873.13 262.75 873.13 261.40Q873.13 260.06 872.41 260.06Z" style="fill: var(--logo-studio)"/></g><path d="M612 348Q760 322 906 306" fill="none" style="stroke: var(--logo-studio)" stroke-width="5" stroke-linecap="round"/></g></defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="hdr">
+      <a class="brand" href="/" aria-label="JAPS Studio, inicio">
+        <svg class="logo07d" viewBox="138 120 724 128" aria-hidden="true"><use href="#logo07d-g"></use></svg>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <ul>
+          <li><a href="/como-funciona">Cómo funciona</a></li>
+          <li><a href="/para-quien">Trabaja con nosotros</a></li>
+          <li><a href="/portafolio" aria-current="page">Portafolio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/preguntas">Preguntas</a></li>
+        </ul>
+      </nav>
+      <div class="tools">
+        <a class="ext" href="https://japs.ing" target="_blank" rel="noopener">JAPS Engineering ↗</a>
+        <div class="lang" aria-label="Idioma"><a href="/" aria-current="true" lang="es">ES</a><span aria-hidden="true">/</span><a href="/en/" hreflang="en" lang="en">EN</a></div>
+        <div class="mode" role="group" aria-label="Modo de color">
+          <button type="button" data-mode="light" aria-pressed="false" title="Claro"><span class="vh">Claro</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
+          <button type="button" data-mode="dark" aria-pressed="false" title="Oscuro"><span class="vh">Oscuro</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+          <button type="button" data-mode="system" aria-pressed="true" title="Sistema"><span class="vh">Sistema</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="3"/><path d="M9 20h6M12 16.5V20" stroke-linecap="round"/></svg></button>
+        </div>
+        <a class="btn btn--primary hdr__cta" href="/construye">Construye con nosotros</a>
+        <button class="circle menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="vh">Menú</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button>
+      </div>
+    </div>
+    <div class="menu" id="menu" hidden>
+      <ul>
+        <li><a href="/como-funciona">Cómo funciona</a></li>
+        <li><a href="/para-quien">Trabaja con nosotros</a></li>
+        <li><a href="/portafolio" aria-current="page">Portafolio</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/preguntas">Preguntas</a></li>
+      </ul>
+      <div class="menu__foot">
+        <a class="ext" href="https://japs.ing" target="_blank" rel="noopener">JAPS Engineering ↗</a>
+        <div class="lang" aria-label="Idioma"><a href="/" aria-current="true" lang="es">ES</a><span aria-hidden="true">/</span><a href="/en/" hreflang="en" lang="en">EN</a></div>
+        <div class="mode" role="group" aria-label="Modo de color">
+          <button type="button" data-mode="light" aria-pressed="false" title="Claro"><span class="vh">Claro</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
+          <button type="button" data-mode="dark" aria-pressed="false" title="Oscuro"><span class="vh">Oscuro</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+          <button type="button" data-mode="system" aria-pressed="true" title="Sistema"><span class="vh">Sistema</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="3"/><path d="M9 20h6M12 16.5V20" stroke-linecap="round"/></svg></button>
+        </div>
+        <a class="btn btn--primary" href="/construye">Construye con nosotros</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== Consenty (vista por defecto; se lee completa sin JS) ===================== -->
+  <div class="view" data-view="consenty" data-name="Consenty">
+    <div class="wrap">
+      <div class="crumbs">
+        <nav aria-label="Miga de pan"><ol><li><a href="/portafolio">Portafolio</a></li><li aria-current="page">Consenty</li></ol></nav>
+        <a class="link link--back" href="/portafolio"><span aria-hidden="true">←</span>Volver al portafolio</a>
+      </div>
+      <section class="panel hero" data-carve="tr bl" aria-labelledby="h-consenty">
+        <div class="panel__art" aria-hidden="true">
+          <div class="o o-cast stage-cast"></div>
+          <div class="stage m-consenty">
+            <div class="o o-cap c1"></div><div class="o o-cap o-cap--jade c2"></div><div class="o o-cap c3"></div>
+            <div class="o o-white k1"></div><div class="o o-white k2"></div><div class="o o-jade k3"></div>
+          </div>
+          <span class="hud hud-1"></span>
+        </div>
+        <svg class="panel__cut" aria-hidden="true"></svg>
+        <div class="notch-item notch-item--bl title-notch"><h1 id="h-consenty" tabindex="-1">Consenty</h1></div>
+        <div class="panel__body">
+          <p class="hero__eyebrow">Software · Protección de datos</p>
+          <p class="hero__line">Gestión de consentimientos según la Ley 21.719 de protección de datos.</p>
+          <div class="hero__chips"><span class="tag tag--plain chip-live">Publicado y en venta</span><span class="tag tag--plain hero__label">Un producto de JAPS Studio</span></div>
+        </div>
+        <a class="notch-item notch-item--tr circle" href="https://consenty.japs.ing" target="_blank" rel="noopener" aria-label="Ir al sitio de Consenty (se abre en otra pestaña)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5"/></svg></a>
+      </section>
+    </div>
+
+    <div class="wrap body">
+      <div class="body__grid">
+        <aside class="ficha" aria-labelledby="f-consenty">
+          <h2 class="eyebrow" id="f-consenty">Ficha del proyecto</h2>
+          <dl class="spec">
+            <div><dt>Tipo</dt><dd>Software (SaaS)</dd></div>
+            <div><dt>Industria</dt><dd>Protección de datos personales</dd></div>
+            <div><dt>Construido junto a</dt><dd>Lumisreg Consulting<span class="spec__note">Especialistas en cumplimiento tributario y legal.</span></dd></div>
+            <div><dt>Camino</dt><dd>Producto bajo JAPS<span class="spec__note">Un producto de JAPS Studio.</span></dd></div>
+            <div><dt>Estado</dt><dd>Publicado y en venta</dd></div>
+            <div><dt>Sitio</dt><dd><a class="link" href="https://consenty.japs.ing" target="_blank" rel="noopener">consenty.japs.ing <span aria-hidden="true">↗</span></a><span class="spec__note">«Consentimiento a prueba de auditoría»</span></dd></div>
+          </dl>
+        </aside>
+
+        <div class="chapters">
+          <section class="ch" aria-labelledby="c-consenty-1">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">01 <span>—</span></p><span class="tag chip-tbd">Por confirmar</span></div>
+            <h2 class="ch__title" id="c-consenty-1">El problema</h2>
+            <p class="ch__text">Gestionar consentimientos y mantener su trazabilidad con planillas y correos puede dificultar el seguimiento.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-consenty-2">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">02 <span>—</span></p><span class="tag chip-tbd">Por confirmar</span></div>
+            <h2 class="ch__title" id="c-consenty-2">Quién conocía el mercado</h2>
+            <p class="ch__text">Lumisreg Consulting conocía la ley y lo que sus clientes iban a necesitar para cumplirla. JAPS puso el equipo para convertir ese conocimiento en un producto.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-consenty-3">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">03 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-consenty-3">Qué construimos</h2>
+            <p class="ch__text">Una plataforma para gestionar consentimientos de manera segura y sencilla: registro, trazabilidad y evidencia de cada consentimiento en un solo lugar.</p>
+            <div class="ch__block">
+              <h3 class="eyebrow">Capacidades</h3>
+              <ul class="feat">
+                <li>Registro de consentimientos</li>
+                <li>Trazabilidad</li>
+                <li>Evidencia auditable de cada consentimiento</li>
+              </ul>
+            </div>
+          </section>
+          <section class="ch" aria-labelledby="c-consenty-4">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">04 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-consenty-4">Dónde está hoy</h2>
+            <p class="ch__text">Consenty está publicado y disponible en consenty.japs.ing.</p>
+            <a class="link" href="https://consenty.japs.ing" target="_blank" rel="noopener">Ir a consenty.japs.ing <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== Project Check ===================== -->
+  <div class="view" data-view="project-check" data-name="Project Check" hidden>
+    <div class="wrap">
+      <div class="crumbs">
+        <nav aria-label="Miga de pan"><ol><li><a href="/portafolio">Portafolio</a></li><li aria-current="page">Project Check</li></ol></nav>
+        <a class="link link--back" href="/portafolio"><span aria-hidden="true">←</span>Volver al portafolio</a>
+      </div>
+      <section class="panel hero" data-carve="tr bl" aria-labelledby="h-check">
+        <div class="panel__art" aria-hidden="true">
+          <div class="stage m-check">
+            <div class="o o-chrome d1"></div><div class="o o-jade d2"></div><div class="o o-white d3"></div>
+            <div class="o o-cast pin-cast"></div><div class="o o-jade pin"></div>
+          </div>
+          <span class="hud hud-1"></span>
+        </div>
+        <svg class="panel__cut" aria-hidden="true"></svg>
+        <div class="notch-item notch-item--bl title-notch"><h1 id="h-check" tabindex="-1">Project Check</h1></div>
+        <div class="panel__body">
+          <p class="hero__eyebrow">Software · Medio ambiente</p>
+          <p class="hero__line">Prefactibilidad ambiental de predios en Chile.</p>
+          <div class="hero__chips"><span class="tag tag--plain chip-live">Publicado y en venta</span><span class="tag tag--plain hero__label">Un producto de JAPS Studio</span></div>
+        </div>
+        <a class="notch-item notch-item--tr circle" href="https://projectcheck.japs.ing" target="_blank" rel="noopener" aria-label="Ir al sitio de Project Check (se abre en otra pestaña)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5"/></svg></a>
+      </section>
+    </div>
+
+    <div class="wrap body">
+      <div class="body__grid">
+        <aside class="ficha" aria-labelledby="f-check">
+          <h2 class="eyebrow" id="f-check">Ficha del proyecto</h2>
+          <dl class="spec">
+            <div><dt>Tipo</dt><dd>Software (SaaS)</dd></div>
+            <div><dt>Industria</dt><dd>Medio ambiente y permisos</dd></div>
+            <div><dt>Construido junto a</dt><dd>Due Green<span class="spec__note">Consultora ambiental, expertos en gestión de proyectos y permisos para sectores productivos.</span></dd></div>
+            <div><dt>Camino</dt><dd>Producto bajo JAPS<span class="spec__note">Un producto de JAPS Studio.</span></dd></div>
+            <div><dt>Estado</dt><dd>Publicado y en venta<span class="spec__note">En español e inglés.</span></dd></div>
+            <div><dt>Sitio</dt><dd><a class="link" href="https://projectcheck.japs.ing" target="_blank" rel="noopener">projectcheck.japs.ing <span aria-hidden="true">↗</span></a><span class="spec__note">«La prefactibilidad ambiental de su terreno, en un solo informe.»</span></dd></div>
+          </dl>
+        </aside>
+
+        <div class="chapters">
+          <section class="ch" aria-labelledby="c-check-1">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">01 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-check-1">El problema</h2>
+            <p class="ch__text">Antes de invertir en un terreno hay que saber qué restricciones ambientales tiene. Esa información está repartida en muchos servicios del Estado y reunirla toma tiempo.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-check-2">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">02 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-check-2">Quién conocía el mercado</h2>
+            <p class="ch__text">Due Green conocía los permisos, las fuentes oficiales y lo que un inversionista necesita saber antes de comprar. JAPS puso el equipo para automatizarlo.</p>
+            <p class="ch__aside">Las fuentes se seleccionan «con criterio técnico de Due Green», y su equipo revisó la estructura de análisis.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-check-3">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">03 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-check-3">Qué construimos</h2>
+            <p class="ch__text">Una solución de prefactibilidad ambiental de predios en Chile.</p>
+            <div class="ch__block">
+              <h3 class="eyebrow">El recorrido</h3>
+              <ol class="route">
+                <li><span class="route__n" aria-hidden="true">1</span><b><span class="vh">Paso 1: </span>Delimitar el predio</b><p>Dibujar el polígono o subir KMZ, KML o Shapefile.</p></li>
+                <li><span class="route__n" aria-hidden="true">2</span><b><span class="vh">Paso 2: </span>Revisar las fuentes</b><p>Ver qué fuentes cubren la zona antes de pagar.</p></li>
+                <li><span class="route__n" aria-hidden="true">3</span><b><span class="vh">Paso 3: </span>Pagar solo con el correo</b><p>Sin crear cuenta.</p></li>
+                <li><span class="route__n" aria-hidden="true">4</span><b><span class="vh">Paso 4: </span>Recibir el informe</b><p>Llega al correo, con código de seguimiento.</p></li>
+              </ol>
+            </div>
+            <div class="ch__block">
+              <h3 class="eyebrow">Fuentes oficiales del Estado de Chile</h3>
+              <p class="muted">Se consultan al generar cada informe.</p>
+              <ul class="caps" aria-label="Fuentes">
+                <li class="tag tag--plain">MINVU</li><li class="tag tag--plain">DGA</li><li class="tag tag--plain">SERNAGEOMIN</li><li class="tag tag--plain">CMN</li>
+                <li class="tag tag--plain">CONAF</li><li class="tag tag--plain">CIREN</li><li class="tag tag--plain">MOP</li><li class="tag tag--plain">MMA</li>
+              </ul>
+            </div>
+            <div class="ch__block">
+              <h3 class="eyebrow">El informe</h3>
+              <p class="muted">Informe PDF con cartografía por componente, resumen ejecutivo y conclusiones en semáforo. KMZ opcional para Google Earth.</p>
+              <ul class="feat feat--2" aria-label="Componentes del informe">
+                <li>Suelos</li>
+                <li>Zonificación</li>
+                <li>Hidrografía y derechos de agua</li>
+                <li>Amenazas geológicas</li>
+                <li>Biodiversidad y áreas protegidas</li>
+                <li>Patrimonio arqueológico</li>
+                <li>Calidad del aire</li>
+                <li>Red vial</li>
+              </ul>
+            </div>
+            <div class="ch__block">
+              <h3 class="eyebrow">Alcance</h3>
+              <p class="muted">Cobertura en Chile continental. No reemplaza un estudio ambiental: es un diagnóstico preliminar automatizado.</p>
+            </div>
+          </section>
+          <section class="ch" aria-labelledby="c-check-4">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">04 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-check-4">Dónde está hoy</h2>
+            <p class="ch__text">Project Check está publicado en projectcheck.japs.ing, en español e inglés.</p>
+            <a class="link" href="https://projectcheck.japs.ing" target="_blank" rel="noopener">Ir a projectcheck.japs.ing <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== Melian (sin sitio propio: sin botón en el hero) ===================== -->
+  <div class="view" data-view="melian" data-name="Melian" hidden>
+    <div class="wrap">
+      <div class="crumbs">
+        <nav aria-label="Miga de pan"><ol><li><a href="/portafolio">Portafolio</a></li><li aria-current="page">Melian</li></ol></nav>
+        <a class="link link--back" href="/portafolio"><span aria-hidden="true">←</span>Volver al portafolio</a>
+      </div>
+      <section class="panel hero" data-carve="bl" aria-labelledby="h-melian">
+        <div class="panel__art" aria-hidden="true">
+          <div class="o o-cast stage-cast"></div>
+          <div class="stage m-melian">
+            <div class="o o-ring ring"></div><div class="o o-chrome core"></div><div class="o o-cap cap"></div>
+          </div>
+          <span class="hud hud-1"></span>
+        </div>
+        <svg class="panel__cut" aria-hidden="true"></svg>
+        <div class="notch-item notch-item--bl title-notch"><h1 id="h-melian" tabindex="-1">Melian</h1></div>
+        <div class="panel__body">
+          <p class="hero__eyebrow">Software · Minería</p>
+          <p class="hero__line">Gestión de riesgos críticos en operaciones mineras.</p>
+          <div class="hero__chips"><span class="tag chip-tbd">Estado por confirmar</span><span class="tag tag--plain hero__label">Un producto de JAPS Studio</span></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="wrap body">
+      <div class="body__grid">
+        <aside class="ficha" aria-labelledby="f-melian">
+          <h2 class="eyebrow" id="f-melian">Ficha del proyecto</h2>
+          <dl class="spec">
+            <div><dt>Tipo</dt><dd>Software (SaaS)</dd></div>
+            <div><dt>Industria</dt><dd>Minería</dd></div>
+            <div><dt>Construido junto a</dt><dd>Imaginería<span class="spec__note">Consultora especializada en excelencia operacional.</span></dd></div>
+            <div><dt>Camino</dt><dd>Producto bajo JAPS<span class="spec__note">Un producto de JAPS Studio.</span></dd></div>
+            <div><dt>Estado</dt><dd><span class="tag chip-tbd">Por confirmar</span></dd></div>
+            <div><dt>Sitio</dt><dd>Sin sitio propio</dd></div>
+          </dl>
+        </aside>
+
+        <div class="chapters">
+          <section class="ch" aria-labelledby="c-melian-1">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">01 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-melian-1">El problema</h2>
+            <p class="ch__text">En una operación minera, los riesgos que pueden costar una vida se controlan con verificaciones en terreno. Cuando ese seguimiento vive en papeles y planillas, es difícil saber qué control falló y cuándo.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-melian-2">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">02 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-melian-2">Quién conocía el mercado</h2>
+            <p class="ch__text">Imaginería conocía la gestión de riesgo operacional en minería y cómo trabajan los equipos en terreno. JAPS puso el equipo para construir la herramienta.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-melian-3">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">03 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-melian-3">Qué construimos</h2>
+            <p class="ch__text">Una solución de gestión de riesgos críticos en operaciones mineras.</p>
+            <div class="ch__block">
+              <h3 class="eyebrow">Centraliza</h3>
+              <ul class="feat">
+                <li>La gestión de controles críticos</li>
+                <li>Matrices de riesgo y riesgos de fatalidad</li>
+                <li>El seguimiento de tareas, verificaciones y evidencias en terreno</li>
+              </ul>
+            </div>
+          </section>
+          <section class="ch" aria-labelledby="c-melian-4">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">04 <span>—</span></p><span class="tag chip-tbd">Por confirmar</span></div>
+            <h2 class="ch__title" id="c-melian-4">Dónde está hoy</h2>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== Sonicali (proyecto de origen: sin «Un producto de JAPS Studio» ni botón a sitio) ===================== -->
+  <div class="view" data-view="sonicali" data-name="Sonicali" hidden>
+    <div class="wrap">
+      <div class="crumbs">
+        <nav aria-label="Miga de pan"><ol><li><a href="/portafolio">Portafolio</a></li><li aria-current="page">Sonicali</li></ol></nav>
+        <a class="link link--back" href="/portafolio"><span aria-hidden="true">←</span>Volver al portafolio</a>
+      </div>
+      <section class="panel hero" data-carve="bl" aria-labelledby="h-sonicali">
+        <div class="panel__art" aria-hidden="true">
+          <div class="stage m-sonicali">
+            <div class="o o-wave w w4"></div><div class="o o-wave w w3"></div><div class="o o-wave w w2"></div><div class="o o-wave w w1"></div>
+            <div class="o o-white src"></div>
+          </div>
+          <span class="hud hud-1"></span>
+        </div>
+        <svg class="panel__cut" aria-hidden="true"></svg>
+        <div class="notch-item notch-item--bl title-notch"><h1 id="h-sonicali" tabindex="-1">Sonicali</h1></div>
+        <div class="panel__body">
+          <p class="hero__eyebrow">Deep tech y hardware · Acuicultura</p>
+          <p class="hero__line">Dispositivo de ultrasonido para combatir el piojo de mar en la industria salmonera.</p>
+          <div class="hero__chips"><span class="tag tag--plain chip-dot hero__label">En investigación</span><span class="tag tag--plain hero__label">Proyecto de origen</span></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="wrap body">
+      <div class="body__grid">
+        <aside class="ficha" aria-labelledby="f-sonicali">
+          <h2 class="eyebrow" id="f-sonicali">Ficha del proyecto</h2>
+          <dl class="spec">
+            <div><dt>Tipo</dt><dd>Deep tech y hardware<span class="spec__note">Ejemplo de la capacidad científica y experimental de Studio.</span></dd></div>
+            <div><dt>Industria</dt><dd>Acuicultura</dd></div>
+            <div><dt>Construido junto a</dt><dd><span class="tag chip-tbd">Por confirmar</span></dd></div>
+            <div><dt>Camino</dt><dd><span class="tag chip-tbd">Por definir</span></dd></div>
+            <div><dt>Estado</dt><dd>En investigación<span class="spec__note">Sin actividad comercial.</span></dd></div>
+            <div><dt>Sitio</dt><dd>No tiene</dd></div>
+          </dl>
+        </aside>
+
+        <div class="chapters">
+          <section class="ch" aria-labelledby="c-sonicali-1">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">01 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-sonicali-1">El problema</h2>
+            <p class="ch__text">El piojo de mar es uno de los grandes desafíos de la industria salmonera.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-sonicali-2">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">02 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-sonicali-2">De dónde viene</h2>
+            <p class="ch__text">Sonicali es el proyecto con el que partimos, en la universidad. Con él aprendimos a llevar una idea de base científica hacia un producto.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-sonicali-3">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">03 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-sonicali-3">Qué construimos</h2>
+            <p class="ch__text">Un dispositivo de ultrasonido para combatir el piojo de mar.</p>
+          </section>
+          <section class="ch" aria-labelledby="c-sonicali-4">
+            <div class="ch__head"><p class="ch__idx" aria-hidden="true">04 <span>—</span></p></div>
+            <h2 class="ch__title" id="c-sonicali-4">Dónde está hoy</h2>
+            <p class="ch__text">Sonicali sigue en etapa de investigación.</p>
+            <div class="ch__block">
+              <h3 class="eyebrow">Reconocimientos</h3>
+              <ul class="awards">
+                <li><b>Jump Chile 2023</b><span class="tag tag--plain">2.º lugar</span></li>
+                <li><b>Brain Chile 2024</b><span class="tag tag--plain">Ganadores</span></li>
+                <li><b>HUC Social Ideas Challenge</b><span class="tag tag--plain">Final internacional en Miami</span></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- Otros productos: se oculta la tarjeta de la ficha actual -->
+    <section class="sec" aria-labelledby="t-otros">
+      <div class="grid12">
+        <h2 class="h2 sec__title" id="t-otros">Otros productos</h2>
+        <div class="sec__body">
+          <p class="muted">Soluciones que construimos junto a personas que conocen su mercado, y proyectos propios con los que investigamos y experimentamos.</p>
+          <a class="link" href="/portafolio">Ver el portafolio <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="sec__full cards">
+          <article class="card" data-card="consenty" hidden>
+            <div class="mini m-consenty" aria-hidden="true">
+              <div class="o o-cap c1"></div><div class="o o-cap o-cap--jade c2"></div><div class="o o-cap c3"></div>
+              <div class="o o-white k1"></div><div class="o o-white k2"></div><div class="o o-jade k3"></div>
+            </div>
+            <div class="card__body">
+              <span class="tag tag--plain">Software · Protección de datos</span>
+              <h3>Consenty</h3>
+              <p>Gestión de consentimientos según la Ley 21.719 de protección de datos.</p>
+              <div class="card__meta"><span>Construido junto a</span>Lumisreg Consulting</div>
+              <a class="link" href="#consenty">Ver cómo se construyó <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="card" data-card="project-check">
+            <div class="mini m-check" aria-hidden="true">
+              <div class="o o-chrome d1"></div><div class="o o-jade d2"></div><div class="o o-white d3"></div>
+              <div class="o o-cast pin-cast"></div><div class="o o-jade pin"></div>
+            </div>
+            <div class="card__body">
+              <span class="tag tag--plain">Software · Medio ambiente</span>
+              <h3>Project Check</h3>
+              <p>Prefactibilidad ambiental de predios en Chile.</p>
+              <div class="card__meta"><span>Construido junto a</span>Due Green</div>
+              <a class="link" href="#project-check">Ver cómo se construyó <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="card" data-card="melian">
+            <div class="mini m-melian" aria-hidden="true">
+              <div class="o o-ring ring"></div><div class="o o-chrome core"></div><div class="o o-cap cap"></div>
+            </div>
+            <div class="card__body">
+              <span class="tag tag--plain">Software · Minería</span>
+              <h3>Melian</h3>
+              <p>Gestión de riesgos críticos en operaciones mineras.</p>
+              <div class="card__meta"><span>Construido junto a</span>Imaginería</div>
+              <a class="link" href="#melian">Ver cómo se construyó <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="card" data-card="sonicali">
+            <div class="mini m-sonicali" aria-hidden="true">
+              <div class="o o-wave w w4"></div><div class="o o-wave w w3"></div><div class="o o-wave w w2"></div><div class="o o-wave w w1"></div>
+              <div class="o o-white src"></div>
+            </div>
+            <div class="card__body">
+              <span class="tag tag--plain">Deep tech y hardware · Acuicultura</span>
+              <h3>Sonicali</h3>
+              <p>Dispositivo de ultrasonido para combatir el piojo de mar en la industria salmonera.</p>
+              <div class="card__meta"><span>Proyecto de origen</span>En investigación</div>
+              <a class="link" href="#sonicali">Ver cómo se construyó <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cierre -->
+    <section class="panel closing" data-carve="br" aria-labelledby="t-cierre">
+      <div class="panel__art" aria-hidden="true">
+        <div class="o o-cast b-cast"></div>
+        <div class="o o-cap b-cap"></div>
+        <div class="o o-cap o-cap--jade b-cap2"></div>
+        <div class="o o-jade b-sphere"></div>
+      </div>
+      <svg class="panel__cut" aria-hidden="true"></svg>
+      <div class="panel__body">
+        <h2 id="t-cierre">¿Tienes una idea como esta?</h2>
+        <p class="closing__text">Tu experiencia del problema puede ser el comienzo de una solución.</p>
+      </div>
+      <a class="notch-item notch-item--br btn btn--primary btn--lg" href="/construye">Construye con nosotros
+        <span class="btn__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h12M10 4l5 5-5 5"/></svg></span></a>
+    </section>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" aria-label="JAPS Studio, inicio" style="width:fit-content; border-radius:12px"><svg class="logo07d" viewBox="138 120 724 128" aria-hidden="true"><use href="#logo07d-g"></use></svg></a>
+        <p>JAPS Studio. Constructora de startups.<br>Acelerados en el Centro de Innovación UC Anacleto Angelini.</p>
+      </div>
+      <nav class="footer__col" aria-labelledby="f-sitio">
+        <h2 id="f-sitio">Sitio</h2>
+        <a href="/como-funciona">Cómo funciona</a>
+        <a href="/para-quien">Trabaja con nosotros</a>
+        <a href="/portafolio">Portafolio</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/preguntas">Preguntas</a>
+        <a href="/construye">Construye con nosotros</a>
+      </nav>
+      <nav class="footer__col" aria-labelledby="f-pf">
+        <h2 id="f-pf">Portafolio</h2>
+        <a href="#consenty">Consenty</a>
+        <a href="#project-check">Project Check</a>
+        <a href="#melian">Melian</a>
+        <a href="#sonicali">Sonicali</a>
+      </nav>
+      <div class="footer__col">
+        <h2>Redes y canales</h2>
+        <a href="https://linkedin.japs.ing" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://instagram.japs.ing" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://wa.me/56993183282" target="_blank" rel="noopener">WhatsApp ↗</a>
+        <a href="mailto:contacto@japs.ing">contacto@japs.ing</a>
+      </div>
+      <div class="footer__col">
+        <h2>Más</h2>
+        <a href="https://japs.ing" target="_blank" rel="noopener">JAPS Engineering ↗</a>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <p>© 2026 JAPS Engineering SpA. Todos los derechos reservados.</p>
+      <nav aria-label="Legal">
+        <a href="https://japs.ing/terminos" target="_blank" rel="noopener">Términos de servicio</a>
+        <a href="https://japs.ing/privacidad" target="_blank" rel="noopener">Política de privacidad y manejo de datos</a>
+      </nav>
+      <nav aria-label="Idioma" style="gap:12px"><a href="/" aria-current="true" lang="es">Español</a><span aria-hidden="true">/</span><a href="/en/" hreflang="en" lang="en">English</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Modo de color: claro / oscuro / sistema */
+  function applyMode(mode) {
+    if (mode === 'light' || mode === 'dark') root.setAttribute('data-theme', mode);
+    else root.removeAttribute('data-theme');
+    document.querySelectorAll('[data-mode]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === (mode || 'system')));
+    });
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('japs-studio-mode'); } catch (e) {}
+  applyMode(saved || 'system');
+  document.querySelectorAll('[data-mode]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var m = b.getAttribute('data-mode');
+      applyMode(m);
+      try { if (m === 'system') localStorage.removeItem('japs-studio-mode'); else localStorage.setItem('japs-studio-mode', m); } catch (e) {}
+    });
+  });
+
+  /* Menú */
+  var btn = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+  btn.addEventListener('click', function () {
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.hidden = open;
+  });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) { btn.setAttribute('aria-expanded', 'false'); menu.hidden = true; } });
+
+  /* Header con línea al hacer scroll */
+  var header = document.querySelector('.site-header');
+  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 4); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Silueta de panel con muescas: una sola pieza SVG.
+     Muesca con botón de radio r y separación g: ancho = elemento + g, alto = elemento + g, esquina interior = r + g, filetes = r.
+     El titular alojado usa el r del botón circular (filetes 28 / esquina 44, en móvil 24 / 36) para que todas las muescas rimen. */
+  function f(n) { return Math.round(n * 100) / 100; }
+  function notchOf(panel, corner) {
+    var el = panel.querySelector('.notch-item--' + corner);
+    if (!el) return null;
+    var cs = getComputedStyle(panel);
+    var g = parseFloat(cs.getPropertyValue('--notch-gap')) || 16;
+    var w = el.offsetWidth, h = el.offsetHeight, r = h / 2;
+    if (el.classList.contains('title-notch')) r = (parseFloat(cs.getPropertyValue('--btn')) || 56) / 2;
+    return { w: w + g, h: h + g, f: r, c: r + g };
+  }
+  function silhouette(W, H, R, n) {
+    var d = [], tl = n.tl, tr = n.tr, br = n.br, bl = n.bl;
+    if (tl) d.push('M0 ' + f(tl.h + tl.f), 'A' + tl.f + ' ' + tl.f + ' 0 0 1 ' + f(tl.f) + ' ' + f(tl.h), 'L' + f(tl.w - tl.c) + ' ' + f(tl.h),
+      'A' + tl.c + ' ' + tl.c + ' 0 0 0 ' + f(tl.w) + ' ' + f(tl.h - tl.c), 'L' + f(tl.w) + ' ' + f(tl.f), 'A' + tl.f + ' ' + tl.f + ' 0 0 1 ' + f(tl.w + tl.f) + ' 0');
+    else d.push('M0 ' + R, 'A' + R + ' ' + R + ' 0 0 1 ' + R + ' 0');
+    if (tr) d.push('L' + f(W - tr.w - tr.f) + ' 0', 'A' + tr.f + ' ' + tr.f + ' 0 0 1 ' + f(W - tr.w) + ' ' + f(tr.f), 'L' + f(W - tr.w) + ' ' + f(tr.h - tr.c),
+      'A' + tr.c + ' ' + tr.c + ' 0 0 0 ' + f(W - tr.w + tr.c) + ' ' + f(tr.h), 'L' + f(W - tr.f) + ' ' + f(tr.h), 'A' + tr.f + ' ' + tr.f + ' 0 0 1 ' + f(W) + ' ' + f(tr.h + tr.f));
+    else d.push('L' + f(W - R) + ' 0', 'A' + R + ' ' + R + ' 0 0 1 ' + f(W) + ' ' + R);
+    if (br) d.push('L' + f(W) + ' ' + f(H - br.h - br.f), 'A' + br.f + ' ' + br.f + ' 0 0 1 ' + f(W - br.f) + ' ' + f(H - br.h), 'L' + f(W - br.w + br.c) + ' ' + f(H - br.h),
+      'A' + br.c + ' ' + br.c + ' 0 0 0 ' + f(W - br.w) + ' ' + f(H - br.h + br.c), 'L' + f(W - br.w) + ' ' + f(H - br.f), 'A' + br.f + ' ' + br.f + ' 0 0 1 ' + f(W - br.w - br.f) + ' ' + f(H));
+    else d.push('L' + f(W) + ' ' + f(H - R), 'A' + R + ' ' + R + ' 0 0 1 ' + f(W - R) + ' ' + f(H));
+    if (bl) d.push('L' + f(bl.w + bl.f) + ' ' + f(H), 'A' + bl.f + ' ' + bl.f + ' 0 0 1 ' + f(bl.w) + ' ' + f(H - bl.f), 'L' + f(bl.w) + ' ' + f(H - bl.h + bl.c),
+      'A' + bl.c + ' ' + bl.c + ' 0 0 0 ' + f(bl.w - bl.c) + ' ' + f(H - bl.h), 'L' + f(bl.f) + ' ' + f(H - bl.h), 'A' + bl.f + ' ' + bl.f + ' 0 0 1 0 ' + f(H - bl.h - bl.f));
+    else d.push('L' + R + ' ' + f(H), 'A' + R + ' ' + R + ' 0 0 1 0 ' + f(H - R));
+    d.push('Z');
+    return d.join('');
+  }
+  function carve(panel) {
+    var rect = panel.getBoundingClientRect(), W = rect.width, H = rect.height, B = 2;
+    if (!W || !H) return;
+    var R = parseFloat(getComputedStyle(panel).getPropertyValue('--pr')) || 56;
+    var corners = (panel.getAttribute('data-carve') || '').split(/\s+/), n = {};
+    corners.forEach(function (c) { if (c) n[c] = notchOf(panel, c); });
+    var svg = panel.querySelector('.panel__cut');
+    svg.setAttribute('viewBox', (-B) + ' ' + (-B) + ' ' + f(W + 2 * B) + ' ' + f(H + 2 * B));
+    svg.style.left = -B + 'px'; svg.style.top = -B + 'px';
+    svg.style.width = f(W + 2 * B) + 'px'; svg.style.height = f(H + 2 * B) + 'px';
+    var outer = 'M' + (-B) + ' ' + (-B) + 'H' + f(W + B) + 'V' + f(H + B) + 'H' + (-B) + 'Z';
+    svg.innerHTML = '<path fill-rule="evenodd" d="' + outer + silhouette(W, H, R, n) + '"/>';
+    panel.removeAttribute('data-notch-warn');
+    ['tr','bl','br','tl'].forEach(function (c) { var q = n[c]; if (q && (q.w + q.f > W - R || q.h + q.f > H - R)) panel.setAttribute('data-notch-warn', c); });
+    panel.querySelector('.panel__art').style.borderRadius = '0';
+  }
+  var panels = document.querySelectorAll('.panel[data-carve]');
+  function carveAll() { panels.forEach(carve); }
+
+  /* Enrutado por hash: #consenty (por defecto), #project-check, #melian, #sonicali */
+  var views = document.querySelectorAll('[data-view]'), cards = document.querySelectorAll('[data-card]');
+  var names = {};
+  views.forEach(function (v) { names[v.getAttribute('data-view')] = v.getAttribute('data-name'); });
+  var current = null;
+  function route(fromNav) {
+    var key = location.hash.replace('#', '');
+    if (!names[key]) key = 'consenty';
+    if (key === current) return;
+    current = key;
+    views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== key; });
+    cards.forEach(function (c) { c.hidden = c.getAttribute('data-card') === key; });
+    document.title = names[key] + ' · Portafolio · JAPS Studio';
+    carveAll();
+    if (fromNav) {
+      window.scrollTo(0, 0);
+      var h1 = document.querySelector('[data-view="' + key + '"] h1');
+      if (h1) h1.focus({ preventScroll: true });
+    }
+  }
+  window.addEventListener('hashchange', function () { route(true); });
+  route(false);
+
+  carveAll();
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(carveAll);
+    panels.forEach(function (p) { ro.observe(p); p.querySelectorAll('.notch-item').forEach(function (el) { ro.observe(el); }); });
+  } else { window.addEventListener('resize', carveAll); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(carveAll);
+})();
+</script>

@@ -1,0 +1,17 @@
+[
+  {
+    "sheet": 1,
+    "components": [
+      "ButtonRail",
+      "ConsoleCard",
+      "Glass",
+      "HudLabel",
+      "LiveDot",
+      "Nav",
+      "PointerLabel",
+      "PopoverItem",
+      "SectionIndex",
+      "Text"
+    ]
+  }
+]

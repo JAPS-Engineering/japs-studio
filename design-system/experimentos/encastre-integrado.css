@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Experimento: Encastre con la expresión del sistema de referencia.
+   Se carga después de theme.css. Redefine tokens y añade variantes; no toca
+   tokens.json ni encastre.css. Encastre aporta la estructura (muescas, carcasa,
+   cápsula, HUD); esta capa aporta acento, display, radios y canvas.
+   ========================================================================== */
+
+/* --- 1. Primitivos nuevos y escalas ---------------------------------------- */
+:root {
+  --c-canvas: #E8EBE6;
+  --c-mist-2: #D9DED8;
+  --c-lime: #9FE870;
+  --c-lime-soft: #CDFFAD;
+  --c-lime-ink: #2F6B12;
+  --c-lime-pale: #E2F6D5;
+  --focus-on-panel: var(--c-lime);
+
+  /* Radios concéntricos: 48 − 12 = 36, 36 − 12 = 24, 24 − 12 = 12 */
+  --r-shell: 48px;
+  --r-panel: 36px;
+  --r-card: 24px;
+  --r-inner: 12px;
+
+  --lh-statement: 0.96;          /* más cerrado, las tildes de Ñ, Ó y Ú chocan con la línea de arriba */
+  --ls-subdisplay: -0.03em;
+  --fs-body-l: 20px;
+}
+
+/* 36 − 8 = 28, 28 − 8 = 20, 20 − 8 = 12 */
+@media (max-width: 720px) {
+  :root {
+    --r-shell: 36px;
+    --r-panel: 28px;
+    --r-card: 20px;
+    --r-inner: 12px;
+  }
+}
+
+/* --- 2. Semánticos: light -------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  --shell: var(--c-canvas);
+  --surface-2: var(--c-mist-2);
+  --surface-accent: var(--c-lime-pale);
+  --text-on-surface-accent: var(--c-ink);
+  --accent: var(--c-lime);
+  --accent-hover: var(--c-lime-soft);
+  --accent-text: var(--c-lime-ink);
+  --focus: var(--c-lime-ink);
+  --panel-ink: var(--c-ink);
+
+  --positive-bg: var(--c-lime-pale);
+  --positive-text: #054D28;
+  --warning-bg: #FFD11A;
+  --warning-text: #4A3B1C;
+  --negative-bg: #D03238;
+  --negative-text: #FFFFFF;
+  --status-border: transparent;
+}
+
+/* --- 3. Semánticos: dark --------------------------------------------------- */
+[data-theme="dark"] {
+  --shell: var(--c-ink);         /* el bloque :root de arriba pisaría estos valores */
+  --surface-2: var(--c-graphite-2);
+  --surface-accent: var(--c-graphite-2);
+  --text-on-surface-accent: var(--c-lime);
+  --accent: var(--c-lime);
+  --accent-hover: var(--c-lime-soft);
+  --accent-text: var(--c-lime);
+  --focus: var(--c-lime);
+  --panel-ink: var(--c-graphite);
+
+  --positive-bg: var(--c-graphite-2);
+  --positive-text: #2EAD4B;
+  --warning-bg: var(--c-graphite-2);
+  --warning-text: #FFD11A;
+  --negative-bg: var(--c-graphite-2);
+  --negative-text: #FF7A7F;
+  --status-border: currentColor;   /* el fondo no se separa de surface-2 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --shell: var(--c-ink);
+    --surface-2: var(--c-graphite-2);
+    --surface-accent: var(--c-graphite-2);
+    --text-on-surface-accent: var(--c-lime);
+    --accent: var(--c-lime);
+    --accent-hover: var(--c-lime-soft);
+    --accent-text: var(--c-lime);
+    --focus: var(--c-lime);
+    --panel-ink: var(--c-graphite);
+
+    --positive-bg: var(--c-graphite-2);
+    --positive-text: #2EAD4B;
+    --warning-bg: var(--c-graphite-2);
+    --warning-text: #FFD11A;
+    --negative-bg: var(--c-graphite-2);
+    --negative-text: #FF7A7F;
+    --status-border: currentColor;
+  }
+}
+
+/* --- 4. Tipografía: Archivo solo como voz pesada, Geist para el resto ------ */
+.t-statement {
+  font-stretch: var(--fwd-normal);
+  font-weight: 900;
+  line-height: var(--lh-statement);
+}
+.t-headline { font-weight: 900; }
+.t-h1, .t-h2 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-subdisplay);
+}
+.t-h3 { font-weight: var(--fw-semibold); }
+
+/* --- 5. Controles ---------------------------------------------------------- */
+.pill {
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  font-weight: var(--fw-semibold);
+}
+.pill--lg { min-height: 52px; padding: 0 var(--space-2) 0 var(--space-5); }
+
+/* --- 6. Variantes nuevas --------------------------------------------------- */
+.card--accent { background: var(--surface-accent); color: var(--text-on-surface-accent); }
+
+/* Inversión de polaridad: fondo oscuro con titular lima */
+.card--ink,
+.panel--ink { background: var(--panel-ink); color: var(--c-paper); }
+.card--ink .t-headline,
+.card--ink .t-statement,
+.panel--ink .t-headline,
+.panel--ink .t-statement { color: var(--c-lime); }
+.card--ink .t-muted,
+.panel--ink .t-muted { color: var(--c-sage-soft); }
+.card--ink .tag,
+.panel--ink .tag { border-color: #F1F3F059; }
+
+/* Estado: el color nunca va solo, siempre acompaña a un texto */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 28px;
+  padding: 0 var(--space-3);
+  border: var(--bw-hairline) solid var(--status-border);
+  border-radius: var(--r-pill);
+  font: var(--fw-semibold) var(--fs-small) / 1 var(--font-body);
+}
+.status--positive { background: var(--positive-bg); color: var(--positive-text); }
+.status--warning { background: var(--warning-bg); color: var(--warning-text); }
+.status--negative { background: var(--negative-bg); color: var(--negative-text); }

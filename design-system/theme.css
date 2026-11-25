@@ -1,0 +1,4 @@
+/* JAPS Studio — Encastre v1.0 · punto de entrada para HTML/CSS.
+   fonts/fonts.css: fuentes autoalojadas (OFL). encastre.css: tokens, modos y componentes. */
+@import url("fonts/fonts.css");
+@import url("encastre.css");

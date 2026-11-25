@@ -1,0 +1,120 @@
+{
+  "pkg": "@japs/encastre",
+  "globalName": "JapsEncastre",
+  "shape": "package",
+  "entry": "./design-system/dist/index.js",
+  "buildCmd": "npm --prefix design-system run build",
+  "cssEntry": "encastre.css",
+  "extraFonts": [
+    "fonts/fonts.css"
+  ],
+  "docsDir": "docs/components",
+  "guidelinesGlob": [
+    "DIRECCION-DE-ARTE.md"
+  ],
+  "componentSrcMap": {
+    "HudLabel": "src/Hud.tsx",
+    "HudCross": "src/Hud.tsx",
+    "HudRule": "src/Hud.tsx",
+    "Heading": "src/Typography.tsx",
+    "Text": "src/Typography.tsx",
+    "PopoverItem": "src/Popover.tsx"
+  },
+  "provider": {
+    "component": "ThemeRoot",
+    "props": {
+      "theme": "light"
+    }
+  },
+  "overrides": {
+    "Nav": {
+      "cardMode": "column"
+    },
+    "Timeline": {
+      "cardMode": "column"
+    },
+    "Icon": {
+      "cardMode": "column"
+    },
+    "Card": {
+      "cardMode": "column"
+    },
+    "Panel": {
+      "cardMode": "column"
+    },
+    "Heading": {
+      "cardMode": "column"
+    },
+    "ButtonRail": {
+      "cardMode": "column"
+    },
+    "DoubleButton": {
+      "cardMode": "column"
+    },
+    "IconButton": {
+      "cardMode": "column"
+    },
+    "Key": {
+      "cardMode": "column"
+    },
+    "StudioMark": {
+      "cardMode": "column"
+    },
+    "NotchStair": {
+      "cardMode": "column"
+    },
+    "SiteHeader": {
+      "cardMode": "column"
+    },
+    "IndexList": {
+      "cardMode": "column"
+    },
+    "LogoBar": {
+      "cardMode": "column"
+    },
+    "SectionIndex": {
+      "cardMode": "column"
+    },
+    "TagCluster": {
+      "cardMode": "column"
+    },
+    "PointerLabel": {
+      "cardMode": "column"
+    },
+    "Callout": {
+      "cardMode": "column"
+    },
+    "CalloutMeter": {
+      "cardMode": "column"
+    },
+    "AccountCluster": {
+      "cardMode": "column"
+    },
+    "SearchField": {
+      "cardMode": "column"
+    },
+    "VerticalNav": {
+      "cardMode": "column"
+    },
+    "MediaCard": {
+      "cardMode": "column"
+    },
+    "HeroCard": {
+      "cardMode": "column"
+    },
+    "HistoryStack": {
+      "cardMode": "column"
+    },
+    "ConsoleCard": {
+      "cardMode": "column"
+    },
+    "DisplayTitle": {
+      "cardMode": "column"
+    },
+    "HudFill": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md",
+  "projectId": "3b8e9d92-b434-44d1-b0df-29ec40baed66"
+}

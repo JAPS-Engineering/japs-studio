@@ -1,0 +1,9 @@
+{
+  "namespace": "JapsEncastre",
+  "source": "@japs/encastre@1.0.0",
+  "shape": "package",
+  "provider": "ThemeRoot",
+  "componentCount": 46,
+  "skippedStoryIds": [],
+  "runtimeFontPrefixes": []
+}

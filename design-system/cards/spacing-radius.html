@@ -1,0 +1,67 @@
+<!-- @dsCard group="Spacing" -->
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Encastre · Espaciado y radios</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .scale { display: grid; gap: 6px; }
+    .scale div { display: grid; grid-template-columns: 72px 1fr; align-items: center; gap: 12px; }
+    .scale i { display: block; height: 12px; border-radius: var(--r-pill); background: var(--accent); }
+    .nest { background: var(--inverse); border-radius: var(--r-shell); padding: var(--gap); }
+    .nest > .lvl-panel { background: var(--panel); color: var(--text-on-panel); border-radius: var(--r-panel); padding: var(--gap); }
+    .nest .lvl-card { background: var(--surface); color: var(--text); border-radius: var(--r-card); padding: var(--gap); }
+    .nest .lvl-inner { background: var(--surface-2); border-radius: var(--r-inner); padding: var(--gap); display: flex; justify-content: space-between; align-items: center; }
+    .lvl-label { display: block; padding: 4px 8px 10px; }
+    .nest > .lvl-label { color: var(--text-on-inverse); }
+  </style>
+</head>
+<body>
+  <header class="cardhead">
+    <span class="hud-label">Encastre · Espaciado y radios</span>
+    <h1 class="t-h2">Base 4 px · gap 12 · radios concéntricos</h1>
+    <p>Radio interior = radio exterior − gap. El gap estructural (12 px en desktop, 8 en móvil) separa paneles y cards, y es también el hueco entre una muesca y lo que aloja.</p>
+  </header>
+
+  <div class="duo">
+    <section class="frame" data-theme="light">
+      <span class="hud-label">Escala de espacio</span>
+      <div class="scale hud-label">
+        <div><span>4</span><i style="width:4px"></i></div>
+        <div><span>8</span><i style="width:8px"></i></div>
+        <div><span>12 gap</span><i style="width:12px"></i></div>
+        <div><span>16</span><i style="width:16px"></i></div>
+        <div><span>24</span><i style="width:24px"></i></div>
+        <div><span>32</span><i style="width:32px"></i></div>
+        <div><span>48</span><i style="width:48px"></i></div>
+        <div><span>64</span><i style="width:64px"></i></div>
+        <div><span>96</span><i style="width:96px"></i></div>
+        <div><span>128</span><i style="width:128px"></i></div>
+      </div>
+    </section>
+
+    <section class="frame" data-theme="dark">
+      <span class="hud-label">Radios concéntricos</span>
+      <div class="nest">
+        <span class="lvl-label hud-label">shell · 40</span>
+        <div class="lvl-panel">
+          <span class="lvl-label hud-label">panel · 28</span>
+          <div class="lvl-card">
+            <span class="lvl-label hud-label">card · 16</span>
+            <div class="lvl-inner"><span class="hud-label">inner · 8</span><span class="chip chip--accent">pill · 999</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">En móvil los radios bajan a 28 / 20 / 12 y el gap a 8 px.</p>
+    </section>
+  </div>
+
+  <ul class="rules">
+    <li><strong>Ningún componente lleva esquinas rectas ni cortadas a 45°.</strong> Todos usan un radio de esta escala.</li>
+    <li>El filete inverso de una muesca usa siempre el radio del panel que la contiene.</li>
+  </ul>
+</body>
+</html>

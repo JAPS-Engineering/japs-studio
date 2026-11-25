@@ -1,0 +1,56 @@
+<!-- @dsCard group="Type" -->
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Encastre · Tipografía</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="_card.css">
+  <style>
+    .spec { display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline); }
+    .spec > .hud-label { color: var(--text-muted); }
+    .frame .t-statement { font-size: 52px; }
+    .frame .t-headline { font-size: 44px; }
+  </style>
+</head>
+<body>
+  <header class="cardhead">
+    <span class="hud-label">Encastre · Tipografía</span>
+    <h1 class="t-h2">Archivo · Geist · Geist Mono</h1>
+    <p>Archivo expandida (wdth 125, peso 800) para un único statement por vista; Archivo con ancho normal para titulares; Geist para lectura; Geist Mono para la capa de datos. Escala fluida con clamp() entre 360 y 1440 px.</p>
+  </header>
+
+  <div class="duo">
+    <section class="frame" data-theme="light">
+      <span class="hud-label">Light</span>
+      <div class="spec"><span class="hud-label">Statement · 44→128</span><span class="t-statement">Encaja.</span></div>
+      <div class="spec"><span class="hud-label">Headline · 40→88</span><span class="t-headline">Futuro modular</span></div>
+      <div class="spec"><span class="hud-label">H1 · 32→56</span><span class="t-h1">Software a medida</span></div>
+      <div class="spec"><span class="hud-label">H2 · 24→40</span><span class="t-h2">Diseño que calza</span></div>
+      <div class="spec"><span class="hud-label">H3 · 20→28</span><span class="t-h3">Prototipo navegable</span></div>
+      <div class="spec"><span class="hud-label">Body · 16/1.6</span><p>Revisamos tu operación, explicamos el diagnóstico y construimos por módulos. Cifras: 0123456789.</p></div>
+      <div class="spec"><span class="hud-label">Small · 14</span><span class="t-small t-muted">Texto secundario y notas de apoyo.</span></div>
+      <div class="spec"><span class="hud-label">Label · Mono 12</span><span class="hud-label">01 — SN 00.43/20-34 · <span class="t-accent">activo</span></span></div>
+    </section>
+
+    <section class="frame" data-theme="dark">
+      <span class="hud-label">Dark</span>
+      <div class="spec"><span class="hud-label">Statement · 44→128</span><span class="t-statement">Encaja.</span></div>
+      <div class="spec"><span class="hud-label">Headline · 40→88</span><span class="t-headline">Futuro modular</span></div>
+      <div class="spec"><span class="hud-label">H1 · 32→56</span><span class="t-h1">Software a medida</span></div>
+      <div class="spec"><span class="hud-label">H2 · 24→40</span><span class="t-h2">Diseño que calza</span></div>
+      <div class="spec"><span class="hud-label">H3 · 20→28</span><span class="t-h3">Prototipo navegable</span></div>
+      <div class="spec"><span class="hud-label">Body · 16/1.6</span><p>Revisamos tu operación, explicamos el diagnóstico y construimos por módulos. Cifras: 0123456789.</p></div>
+      <div class="spec"><span class="hud-label">Small · 14</span><span class="t-small t-muted">Texto secundario y notas de apoyo.</span></div>
+      <div class="spec"><span class="hud-label">Label · Mono 12</span><span class="hud-label">01 — SN 00.43/20-34 · <span class="t-accent">activo</span></span></div>
+    </section>
+  </div>
+
+  <ul class="rules">
+    <li><strong>Un solo statement expandido por vista.</strong> El resto de los titulares va en Archivo con ancho normal.</li>
+    <li>Las clases son <code>.t-statement</code>, <code>.t-headline</code>, <code>.t-h1</code>–<code>.t-h3</code>, <code>.t-body-l</code>, <code>.t-small</code> y <code>.hud-label</code>.</li>
+    <li>El largo de línea máximo es de 68 ch. Las cifras mono son tabulares y llevan el cero cruzado.</li>
+  </ul>
+</body>
+</html>
