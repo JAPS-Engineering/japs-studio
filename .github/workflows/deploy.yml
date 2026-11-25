@@ -43,13 +43,11 @@ jobs:
           test -n "${EVIDENCIA_LOCAL//[[:space:]]/}" || { echo '::error::Falta evidencia local'; exit 1; }
           printf '### Verificación local\nCommit: `%s`\n\n%s\n' "$SHA_PROBADO" "$EVIDENCIA_LOCAL" >> "$GITHUB_STEP_SUMMARY"
 
-  deploy:
+  build:
+    name: Construir sitio
     needs: [validar-release]
     timeout-minutes: 30
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -62,6 +60,17 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+  # Job aparte: deploy-pages solo ve el artefacto cuando el job que lo subió ya terminó.
+  deploy:
+    name: Publicar en GitHub Pages
+    needs: [validar-release, build]
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
