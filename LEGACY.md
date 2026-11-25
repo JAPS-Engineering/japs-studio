@@ -29,6 +29,8 @@ python3 -m http.server 8000
 # http://localhost:8000/sitio/
 ```
 
+Las landings de `landing/` buscan sus imágenes en `landing/img/`, carpeta que nunca existió en `JAPS_Studio/`: se publicaron como artifacts (enlaces en la memoria del proyecto) y localmente se ven sin fotos. Para verlas completas basta con `ln -s ../img landing/img`.
+
 ## Otras referencias históricas
 
 - Página cyberpunk original de studio.japs.ing: commit `6b6b8a8`.
