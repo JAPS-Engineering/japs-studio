@@ -1,0 +1,43 @@
+/* JAPS Studio — generated from tokens.json (scripts/build-tokens.mjs). No editar a mano. */
+:root {
+  color-scheme: dark;
+  /* color */
+  --bg: #020304;
+  --surface: #172f31;
+  --step: #315c5f;
+  --tint: #1a6268;
+  --text: #f2f5f4;
+  --muted: #b8c9cb;
+  --accent: #6adcdc;
+  --accent-hover: #91e8e8;
+  --accent-ring: #6adcdc26;
+  --on-accent: #000000;
+  --inverse: #f2f5f4;
+  --on-inverse: #020304;
+  --hairline: #f2f5f41a;
+  --hairline-strong: #f2f5f459;
+  --hover: #f2f5f414;
+  --glass: #020304a6;
+  --glass-soft: #02030480;
+  --glass-edge: #ffffff1f;
+  --paper: #ffffff;
+  --on-paper: #0e0f11;
+  --signal: #eec158;
+  --render-hi: #2a3739;
+  --render-bg: #1c2627;
+  --render-lo: #131a1b;
+  --logo-studio: #6adcdc;
+  --wa: #6adcdc;
+  --wa-hover: #91e8e8;
+  /* type */
+  --font-sans: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* radius */
+  --r-pill: 999px;
+  --r-panel: 40px;
+  --r-card: 32px;
+  --r-tile: 28px;
+  --r-control: 20px;
+  /* timing */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 320ms;
+}

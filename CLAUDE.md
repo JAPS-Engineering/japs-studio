@@ -1,3 +1,8 @@
+## Fuente única de JAPS Studio
+
+- Este repositorio es la única fuente del sitio y del sistema de diseño de JAPS Studio. No editar copias fuera de él (la antigua carpeta `JAPS_Studio/sitio/` ya no existe; el diseño anterior está en la rama `legacy`).
+- Estilos: `design-system/` (tokens en `tokens.json`, CSS en `design-system/css/`); secciones de página en `src/styles/`. Al cambiar un componente, actualizar su ficha y republicar el Design System según `design-system/SOURCE.md`.
+
 ## Pruebas locales y GitHub Actions (Jean, 12-11-2026)
 
 Esta regla sustituye las instrucciones anteriores sobre CI y despliegues automáticos.

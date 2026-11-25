@@ -1,0 +1,233 @@
+/* Componentes de JAPS Studio. Cada bloque corresponde a una carpeta de components/ con su README y vista previa. */
+
+/* ===== Botones =====
+   CTA agua con flecha en círculo negro (gira a ↗ al pasar el cursor), botón redondo de contorno, píldora secundaria, enlaces de texto, cuadrado de acción y botón de JAPS Engineering. */
+.round { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; border: 0; background: none; box-shadow: inset 0 0 0 1px var(--hairline-strong); color: var(--text); text-decoration: none; cursor: pointer; font: 500 13px / 1 var(--font-sans); transition: background-color var(--dur) var(--ease), rotate var(--dur) var(--ease); }
+.round:hover { background: var(--hover); }
+.round--sm { width: 44px; height: 44px; }
+.caret { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; }
+.cta { display: inline-flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 6px 0 24px; border-radius: var(--r-pill); background: var(--accent); color: var(--on-accent); font: 500 15px / 1 var(--font-sans); text-decoration: none; white-space: nowrap; flex: none; transition: background-color var(--dur) var(--ease), min-height var(--dur) var(--ease), padding var(--dur) var(--ease); }
+.cta__ico { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--on-accent); color: var(--accent); transition: rotate var(--dur) var(--ease), width var(--dur) var(--ease), height var(--dur) var(--ease); }
+.cta__ico .ico { width: 18px; height: 18px; }
+.cta:hover, .cta:focus-visible { background: var(--accent-hover); }
+.cta:hover .cta__ico, .cta:focus-visible .cta__ico { rotate: -45deg; }
+.cta--icon { width: 44px; min-height: 44px; padding: 0; justify-content: center; gap: 0; }
+.cta--icon .cta__ico { background: none; color: var(--on-accent); }
+.cta.only-s { display: none; }
+.cta--lg { min-height: 64px; padding: 0 8px 0 30px; gap: 18px; font-size: 16px; }
+.cta--lg .cta__ico { width: 48px; height: 48px; }
+.sq { width: 80px; height: 80px; border-radius: 22px; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); transition: rotate var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.sq .ico { width: 28px; height: 28px; }
+.sq:hover { background: var(--accent-hover); }
+@container (max-width: 640px) {
+  .sq { width: 60px; height: 60px; }
+}
+.tlink { display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; justify-self: start; }
+.tlink:hover { color: var(--accent); }
+.tlink .ico { transition: translate var(--dur) var(--ease); }
+.tlink:hover .ico { translate: 3px 0; }
+@container (max-width: 640px) {
+  .cta--lg, .pill-s { min-height: 56px; padding-left: 24px; font-size: 15px; }
+}
+.engbtn { display: inline-flex; align-items: center; gap: 14px; min-height: 56px; padding: 0 6px 0 24px; border-radius: var(--r-pill); box-shadow: inset 0 0 0 1px var(--hairline-strong); color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; white-space: nowrap; flex: none; justify-self: start; }
+.engbtn i { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--inverse); color: var(--on-inverse); transition: rotate var(--dur) var(--ease); }
+.engbtn:hover i { rotate: 45deg; }
+.pill-s { justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: var(--r-pill); box-shadow: inset 0 0 0 1px var(--hairline-strong); color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; }
+.pill-s:hover { background: var(--hover); }
+.golink { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text); }
+.golink .ico { transition: translate var(--dur) var(--ease); }
+a:hover .golink .ico { translate: 3px 0; }
+@container (max-width: 640px) {
+  .cta--lg .cta__ico { width: 42px; height: 42px; }
+  .cta--lg { min-height: 56px; padding-left: 24px; font-size: 15px; }
+}
+
+/* ===== Etiquetas y logos =====
+   Etiqueta rellena, chip de estado con punto, isotipos de producto sobre su color real y contraparte «Junto a …» sobre cápsula blanca. */
+.label { display: inline-flex; align-items: center; min-height: 26px; padding: 0 12px; border-radius: var(--r-pill); background: var(--tint); color: var(--paper); font: 500 11px / 1 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; }
+.pfb { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; flex: none; box-shadow: inset 0 0 0 1px #0000000F; overflow: hidden; }
+.pfb img { width: 28px; height: 28px; object-fit: contain; display: block; }
+.pfb--s { width: 26px; height: 26px; border-radius: 50%; }
+.pfb--s img { width: 17px; height: 17px; }
+.pfx-logo { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--hairline); flex: none; }
+.pfx-logo img { width: 32px; height: 32px; object-fit: contain; display: block; }
+.pfx-logo--brand { box-shadow: inset 0 0 0 1px #0000000F; }
+.pchip { white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; min-height: 24px; padding: 0 10px; border-radius: var(--r-pill); font-size: 11px; font-weight: 500; background: var(--bg); color: var(--text); width: fit-content; }
+.pchip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.pchip.off::before { background: none; box-shadow: inset 0 0 0 1.5px var(--muted); }
+.partner { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+.partner[hidden] { display: none; }
+.partner small { font-size: inherit; text-transform: uppercase; letter-spacing: 0.08em; }
+.plogo { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 5px 10px; border-radius: 10px; background: var(--paper); }
+.plogo img { height: 100%; width: auto; display: block; }
+.plogo--mark { padding: 3px 10px 3px 3px; }
+.plogo--mark img { border-radius: 6px; }
+.plogo span { font: 600 12px / 1 var(--font-sans); color: var(--on-paper); letter-spacing: 0; }
+.partner--s .plogo { height: 22px; padding: 4px 8px; border-radius: 8px; }
+.partner--s .plogo--mark { padding: 2px 8px 2px 2px; }
+.partner--s .plogo span { font-size: 11px; }
+
+/* ===== Superficies =====
+   Vidrio ahumado, panel con foto (.rnd), scrims y muescas (.nt) con filetes concéntricos. En móvil las muescas pasan a flujo normal (.stage.m-flow). */
+.glass { border-radius: 24px; padding: 22px 24px; background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-edge); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.rnd { position: relative; border-radius: var(--r-panel); background: radial-gradient(120% 120% at 18% 0%, var(--render-hi) 0%, var(--render-bg) 52%, var(--render-lo) 100%); }
+.rnd__clip { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; }
+.stage { position: relative; }
+.stage > .rnd { position: absolute; inset: 0; }
+.nt { --ng: 16px; --f: 28px; --r: 44px; position: absolute; z-index: 3; background: var(--bg); }
+.nt::before, .nt::after { content: ""; position: absolute; pointer-events: none; }
+.nt--tl { top: 0; left: 0; padding: 0 var(--ng) var(--ng) 0; border-bottom-right-radius: var(--r); }
+.nt--tl::before { top: 0; left: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 100% 100%, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--tl::after { top: calc(100% - 1px); left: 0; width: var(--f); height: calc(var(--f) + 1px); background: radial-gradient(circle at 100% 100%, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--tr { top: 0; right: 0; padding: 0 0 var(--ng) var(--ng); border-bottom-left-radius: var(--r); }
+.nt--tr::before { top: 0; right: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 0 100%, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--tr::after { top: calc(100% - 1px); right: 0; width: var(--f); height: calc(var(--f) + 1px); background: radial-gradient(circle at 0 100%, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--bl { bottom: 0; left: 0; padding: var(--ng) var(--ng) 0 0; border-top-right-radius: var(--r); }
+.nt--bl::before { bottom: calc(100% - 1px); left: 0; width: var(--f); height: calc(var(--f) + 1px); background: radial-gradient(circle at 100% 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--bl::after { bottom: 0; left: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 100% 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--br { bottom: 0; right: 0; padding: var(--ng) 0 0 var(--ng); border-top-left-radius: var(--r); }
+.nt--br::before { bottom: calc(100% - 1px); right: 0; width: var(--f); height: calc(var(--f) + 1px); background: radial-gradient(circle at 0 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--br::after { bottom: 0; right: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 0 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--b { bottom: 0; left: 50%; translate: -50% 0; padding: var(--ng) var(--ng) 0; border-radius: var(--r) var(--r) 0 0; }
+.nt--b::before { bottom: 0; right: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 0 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.nt--b::after { bottom: 0; left: calc(100% - 1px); width: calc(var(--f) + 1px); height: var(--f); background: radial-gradient(circle at 100% 0, transparent calc(var(--f) - .5px), var(--bg) var(--f)); }
+.ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.scrim { position: absolute; inset: 0; pointer-events: none; }
+.scrim--l { background: linear-gradient(90deg, #020304EB 0%, #020304B8 36%, #02030433 66%, transparent 100%); }
+.scrim--b { background: linear-gradient(0deg, #020304E0 0%, var(--glass-soft) 34%, transparent 62%); }
+.scrim--all { background: linear-gradient(0deg, #020304D9 0%, #02030466 45%, #0203048C 100%); }
+@container (max-width: 640px) {
+  .rnd { border-radius: var(--r-tile); }
+  .nt { --ng: 12px; --f: 24px; }
+  .stage.m-flow { min-height: 0; height: auto !important; display: grid; gap: 16px; }
+  .stage.m-flow > .rnd { position: relative; inset: auto; }
+  .stage.m-flow > .nt { position: static; padding: 0; background: none; border-radius: 0; translate: none; order: 2; }
+  .stage.m-flow > .nt::before, .stage.m-flow > .nt::after { display: none; }
+}
+
+/* ===== Logo 07d y pantalla de carga =====
+   «JAPS» monolínea + «Studio» manuscrito. La carga dibuja las letras, escribe «Studio» y en navegación interna solo hace un fundido corto. */
+.brand { display: inline-flex; flex: none; }
+.logo { width: 148px; height: auto; overflow: visible; color: var(--text); --logo-knock: var(--bg); }
+@container (max-width: 640px) {
+  .logo { width: 118px; }
+}
+.loader { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: var(--bg); transition: opacity .35s var(--ease), visibility .35s; }
+.loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader__logo { width: clamp(220px, 46vw, 440px); height: auto; overflow: visible; color: var(--text); --logo-knock: var(--bg); --logo-studio: var(--accent); }
+.ld-japs path { stroke-dasharray: 1 2; stroke-dashoffset: 1.02; animation: ld-draw .42s cubic-bezier(.65, 0, .35, 1) forwards; }
+.ld-japs path:nth-child(1) { animation-delay: .1s; }
+.ld-japs path:nth-child(2) { animation-delay: .23s; }
+.ld-japs path:nth-child(3) { animation-delay: .36s; }
+.ld-japs path:nth-child(4) { animation-delay: .49s; }
+.ld-studio { clip-path: inset(-20% 100% -20% -2%); animation: ld-write .28s cubic-bezier(.45, 0, .25, 1) .92s forwards; }
+.ld-line { stroke-dasharray: 1 2; stroke-dashoffset: 1.02; opacity: 0; animation: ld-line .22s ease-out 1.16s forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .ld-japs path, .ld-line { animation: none; stroke-dashoffset: 0; opacity: 1; }
+  .ld-studio { animation: none; clip-path: none; }
+}
+.loader.is-internal { transition: opacity .18s var(--ease), visibility .18s; }
+.loader.is-internal .loader__logo { display: none; }
+.loader.is-internal::after { content: ""; width: 36px; height: 2px; border-radius: 2px; background: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .loader.is-internal { transition: none; }
+  .loader.is-internal::after { display: none; }
+}
+@keyframes ld-line { from { opacity: 1; stroke-dashoffset: 1.02; } to { opacity: 1; stroke-dashoffset: 0; } }
+@keyframes ld-draw { to { stroke-dashoffset: 0; } }
+@keyframes ld-write { to { clip-path: inset(-20% -2% -20% -2%); } }
+
+/* ===== Imagotipo de JAPS Engineering =====
+   En reposo solo el octágono; al pasar el cursor se arma con la secuencia de carga de japs.ing. Nunca toma el acento. */
+.eng-mark { --w: 148px; position: relative; display: inline-block; flex: none; width: var(--w); height: calc(var(--w) * 134 / 746); }
+.imago { position: absolute; left: 0; top: 50%; translate: 0 -50%; display: block; width: 100%; height: auto; aspect-ratio: 746 / 408; max-width: none; overflow: visible; }
+.imago path { transform-box: fill-box; transform-origin: center; }
+.im-seed { transform: scale(0.3207); opacity: 1; transition: transform 0.3s cubic-bezier(.76, 0, .24, 1), opacity 0.12s ease-out; }
+.im-frame { opacity: 0; transition: opacity 0.12s linear; }
+.im-a, .im-p { transform: translateY(140px); transition: transform 0.26s cubic-bezier(.16, 1, .3, 1); }
+.im-j { transform: translateX(110px); opacity: 0; transition: transform 0.24s cubic-bezier(.16, 1, .3, 1), opacity 0.1s linear; }
+.im-s { transform: translateX(-110px); opacity: 0; transition: transform 0.24s cubic-bezier(.16, 1, .3, 1), opacity 0.1s linear; }
+:is(a, button):is(:hover, :focus-visible) .im-seed, .eng-mark.is-open .im-seed { transform: none; opacity: 0; transition: transform 0.38s cubic-bezier(.76, 0, .24, 1), opacity 0.12s ease-out 0.32s; }
+:is(a, button):is(:hover, :focus-visible) .im-frame, .eng-mark.is-open .im-frame { opacity: 1; transition: opacity 80ms linear 0.32s; }
+:is(a, button):is(:hover, :focus-visible) .im-a, .eng-mark.is-open .im-a { transform: none; transition: transform 0.32s cubic-bezier(.16, 1, .3, 1) 0.26s; }
+:is(a, button):is(:hover, :focus-visible) .im-p, .eng-mark.is-open .im-p { transform: none; transition: transform 0.32s cubic-bezier(.16, 1, .3, 1) 0.32s; }
+:is(a, button):is(:hover, :focus-visible) :is(.im-j, .im-s), .eng-mark.is-open :is(.im-j, .im-s) { transform: none; opacity: 1; transition: transform 0.3s cubic-bezier(.16, 1, .3, 1) 0.42s, opacity 90ms linear 0.42s; }
+.eng-mark.is-open, .eng-mark.is-open * { transition: none !important; }
+
+/* ===== Botón Centro de Innovación UC =====
+   Logo en blanco; al pasar el cursor un círculo blanco crece desde el puntero y deja ver el logo a color. */
+.ciuc { position: relative; isolation: isolate; display: inline-flex; flex: none; overflow: hidden; padding: 12px 18px; border-radius: var(--r-control); box-shadow: inset 0 0 0 1px var(--hairline-strong); color: var(--text); text-decoration: none; font: 400 12px / 1.3 var(--font-sans); justify-self: start; width: fit-content; --fx: 50%; --fy: 50%; }
+.ciuc__in { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.ciuc__in > span { color: var(--muted); }
+.ciuc img { display: block; width: 168px; height: auto; max-width: 100%; }
+.ciuc__in:not(.ciuc__in--color) img { filter: brightness(0) invert(1); }
+.ciuc__in--color { position: absolute; inset: 0; padding: inherit; background: var(--paper); clip-path: circle(0 at var(--fx) var(--fy)); transition: clip-path 0.45s cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+.ciuc__in--color > span { color: #3B4442; }
+.ciuc:hover .ciuc__in--color, .ciuc:focus-visible .ciuc__in--color { clip-path: circle(150% at var(--fx) var(--fy)); }
+@media (prefers-reduced-motion: reduce) {
+  .ciuc__in--color { transition: none; }
+}
+@container (max-width: 640px) {
+  .ciuc img { width: 140px; }
+}
+
+/* ===== Formulario =====
+   Campos sobre --step, radio 20, alto 56. Opciones como píldoras; errores en ámbar (--signal). */
+.req { color: var(--accent); margin-left: 3px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
+.fld { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.fld__l, .chs__lg { font: 500 15px / 1.4 var(--font-sans); color: var(--text); padding: 0; }
+.fld__h { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.inp { width: 100%; min-height: 56px; padding: 0 20px; border: 0; border-radius: var(--r-control); background: var(--step); color: var(--text); font: 400 16px / 1.4 var(--font-sans); transition: box-shadow var(--dur) var(--ease); }
+textarea.inp { display: block; min-height: 132px; padding: 16px 20px; resize: vertical; }
+.inp:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.select { position: relative; display: block; }
+.select .inp { appearance: none; -webkit-appearance: none; padding-right: 52px; cursor: pointer; }
+.select .inp option { background: var(--surface); color: var(--text); }
+.select .ico { position: absolute; right: 18px; top: 50%; translate: 0 -50%; pointer-events: none; }
+.fld__e { display: none; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--signal); }
+.is-err > .fld__e { display: flex; }
+.fld.is-err .inp { box-shadow: inset 0 0 0 2px var(--signal); }
+.chs { border: 0; margin: 0; padding: 0; min-width: 0; }
+.chs__lg { float: left; width: 100%; margin-bottom: 10px; }
+.chs__g { clear: both; position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
+.chs > .fld__e { margin-top: 10px; }
+.chp-in { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; margin: 0; }
+.chp { display: inline-flex; align-items: center; gap: 8px; min-height: 56px; padding: 8px 22px; border-radius: var(--r-pill); background: var(--step); color: var(--text); font: 500 14px / 1.25 var(--font-sans); cursor: pointer; user-select: none; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.chp .ico { width: 18px; height: 18px; display: none; }
+.chp:hover { background: #3C6D71; }
+.chp-in:checked + .chp { background: var(--accent); color: var(--on-accent); padding-left: 16px; }
+.chp-in:checked + .chp .ico { display: block; }
+.chp-in:focus-visible + .chp { outline: 2px solid var(--accent); outline-offset: 3px; }
+.chs.is-err .chp { box-shadow: inset 0 0 0 2px var(--signal); }
+.cons { display: grid; gap: 12px; font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 72ch; }
+.cons p { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; align-items: start; }
+.cons .ico { width: 20px; height: 20px; color: var(--accent); }
+.cons a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.cons a:hover { color: var(--accent); }
+@container (max-width: 640px) {
+  .row2 { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .chp { min-height: 48px; padding: 8px 18px; }
+}
+.consent { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--text); cursor: pointer; }
+.consent input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); flex: none; }
+.consent a { color: var(--accent); }
+.consent.is-err span { color: #FFB4A8; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ===== WhatsApp =====
+   Botón flotante de japs.ing en el agua de la página. */
+.wa-fab { position: fixed; right: max(40px, env(safe-area-inset-right, 0px)); bottom: max(40px, env(safe-area-inset-bottom, 0px)); z-index: 60; display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--r-pill); background: var(--wa); color: var(--on-accent); box-shadow: 0 18px 40px -12px #000000B3; transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); animation: wa-attention 15s ease-in-out infinite; }
+.wa-fab svg { width: 30px; height: 30px; flex-shrink: 0; transition: transform var(--dur) var(--ease); animation: wa-wiggle 15s ease-in-out infinite; }
+.wa-fab:hover { background: var(--wa-hover); transform: scale(1.08); box-shadow: 0 18px 40px -12px #000000B3, 0 0 0 6px color-mix(in srgb, var(--wa) 22%, transparent); animation-play-state: paused; }
+.wa-fab:hover svg { transform: rotate(-8deg) scale(1.05); animation-play-state: paused; }
+.wa-fab:active { transform: scale(0.96); }
+@media (max-width: 640px) {
+  .wa-fab { right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; }
+  .wa-fab svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab, .wa-fab svg { animation: none; }
+}
+@keyframes wa-attention { 0%, 86.6% { transform: scale(1); } 90% { transform: scale(1.15); } 95% { transform: scale(0.98); } to { transform: scale(1); } }
+@keyframes wa-wiggle { 0%, 86.6% { transform: rotate(0); } 88% { transform: rotate(-12deg); } 90% { transform: rotate(10deg); } 92% { transform: rotate(-8deg); } 94% { transform: rotate(6deg); } 96%, to { transform: rotate(0); } }

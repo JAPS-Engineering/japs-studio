@@ -1,0 +1,5 @@
+/* Punto de entrada del sistema de diseño de JAPS Studio. */
+@import './css/tokens.css';
+@import './css/base.css';
+@import './css/components.css';
+@import './css/site.css';
