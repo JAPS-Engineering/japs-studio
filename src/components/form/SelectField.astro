@@ -1,0 +1,15 @@
+---
+/** Lista desplegable con etiqueta y ayuda. */
+import Icon from '../site/Icon.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  hint?: string;
+  placeholder: string;
+  options: string[];
+}
+const { id, name, label, hint, placeholder, options } = Astro.props;
+---
+<div class="fld"><label class="fld__l" for={id}>{label}</label>{hint && <p class="fld__h" id={`${id}-h`}>{hint}</p>}<span class="sel"><select class="inp" id={id} name={name} aria-describedby={hint ? `${id}-h` : undefined}><option value="">{placeholder}</option>{options.map((o) => <option>{o}</option>)}</select><Icon name="chev" /></span></div>

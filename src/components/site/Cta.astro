@@ -1,0 +1,23 @@
+---
+/** Botón principal (píldora de acento con círculo e ícono). */
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  label: string;
+  large?: boolean;
+  icon?: string;
+  /** Solo el círculo con el ícono; `label` pasa a aria-label. */
+  iconOnly?: boolean;
+  class?: string;
+  [attr: string]: unknown;
+}
+const { href, label, large = false, icon = 'arrow', iconOnly = false, class: cls, ...rest } = Astro.props;
+---
+{
+  iconOnly ? (
+    <a class:list={['cta', 'cta--icon', cls]} href={href} aria-label={label} {...rest}><i class="cta__ico"><Icon name={icon} /></i></a>
+  ) : (
+    <a class:list={['cta', { 'cta--lg': large }, cls]} href={href} {...rest}><span>{label}</span><i class="cta__ico"><Icon name={icon} /></i></a>
+  )
+}

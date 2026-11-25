@@ -1,0 +1,12 @@
+---
+/** «Quiénes somos»: equipo fundador, impacto y reconocimientos. */
+import Icon from '../site/Icon.astro';
+import RoundPhoto from '../site/RoundPhoto.astro';
+import { awards, team } from '../../data/equipo';
+import { engineering } from '../../data/site';
+---
+<div class="cq" id="nosotros"><section class="sec a9c"><div class="a9c__g"><div class="a9c__main"><div class="stage a9c__st"><RoundPhoto class="a9c__ph" src="/img/team/founders.jpg" scrim="b"><div class="glass a9c__glass"><span class="label">Quiénes somos</span><p>Somos científicos, ingenieros, geeks, innovadores y creativos. Partimos en la universidad con Sonicali y hoy construimos productos propios y también con otras personas.</p></div></RoundPhoto>
+    <div class="nt nt--br"><a class="engbtn a9c__nos" href={engineering.about} target="_blank" rel="noopener"><span>Conócenos</span><i><Icon name="arrow" /></i></a></div></div><ul class="team">{team.map((m) => <li><b>{m.name}</b><span>{m.role}</span></li>)}</ul></div>
+  <div class="a9c__side"><div class="card9 card9--impact"><span class="enc__k">Impacto</span><p class="card9__big">Buscamos crear valor económico y contribuir positivamente a las personas y al entorno.</p></div>
+    <div class="card9 card9--awards"><span class="enc__k">Reconocimientos</span><ul class="awards9">{awards.map((a) => <li><span class="awards9__logo"><img src={a.logo} alt="" loading="lazy" /></span><b>{a.name}</b><span>{a.note}</span></li>)}</ul></div>
+    </div></div></section></div>

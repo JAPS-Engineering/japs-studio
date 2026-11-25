@@ -1,0 +1,21 @@
+---
+/** Botón «Acelerados en Centro de Innovación UC»: el relleno blanco nace donde entra el cursor. */
+import { ciuc } from '../../data/site';
+---
+<a class="ciuc" href={ciuc.url} target="_blank" rel="noopener noreferrer"><span class="ciuc__in"><span>Acelerados en</span><img src="/img/ciuc.svg" alt={ciuc.name} width="230" height="74" /></span><span class="ciuc__in ciuc__in--color" aria-hidden="true"><span>Acelerados en</span><img src="/img/ciuc.svg" alt="" width="230" height="74" /></span></a>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.ciuc').forEach((b) => {
+    const set = (e: PointerEvent) => {
+      const r = b.getBoundingClientRect();
+      b.style.setProperty('--fx', `${e.clientX - r.left}px`);
+      b.style.setProperty('--fy', `${e.clientY - r.top}px`);
+    };
+    b.addEventListener('pointerenter', set);
+    b.addEventListener('pointerleave', set);
+    b.addEventListener('focus', () => {
+      b.style.setProperty('--fx', '50%');
+      b.style.setProperty('--fy', '50%');
+    });
+  });
+</script>

@@ -1,0 +1,14 @@
+---
+/** Grupo de opciones únicas con forma de chip. */
+import Icon from '../site/Icon.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  legend: string;
+  options: string[];
+  required?: boolean;
+}
+const { id, name, legend, options, required = false } = Astro.props;
+---
+<fieldset class="chs" data-req={required ? '' : undefined} aria-describedby={`${id}-e`}><legend class="chs__lg">{legend}{required && <span class="req" aria-hidden="true">*</span>}</legend><div class="chs__g">{options.map((o, i) => <Fragment><input class="chp-in" type="radio" id={`${id}-${i + 1}`} name={name} value={o} required={required && i === 0} /><label class="chp" for={`${id}-${i + 1}`}><Icon name="tick" />{o}</label></Fragment>)}</div><p class="fld__e" id={`${id}-e`}><Icon name="alert" small /><span>Falta este dato</span></p></fieldset>

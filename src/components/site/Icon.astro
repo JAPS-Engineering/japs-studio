@@ -1,0 +1,10 @@
+---
+/** Ícono del sprite (IconSprite.astro). `name` sin el prefijo «i-». */
+interface Props {
+  name: string;
+  small?: boolean;
+  class?: string;
+}
+const { name, small = false, class: cls } = Astro.props;
+---
+<svg class:list={['ico', { 'ico--s': small }, cls]} aria-hidden="true"><use href={`#i-${name}`} /></svg>

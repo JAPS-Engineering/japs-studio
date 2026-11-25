@@ -1,0 +1,67 @@
+---
+/** Portada: titular, CTAs, paginador de productos y retrato con el sello del Centro de Innovación UC. */
+import Ciuc from '../site/Ciuc.astro';
+import Cta from '../site/Cta.astro';
+import Icon from '../site/Icon.astro';
+import PartnerSwitch from '../site/PartnerSwitch.astro';
+import ProductLogo from '../site/ProductLogo.astro';
+import RoundPhoto from '../site/RoundPhoto.astro';
+import { routes } from '../../data/nav';
+import { heroProducts, productHref } from '../../data/productos';
+
+const [first, second] = heroProducts;
+const pager = heroProducts.map((p) => ({ k: p.slug, name: p.name, desc: p.summary, img: p.img, logo: p.logo, href: productHref(p) }));
+---
+<div class="cq" id="inicio"><div class="hx hx17" data-pf17={JSON.stringify(pager)}>
+  <div class="hx17__l">
+    <h1 class="hx-t hx17__t"><span class="ac">Construyamos</span> el futuro <span class="ac">juntos</span></h1>
+    <p class="hx-lead">Trabajamos con personas que conocen de cerca un problema y su mercado, y buscan un socio técnico para construir una solución y una empresa.</p>
+    <div class="ctas"><a class="pill-s" href={routes.howItWorks}>Cómo funciona</a><Cta href={routes.contact} label="Construye con nosotros" large /></div>
+    <div class="hx17__pf">
+      <a class="hx17__pfh" href={routes.portfolio}><span>Portafolio</span><i><Icon name="out" small /></i></a>
+      <a class="hx17__card js-17-card" href={productHref(first)}><img class="ph js-17-img" src={first.img} alt="" loading="lazy" /><i class="scrim scrim--b"></i>
+        <PartnerSwitch class="hx17__partner" active={first.slug} /><span class="hx17__ct"><span class="js-17-logo"><ProductLogo product={first} plain /></span><span><b class="js-17-name">{first.name}</b><small class="js-17-desc">{first.summary}</small></span></span></a>
+      <div class="hx17__next"><span class="hx17__th"><img class="js-17-nimg" src={second.img} alt="" loading="lazy" /></span>
+        <span class="hx17__nt"><b>Siguiente</b><small class="js-17-nname">{second.name}</small></span>
+        <span class="hx17__pg js-17-n">1/{heroProducts.length}</span>
+        <button class="round round--sm js-17-prev" type="button" aria-label="Proyecto anterior"><Icon name="left" /></button>
+        <button class="round round--sm hx17__nx js-17-next" type="button" aria-label="Proyecto siguiente"><svg class="prog" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5" pathLength="100"/></svg><Icon name="right" /></button></div>
+    </div>
+  </div>
+  <div class="stage hx17__st">
+    <RoundPhoto src="/img/heros/retrato.jpg">
+            <svg class="ringtext" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="ringpath-hero" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs>
+  <circle cx="200" cy="200" r="170" class="ringtext__band"/>
+  <text textLength="1066" lengthAdjust="spacing"><textPath href="#ringpath-hero" textLength="1066" lengthAdjust="spacing">JAPS Studio · constructora de startups · Santiago · 2026 ·</textPath></text></svg>
+      <div class="ciuc-wrap hx17__ciuc"><Ciuc /></div></RoundPhoto>
+    <div class="nt nt--tr"><a class="sq" href={routes.contact} aria-label="Construye con nosotros"><Icon name="out" /></a></div>
+  </div>
+  <ol class="disc glass" aria-label="Disciplinas"><li><span>01</span><b>Ciencia</b></li><li><span>02</span><b>Ingeniería</b></li><li><span>03</span><b>Diseño</b></li><li><span>04</span><b>Investigación</b></li></ol>
+</div></div>
+
+<script>
+  // Paginador de productos del hero
+  type Item = { k: string; name: string; desc: string; img: string; logo: string; href: string };
+  document.querySelectorAll<HTMLElement>('[data-pf17]').forEach((w) => {
+    const PF: Item[] = JSON.parse(w.dataset.pf17!);
+    const N = PF.length;
+    const q = <T extends Element = HTMLElement>(s: string) => w.querySelector<T>(s)!;
+    let i = 0;
+    const show = () => {
+      const p = PF[i], n = PF[(i + 1) % N];
+      q<HTMLImageElement>('.js-17-img').src = p.img;
+      q<HTMLImageElement>('.js-17-logo img').src = p.logo;
+      q<HTMLAnchorElement>('.js-17-card').href = p.href;
+      q('.js-17-name').textContent = p.name;
+      q('.js-17-desc').textContent = p.desc;
+      w.querySelectorAll<HTMLElement>('.hx17__partner .partner').forEach((b) => (b.hidden = b.dataset.k !== p.k));
+      q<HTMLImageElement>('.js-17-nimg').src = n.img;
+      q('.js-17-nname').textContent = n.name;
+      q('.js-17-n').textContent = `${i + 1}/${N}`;
+      w.style.setProperty('--pg', String(((i + 1) / N) * 100));
+    };
+    q('.js-17-prev').addEventListener('click', () => { i = (i + N - 1) % N; show(); });
+    q('.js-17-next').addEventListener('click', () => { i = (i + 1) % N; show(); });
+    show();
+  });
+</script>

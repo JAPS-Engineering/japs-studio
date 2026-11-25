@@ -1,0 +1,13 @@
+---
+/** Todos los «Junto a» de los productos con socio; solo queda visible el del producto activo. */
+import PartnerTag from './PartnerTag.astro';
+import { partnered } from '../../data/productos';
+
+interface Props {
+  class: string;
+  /** Slug del producto activo al cargar. */
+  active?: string;
+}
+const { class: cls, active } = Astro.props;
+---
+<span class={cls}>{partnered.map((p) => <PartnerTag product={p} hidden={p.slug !== active} />)}</span>
