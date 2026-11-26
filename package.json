@@ -8,7 +8,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "node design-system/scripts/build-tokens.mjs --check && astro check",
+    "tokens": "node design-system/scripts/build-tokens.mjs",
+    "ds:artifact": "node design-system/scripts/build-artifact.mjs"
   },
   "engines": {
     "node": ">=20"

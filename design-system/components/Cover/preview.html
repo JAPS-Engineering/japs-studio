@@ -1,0 +1,37 @@
+<!-- @dsCard height=288 -->
+<style>
+  html, body { margin: 0; background: var(--bg); }
+  .cv { position: relative; width: 960px; height: 288px; overflow: hidden; background: var(--bg); font-family: var(--font-sans); }
+  .cv svg { position: absolute; inset: 0; }
+  .cv .surface { fill: var(--surface); }
+  .cv .accent { fill: var(--accent); }
+  .cv .ink { fill: var(--on-accent); }
+  .cv .tint { fill: var(--tint); }
+  .cv .step { fill: var(--step); }
+  .cv .signal { fill: var(--signal); }
+  .cv .line { stroke: var(--accent); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .cv__t { position: absolute; left: 40px; bottom: 32px; max-width: 440px; display: grid; gap: 14px; }
+  .cv__t h1 { margin: 0; font-weight: 400; font-size: 104px; line-height: .95; letter-spacing: -0.04em; color: var(--text); }
+  .cv__t p { margin: 0; font-size: 14px; line-height: 1.4; color: var(--muted); }
+</style>
+<div class="cv">
+  <svg viewBox="0 0 960 288" width="960" height="288" aria-hidden="true">
+    <!--
+      bloques: surface (panel 416 × 240, r-panel 40), accent (píldora 220 × 56, r-pill), tint y step (píldoras 40 de alto), signal (disco de 12), on-accent (círculo de 20).
+      disposición: un panel alto a la derecha con una muesca abajo a la izquierda que aloja la CTA; la portada repite el gesto del cierre del sitio.
+      patrón: radios amplios y muesca concéntrica («todo es redondeado; las piezas encajan»): esquina interior 44 = 28 + 16, filetes 28.
+      pasos y radios: separación 16 (--ng), filete 28 (--f), r-panel 40, r-pill; márgenes 24 y 40.
+    -->
+    <path class="surface" d="M560 24H896A40 40 0 0 1 936 64V224A40 40 0 0 1 896 264H784A28 28 0 0 1 756 236A44 44 0 0 0 712 192H548A28 28 0 0 1 520 164V64A40 40 0 0 1 560 24Z"/>
+    <rect class="tint" x="560" y="64" width="168" height="40" rx="20"/>
+    <rect class="step" x="560" y="116" width="112" height="40" rx="20"/>
+    <circle class="signal" cx="896" cy="64" r="12"/>
+    <rect class="accent" x="520" y="208" width="220" height="56" rx="28"/>
+    <circle class="ink" cx="714" cy="236" r="20"/>
+    <path class="line" d="M706 236H722M716 230L722 236L716 242"/>
+  </svg>
+  <div class="cv__t">
+    <h1>JAPS<br>Studio</h1>
+    <p>Construyamos el futuro juntos.</p>
+  </div>
+</div>

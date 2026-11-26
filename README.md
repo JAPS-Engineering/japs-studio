@@ -9,12 +9,15 @@ Requiere Node.js 20 o superior.
 ```sh
 npm install
 npm run dev       # http://localhost:4321
-npm run check     # tipos y plantillas
+npm run check     # tokens al día, tipos y plantillas
 npm run build     # genera dist/
 npm run preview   # sirve dist/
+npm run tokens    # regenera design-system/css/tokens.css desde tokens.json
 ```
 
 `dist/` es la salida del build y no se versiona.
+
+Este repositorio es la única fuente de JAPS Studio: el sitio, su sistema de diseño y el moodboard. El diseño anterior (sistema «Encastre», propuestas, landings y el sitio en HTML) está archivado en la rama [`legacy`](https://github.com/JAPS-Engineering/japs-studio/tree/legacy).
 
 ## Estructura
 
@@ -28,9 +31,29 @@ src/components/
   form/             ContactForm y sus campos (TextField, ChoiceField, SelectField)
   seo/Seo           título, descripción, canonical, Open Graph y Twitter Card
 src/data/           site (contacto y enlaces externos), nav (rutas y menú), productos, equipo
-src/styles/         global.css (común) + portafolio.css y contacto.css
+src/styles/         secciones de cada página: home.css, portafolio.css, contacto.css
+design-system/      sistema de diseño (ver abajo)
 public/             CNAME, robots.txt e img/ (fotos, logos de productos y socios)
+referencias/        moodboard (Pinterest y handoff de Notch Lab); no se publica
 ```
+
+## Sistema de diseño
+
+`design-system/` tiene los estilos que usa el sitio y su documentación, y es la fuente del Design System «JAPS Studio» en Claude (https://claude.ai/artifact/LewhGbWUp1UbinA5fxoxBG).
+
+```
+design-system/
+  README.md         manual de marca: voz, color, tipografía, formas, imágenes, logo
+  tokens.json       tokens (colores, tipografía, radios, tiempos); fuente de css/tokens.css
+  styles.css        punto de entrada: importa css/tokens, base, components y site
+  css/              tokens.css (generado), base.css, components.css, site.css
+  components/       ficha de cada componente: README.md y preview.html
+  assets/           logo 07d en SVG
+  scripts/          build-tokens.mjs y build-artifact.mjs
+  SOURCE.md         cómo se publica y resincroniza el Design System
+```
+
+`src/layouts/Base.astro` importa `design-system/styles.css`. Cada vista importa solo el CSS de sus secciones (`src/styles/`).
 
 ## Edición
 
@@ -38,6 +61,8 @@ public/             CNAME, robots.txt e img/ (fotos, logos de productos y socios
 - **Menú y rutas**: `src/data/nav.ts`. Ningún enlace interno se escribe a mano en los componentes.
 - **Contacto, redes y enlaces a JAPS Engineering**: `src/data/site.ts`.
 - **Equipo y reconocimientos**: `src/data/equipo.ts`.
+- **Colores, tipografía y radios**: `design-system/tokens.json`, luego `npm run tokens`.
+- **Estilo de un componente** (botones, etiquetas, paneles, header, footer, formulario): `design-system/css/`. Si cambia su uso, actualizar su ficha en `design-system/components/` y republicar el Design System (`design-system/SOURCE.md`).
 - **Formulario**: `src/components/form/ContactForm.astro`. Envía a JAPS Core (`/api/publico/contacto/`) con `motivo=JAPS Studio`; Core acepta las rutas `/contacto` y `/contacto.html` de este dominio.
 
 Las rutas son `/`, `/portafolio` y `/contacto`. `build.format: 'file'` genera `portafolio.html` y `contacto.html`, así que GitHub Pages sirve ambas formas y los enlaces antiguos con `.html` siguen funcionando. El sitemap lo genera `@astrojs/sitemap`.

@@ -1,0 +1,27 @@
+/* Base de JAPS Studio: reset, tipografía y utilidades. Solo modo oscuro. */
+
+/* ===== Reset y tipografía =====
+   Fondo fijo en html y body (si html queda transparente, se asoma el fondo del visor). */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { background-color: var(--bg) !important; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+h1, h2, h3, p, ul { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+.ac { color: var(--accent); }
+body { margin: 0; color: var(--text); font: 400 16px / 1.6 var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+html[data-navigation="internal"].is-page-ready main.site { animation: page-enter .24s var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  html[data-navigation="internal"].is-page-ready main.site { animation: none; }
+}
+section, .cq, .g3-row { scroll-margin-top: 100px; }
+@keyframes page-enter { from { transform: translateY(8px); } to { transform: none; } }
+
+/* ===== Íconos =====
+   Trazo de 1,75 heredando el color del texto. Tamaño base 22, pequeño 16. */
+.ico { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ico--s { width: 16px; height: 16px; }

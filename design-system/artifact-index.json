@@ -1,0 +1,254 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-25T20:06:45Z"
+ },
+ "title": "JAPS Studio",
+ "namespace": "JapsStudio",
+ "libraries": [],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Productos",
+  "Contrapartes",
+  "Sellos",
+  "Fotos"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "l",
+   "order": [
+    "logo-japs-studio.svg",
+    "logo-japs-studio-sobre-fondo.svg",
+    "favicon.svg"
+   ],
+   "files": {
+    "logo-japs-studio.svg": {
+     "name": "logo-japs-studio.svg",
+     "blob": "81cc36f64771ed26061c03efee25cbbe",
+     "size": 16317,
+     "type": "image/svg+xml"
+    },
+    "logo-japs-studio-sobre-fondo.svg": {
+     "name": "logo-japs-studio-sobre-fondo.svg",
+     "blob": "7ddf7420a24ecccf7fa0c66c2ed51a52",
+     "size": 16379,
+     "type": "image/svg+xml"
+    },
+    "favicon.svg": {
+     "name": "favicon.svg",
+     "blob": "2363a489585ccae196875a6c225d4911",
+     "size": 1820,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Productos": {
+   "name": "Productos",
+   "tile": "s",
+   "order": [
+    "brixor.svg",
+    "consenty.svg",
+    "melian.svg",
+    "projectcheck.svg",
+    "relatio.svg",
+    "sonicali.svg"
+   ],
+   "files": {
+    "brixor.svg": {
+     "name": "brixor.svg",
+     "blob": "e29cd1d6252a9c1d603e32e6d64f503b",
+     "size": 491,
+     "type": "image/svg+xml"
+    },
+    "consenty.svg": {
+     "name": "consenty.svg",
+     "blob": "1b4ed3663e6d8adb5ed112d926badc72",
+     "size": 1520,
+     "type": "image/svg+xml"
+    },
+    "melian.svg": {
+     "name": "melian.svg",
+     "blob": "3fee06d6061e118052ed94366747fb10",
+     "size": 578,
+     "type": "image/svg+xml"
+    },
+    "projectcheck.svg": {
+     "name": "projectcheck.svg",
+     "blob": "20f55c8a0ccf99dc3ad2a5ceb297e4e5",
+     "size": 1459,
+     "type": "image/svg+xml"
+    },
+    "relatio.svg": {
+     "name": "relatio.svg",
+     "blob": "2cb48bb297134e68899df522d280280d",
+     "size": 490,
+     "type": "image/svg+xml"
+    },
+    "sonicali.svg": {
+     "name": "sonicali.svg",
+     "blob": "563b9cd450aa078c69189f87d7027cc6",
+     "size": 2076,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Contrapartes": {
+   "name": "Contrapartes",
+   "tile": "m",
+   "order": [
+    "nevermore.svg",
+    "duegreen.png",
+    "imagineria.svg"
+   ],
+   "files": {
+    "nevermore.svg": {
+     "name": "nevermore.svg",
+     "blob": "6ea719bba31dca1989f10308285725e9",
+     "size": 490,
+     "type": "image/svg+xml"
+    },
+    "duegreen.png": {
+     "name": "duegreen.png",
+     "blob": "f985d27f270d3dc15abd055861fcf786",
+     "size": 31728,
+     "type": "image/png"
+    },
+    "imagineria.svg": {
+     "name": "imagineria.svg",
+     "blob": "e5bb6d2d4efa9e64798d6056aff6b3b6",
+     "size": 6377,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Sellos": {
+   "name": "Sellos",
+   "tile": "m",
+   "order": [
+    "ciuc.svg",
+    "marca-chile.png"
+   ],
+   "files": {
+    "ciuc.svg": {
+     "name": "ciuc.svg",
+     "blob": "2bf263f71bd8cfdb4ec807dac8b0236f",
+     "size": 9355,
+     "type": "image/svg+xml"
+    },
+    "marca-chile.png": {
+     "name": "marca-chile.png",
+     "blob": "44c9fd40a834e3d274df88a085e740ff",
+     "size": 7667,
+     "type": "image/png"
+    }
+   }
+  },
+  "Fotos": {
+   "name": "Fotos",
+   "tile": "m",
+   "order": [
+    "brixor.jpg",
+    "cocreacion.jpg",
+    "consenty.jpg",
+    "conversacion.jpg",
+    "hardware.jpg",
+    "laboratorio.jpg",
+    "melian.jpg",
+    "projectcheck.jpg",
+    "relatio.jpg",
+    "retrato.jpg",
+    "sonicali.jpg",
+    "taller.jpg"
+   ],
+   "files": {
+    "brixor.jpg": {
+     "name": "brixor.jpg",
+     "blob": "62e624eaf7573da1c12a14bcc42fbf77",
+     "size": 227930,
+     "type": "image/jpeg"
+    },
+    "cocreacion.jpg": {
+     "name": "cocreacion.jpg",
+     "blob": "d29abd0a7d878bfe322b360d69480b64",
+     "size": 206304,
+     "type": "image/jpeg"
+    },
+    "consenty.jpg": {
+     "name": "consenty.jpg",
+     "blob": "50a7aa944b639ea57f979ba7894337cf",
+     "size": 161815,
+     "type": "image/jpeg"
+    },
+    "conversacion.jpg": {
+     "name": "conversacion.jpg",
+     "blob": "7bdbe485063d044c49a74b99356acf5e",
+     "size": 214294,
+     "type": "image/jpeg"
+    },
+    "hardware.jpg": {
+     "name": "hardware.jpg",
+     "blob": "4133468fb4ec5a85812debb616e18d86",
+     "size": 180891,
+     "type": "image/jpeg"
+    },
+    "laboratorio.jpg": {
+     "name": "laboratorio.jpg",
+     "blob": "808c423167857ac1d6f7ef280c1e2dcf",
+     "size": 185077,
+     "type": "image/jpeg"
+    },
+    "melian.jpg": {
+     "name": "melian.jpg",
+     "blob": "9e80205d5ef113dbf2e68e3465dbe2c9",
+     "size": 194493,
+     "type": "image/jpeg"
+    },
+    "projectcheck.jpg": {
+     "name": "projectcheck.jpg",
+     "blob": "77db91882a6675ac50f3b3cb89947452",
+     "size": 260860,
+     "type": "image/jpeg"
+    },
+    "relatio.jpg": {
+     "name": "relatio.jpg",
+     "blob": "54d3e80f7cfec853f2680d0fefd090e7",
+     "size": 175548,
+     "type": "image/jpeg"
+    },
+    "retrato.jpg": {
+     "name": "retrato.jpg",
+     "blob": "c953ea9685beb50ccad3bfa457a02d63",
+     "size": 219773,
+     "type": "image/jpeg"
+    },
+    "sonicali.jpg": {
+     "name": "sonicali.jpg",
+     "blob": "2df3e2a3e126330d70b1478e417919dd",
+     "size": 249376,
+     "type": "image/jpeg"
+    },
+    "taller.jpg": {
+     "name": "taller.jpg",
+     "blob": "9d251bf7efdeeffaf05b3dc58155f838",
+     "size": 193262,
+     "type": "image/jpeg"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Claude",
+  "at": "2026-11-25T20:06:45Z",
+  "via": "Claude Code · JAPS-Engineering/japs-studio",
+  "note": "Sistema de diseño de JAPS Studio desde el sitio Astro (design-system/ del repo)"
+ }
+}
