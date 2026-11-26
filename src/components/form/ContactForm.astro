@@ -1,8 +1,7 @@
 ---
 /**
- * Formulario «Cuéntanos tu idea». Envía a JAPS Core con el mismo formato que
- * el formulario de japs.ing (motivo «JAPS Studio»; los campos propios de
- * Studio se juntan en `mensaje`). Core valida el origen y la ruta.
+ * Formulario «Cuéntanos tu idea». Envía las respuestas por separado a Core,
+ * junto con la primera campaña de la sesión. Core determina el sitio de origen.
  */
 import ChoiceField from './ChoiceField.astro';
 import SelectField from './SelectField.astro';
@@ -12,10 +11,11 @@ import { routes } from '../../data/nav';
 import { engineering, site } from '../../data/site';
 ---
 <div class="cfw">
-<form class="cf" id="p3d-form" novalidate aria-labelledby="p3d-ft" data-endpoint={site.contactEndpoint} data-email={site.email}><div class="cf__hd"><h3 class="cf__t" id="p3d-ft">Cuéntanos tu idea</h3><p class="cf__note">Los campos marcados con <span class="req" aria-hidden="true">*</span><span class="vh">asterisco</span> son obligatorios.</p></div><div class="row2"><TextField id="p3d-nombre" name="nombre" label="Nombre" autocomplete="given-name" required /><TextField id="p3d-apellido" name="apellido" label="Apellido" autocomplete="family-name" required /></div><div class="row2"><TextField id="p3d-correo" name="correo" label="Correo" type="email" autocomplete="email" inputmode="email" required /><TextField id="p3d-telefono" name="telefono" label="Teléfono" type="tel" autocomplete="tel" inputmode="tel" /></div><ChoiceField id="p3d-tipo" name="p3d-tipo" legend="¿Qué tipo de idea es?" options={['Producto', 'Modelo de negocio', 'No lo sé todavía']} required /><TextField id="p3d-construir" name="construir" label="¿Qué te gustaría construir?" hint="Cuéntanos la idea con el detalle que tengas y para quién sería." rows={4} required /><TextField id="p3d-problema" name="problema" label="Cuéntanos el problema que conoces" hint="¿Cómo lo has vivido o conocido? ¿A quién le ocurre y qué pasa hoy?" rows={4} required /><ChoiceField id="p3d-etapa" name="p3d-etapa" legend="¿En qué etapa está?" options={['Solo la idea', 'Ya la conversé con posibles clientes', 'Tengo un prototipo', 'Ya tengo ventas']} /><SelectField id="p3d-origen" name="origen" label="¿Cómo llegaste a nosotros?" hint="Sirve para medir el embudo." placeholder="Elige una opción" options={['japs.ing', 'Un producto de JAPS', 'Redes sociales', 'Alguien me recomendó', 'Otro']} /><div class="cons"><label class="consent" for="p3d-consent"><input type="checkbox" id="p3d-consent" name="consent" value="true" required><span>Acepto que JAPS use estos datos para responder mi solicitud, según la <a href={engineering.privacy} target="_blank" rel="noopener">política de privacidad</a>.<span class="req" aria-hidden="true">*</span></span></label><p><Icon name="alert" /><span>No incluyas datos sensibles ni datos de terceros sin autorización. Si tienes problemas con el formulario, escríbenos a <span class="copy">{site.email}</span>.</span></p></div><div class="hp" aria-hidden="true"><label for="p3d-website">No completar</label><input id="p3d-website" name="website" type="text" tabindex="-1" autocomplete="off"></div><div class="cf__send"><button class="cta cta--lg" type="submit"><span data-label>Enviar mi idea</span><span class="cta__ico"><Icon name="arrow" /></span></button><p class="cf__status" data-status role="status" aria-live="polite"></p></div></form>
+<form class="cf" id="p3d-form" novalidate aria-labelledby="p3d-ft" data-endpoint={site.contactEndpoint} data-email={site.email}><div class="cf__hd"><h3 class="cf__t" id="p3d-ft">Cuéntanos tu idea</h3><p class="cf__note">Los campos marcados con <span class="req" aria-hidden="true">*</span><span class="vh">asterisco</span> son obligatorios.</p></div><div class="row2"><TextField id="p3d-nombre" maxlength={100} name="nombre" label="Nombre" autocomplete="given-name" required /><TextField id="p3d-apellido" maxlength={100} name="apellido" label="Apellido" autocomplete="family-name" required /></div><div class="row2"><TextField id="p3d-correo" maxlength={254} name="correo" label="Correo" type="email" autocomplete="email" inputmode="email" required /><TextField id="p3d-telefono" maxlength={30} name="telefono" label="Teléfono" type="tel" autocomplete="tel" inputmode="tel" /></div><ChoiceField id="p3d-tipo" name="p3d-tipo" legend="¿Qué tipo de idea es?" options={['Producto', 'Modelo de negocio', 'No lo sé todavía']} required /><TextField id="p3d-construir" maxlength={4000} name="construir" label="¿Qué te gustaría construir?" hint="Cuéntanos la idea con el detalle que tengas y para quién sería." rows={4} required /><TextField id="p3d-problema" maxlength={4000} name="problema" label="Cuéntanos el problema que conoces" hint="¿Cómo lo has vivido o conocido? ¿A quién le ocurre y qué pasa hoy?" rows={4} required /><ChoiceField id="p3d-etapa" name="p3d-etapa" legend="¿En qué etapa está?" options={['Solo la idea', 'Ya la conversé con posibles clientes', 'Tengo un prototipo', 'Ya tengo ventas']} /><SelectField id="p3d-origen" name="origen" label="¿Cómo llegaste a nosotros?" hint="Sirve para medir el embudo." placeholder="Elige una opción" options={['japs.ing', 'Un producto de JAPS', 'Redes sociales', 'Alguien me recomendó', 'Otro']} /><div class="cons"><label class="consent" for="p3d-consent"><input type="checkbox" id="p3d-consent" name="consent" value="true" required><span>Acepto que JAPS use estos datos para responder mi solicitud, según la <a href={engineering.privacy} target="_blank" rel="noopener">política de privacidad</a>.<span class="req" aria-hidden="true">*</span></span></label><p><Icon name="alert" /><span>No incluyas datos sensibles ni datos de terceros sin autorización. Si tienes problemas con el formulario, escríbenos a <span class="copy">{site.email}</span>.</span></p></div><div class="hp" aria-hidden="true"><label for="p3d-website">No completar</label><input id="p3d-website" name="website" type="text" tabindex="-1" autocomplete="off"></div><div class="cf__send"><button class="cta cta--lg" type="submit"><span data-label>Enviar mi idea</span><span class="cta__ico"><Icon name="arrow" /></span></button><p class="cf__status" data-status role="status" aria-live="polite"></p></div></form>
 <div class="thx" id="p3d-thx" tabindex="-1" role="status"><span class="thx__ok"><Icon name="tick" /></span><h3 class="thx__t">Recibimos tu idea.</h3><p>Gracias por contarnos. Leemos todas las ideas y te responderemos.</p><div class="thx__more"><span class="thx__k">Mientras tanto</span><div class="ctas"><a class="pill-s" href={routes.howItWorks}>Cómo funciona <Icon name="arrow" /></a><a class="pill-s" href={routes.portfolio}>Portafolio <Icon name="arrow" /></a></div></div></div></div>
 
 <script>
+  import { currentCampaign } from '../../lib/contact-attribution.mjs';
   type Field = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
   const MAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -46,24 +46,21 @@ import { engineering, site } from '../../data/site';
     const lab = fm.querySelector('[data-label]');
     const st = fm.querySelector('[data-status]');
     const v = (n: string) => (fm.querySelector<Field>(`[name="${n}"]:checked`) || fm.querySelector<Field>(`[name="${n}"]:not([type=radio])`))?.value?.trim() || '';
-    const mensaje = [
-      `Tipo de idea: ${v('p3d-tipo') || '—'}`,
-      `Etapa: ${v('p3d-etapa') || '—'}`,
-      `Cómo llegó: ${v('origen') || '—'}`,
-      '', '¿Qué le gustaría construir?', v('construir'),
-      '', 'Problema que conoce:', v('problema'),
-    ].join('\n').slice(0, 4000);
     const body = new URLSearchParams({
       nombre: v('nombre'), apellido: v('apellido'), email: v('correo'), telefono: v('telefono'),
-      empresa: '', cargo: '', industria: '', motivo: 'JAPS Studio', mensaje,
-      consent: 'true', website: v('website'), lang: 'es',
+      motivo: 'JAPS Studio', tipo_idea: v('p3d-tipo'), etapa_idea: v('p3d-etapa'),
+      como_llego: v('origen'), construir: v('construir'), problema: v('problema'),
+      consent: fm.querySelector<HTMLInputElement>('[name="consent"]')?.checked ? 'true' : 'false',
+      consentVersion: '1.2.4', website: v('website'), lang: 'es',
       sourcePath: location.pathname, submissionId: fm.dataset.sid || (fm.dataset.sid = uid()),
+      ...currentCampaign(),
     });
     fm.dataset.sending = '1';
     btn?.setAttribute('disabled', '');
     if (lab) lab.textContent = 'Enviando…';
     if (st) { st.textContent = ''; st.className = 'cf__status'; }
     try {
+      if (!endpoint) throw new Error(`No pudimos enviar tu idea. Escríbenos a ${email}.`);
       const r = await fetch(endpoint!, { method: 'POST', headers: { Accept: 'application/json' }, body });
       const j = await r.json().catch(() => null);
       if (!r.ok || j?.ok !== true) throw new Error(r.status === 422 ? 'Revisa los datos e inténtalo de nuevo.' : `No pudimos guardar tu idea. Inténtalo de nuevo o escríbenos a ${email}.`);
@@ -94,6 +91,7 @@ import { engineering, site } from '../../data/site';
       if (first) { (first as Field).focus(); return; }
       const consent = fm.querySelector<HTMLInputElement>('[name="consent"]');
       if (consent && !consent.checked) { consent.focus(); consent.closest('.consent')!.classList.add('is-err'); return; }
+      if (!fm.reportValidity()) return;
       enviar(fm);
     });
     const clear = (e: Event) => {

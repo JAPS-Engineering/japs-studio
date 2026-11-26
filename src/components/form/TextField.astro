@@ -13,14 +13,15 @@ interface Props {
   rows?: number;
   autocomplete?: string;
   inputmode?: 'email' | 'tel' | 'text';
+  maxlength?: number;
 }
-const { id, name, label, type = 'text', required = false, hint, rows, autocomplete, inputmode } = Astro.props;
+const { id, name, label, type = 'text', required = false, hint, rows, autocomplete, inputmode, maxlength } = Astro.props;
 const describedby = [hint && `${id}-h`, `${id}-e`].filter(Boolean).join(' ');
 ---
 <div class="fld" data-req={required ? '' : undefined}><label class="fld__l" for={id}>{label}{required && <span class="req" aria-hidden="true">*</span>}</label>{hint && <p class="fld__h" id={`${id}-h`}>{hint}</p>}{
   rows ? (
-    <textarea class="inp" id={id} name={name} aria-describedby={describedby} required={required} rows={rows}></textarea>
+    <textarea class="inp" id={id} name={name} aria-describedby={describedby} required={required} rows={rows} maxlength={maxlength}></textarea>
   ) : (
-    <input class="inp" type={type} id={id} name={name} aria-describedby={describedby} autocomplete={autocomplete} required={required} inputmode={inputmode} />
+    <input class="inp" type={type} id={id} name={name} aria-describedby={describedby} autocomplete={autocomplete} required={required} inputmode={inputmode} maxlength={maxlength} />
   )
 }<p class="fld__e" id={`${id}-e`}><Icon name="alert" small /><span>Falta este dato</span></p></div>

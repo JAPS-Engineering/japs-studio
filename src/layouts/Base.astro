@@ -4,6 +4,7 @@ import '../../design-system/styles.css';
 import Seo from '../components/seo/Seo.astro';
 import IconSprite from '../components/site/IconSprite.astro';
 import PageLoader from '../components/site/PageLoader.astro';
+import ContactAttribution from '../components/site/ContactAttribution.astro';
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import WhatsAppFab from '../components/site/WhatsAppFab.astro';
@@ -32,7 +33,8 @@ const { sub = false, footerId = 'pie', ...seo } = Astro.props;
 <slot name="head" />
 </head>
 <body>
-<PageLoader />
+    <ContactAttribution />
+    <PageLoader />
 <IconSprite />
 
 <SiteHeader />
