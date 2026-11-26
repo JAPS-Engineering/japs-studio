@@ -63,7 +63,9 @@ design-system/
 - **Equipo y reconocimientos**: `src/data/equipo.ts`.
 - **Colores, tipografía y radios**: `design-system/tokens.json`, luego `npm run tokens`.
 - **Estilo de un componente** (botones, etiquetas, paneles, header, footer, formulario): `design-system/css/`. Si cambia su uso, actualizar su ficha en `design-system/components/` y republicar el Design System (`design-system/SOURCE.md`).
-- **Formulario**: `src/components/form/ContactForm.astro`. Envía a JAPS Core (`/api/publico/contacto/`) con `motivo=JAPS Studio`; Core acepta las rutas `/contacto` y `/contacto.html` de este dominio.
+- **Formulario**: `src/components/form/ContactForm.astro`. Envía a JAPS Core (`/api/publico/contacto/`) con `motivo=JAPS Studio` y respuestas separadas (`tipo_idea`, `construir`, `problema`, `etapa_idea`, `como_llego`), sin recortar el contenido. Construcción y problema admiten 4.000 caracteres cada uno; Core acepta `/contacto`, `/contacto/` y `/contacto.html` de este dominio.
+- **Campañas**: `src/lib/contact-attribution.mjs` conserva la primera campaña UTM de la pestaña en sessionStorage y la transmite en enlaces a JAPS que no tengan campaña explícita. Sin almacenamiento usa la URL actual. La implementación y sus pruebas se mantienen iguales en ambos sitios. Prueba local: `node scripts/contact-attribution.test.mjs`.
+- **Compatibilidad**: publicar primero Core con la migración `0011_contacto_sitio_idea_campana`, luego JAPS con la política 1.2.4 y finalmente Studio. El formulario envía `consentVersion=1.2.4`. Actualizar la ficha TextField del Design System junto con la publicación del sitio.
 
 Las rutas son `/`, `/portafolio` y `/contacto`. `build.format: 'file'` genera `portafolio.html` y `contacto.html`, así que GitHub Pages sirve ambas formas y los enlaces antiguos con `.html` siguen funcionando. El sitemap lo genera `@astrojs/sitemap`.
 
